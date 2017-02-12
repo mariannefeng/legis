@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+{% block body %}
+
+<div class="tile is-ancestor">
+    <div class="tile is-vertical is-parent">
+        {% for rep in reps %}
+        <article class="tile is-child box">
+
+            <div class="level">
+                <p class="level-left title">{{ rep.name }}
+                </p>
+                <p class="level-right title">{{ rep.party }}</p>
+            </div>
+
+            <div class="tile is-parent">
+
+                <!--      pictures     -->
+                <div class="tile is-child is-2">
+                    <img src="{{ rep.photo }}">
+                </div>
+                <div class="tile is-child is-3">
+
+
+                    <article class="message is-dark">
+                        <div class="message-body has-text-left">
+                            {% for key, value in rep.contact.items() %}
+
+                            {% if loop.last %}
+                            <br>
+                            <a href="{{ value }}" target="_blank">{{ value }}</a>
+                            {% else %}
+                            <p> {{ value }} </p>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </article>
+                    <article class="message is-success">
+                        <div class="message-body has-text-left">
+                            {% for value in rep.committees %}
+                            <p> {{ value.position }} of <b>{{value.name}}</b> Committee</p>
+                            {% endfor %}
+                        </div>
+                    </article>
+
+                </div>
+                <div class="tile is-4">
+
+                        <embed typer="image/svg+xml" src="{{ rep.chart|safe }}" style="width:100%"/>
+                </div>
+                <div class="tile is-child is-3">
+                    <p class="title has-text-right">{{ rep.chamber }}</p>
+
+                </div>
+
+            </div>
+
+
+        </article>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
