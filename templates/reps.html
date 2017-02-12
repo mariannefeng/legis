@@ -16,7 +16,11 @@
 
                 <!--      PICTURE     -->
                 <div class="tile is-child is-2">
-                    <img src="{{ rep.photo }}">
+                    {% if rep.photo %}
+                    <img class="rep-photo" src="{{ rep.photo }}">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='default-profile-image.jpg') }}">
+                    {% endif %}
                 </div>
 
                 <!-- CONTACT AND SHIT -->
@@ -27,16 +31,17 @@
                         <div class="message-body has-text-left">
                             {% for key, value in rep.contact.items() %}
 
-                                {% if loop.last %}
-                                    <br>
-                                    <a href="{{ value }}" target="_blank">{{ value }}</a>
-                                {% else %}
-                                    <p> {{ value }} </p>
-                                {% endif %}
+                            {% if loop.last %}
+                            <br>
+                            <a href="{{ value }}" target="_blank">{{ value }}</a>
+                            {% else %}
+                            <p> {{ value }} </p>
+                            {% endif %}
 
                             {% endfor %}
                         </div>
                     </article>
+
                     {% if rep.committees %}
                     <article class="message is-success">
                         <div class="message-body has-text-left">
@@ -46,14 +51,27 @@
                         </div>
                     </article>
                     {% endif %}
+
                     {% if rep.social %}
-                    <article class="message is-info">
-                        <div class="message-body has-text-left">
-                            {% for social in rep.social %}
-                            <p> {{ social.type }} and {{ social.id }}</p>
-                            {% endfor %}
-                        </div>
-                    </article>
+                        <article class="message is-warning is-fluid" style = "display: inline-block">
+                            <div class="message-body has-text-left">
+                                {% for social in rep.social %}
+                                <a class="icon-link"href="{{social.link}}" target = "_blank"><span class="icon is-medium">
+                                {% if social.type == 'GooglePlus' %}
+                                <i class="fa fa-google-plus-square"></i>
+                                {% elif social.type == 'Facebook' %}
+                                <i class="fa fa-facebook"></i>
+                                {% elif social.type == 'Twitter' %}
+                                <i class="fa fa-twitter"></i>
+                                {% elif social.type == 'YouTube' %}
+                                <i class="fa fa-youtube"></i>
+                                {% endif %}
+                            </span>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </article>
+
                     {% endif %}
 
                 </div>

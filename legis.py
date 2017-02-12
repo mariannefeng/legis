@@ -17,6 +17,12 @@ LEGISLATOR_ENDPOINT = 'http://openstates.org/api/v1/legislators/geo/'
 BILL_ENDPOINT = 'http://openstates.org/api/v1/bills/'
 COMMITTEE_ENDPOINT = 'http://openstates.org/api/v1/committees/{0}'
 
+SOCIAL_ENDPOINTS = {
+    'Facebook' : 'https://www.facebook/com/',
+    'Twitter' : 'https://twitter.com/',
+    'YouTube' : 'https://www.youtube.com/user/',
+    'GooglePlus' : 'https://plus.google.com/'
+}
 
 @app.route('/')
 def index():
@@ -49,7 +55,15 @@ def return_data():
                 rep['contact']['address'] = '{0} {1}, {2} {3}'.format(address_map['line1'], address_map['city'],
                                                                       address_map['state'], address_map['zip'])
                 rep['contact']['url'] = civic_r.json()['officials'][index].get('urls')[0]
-                rep['social'] = civic_r.json()['officials'][index].get('channels')
+
+                rep['social'] = []
+                for social in civic_r.json()['officials'][index].get('channels'):
+                    rep_social = {}
+                    type = social['type']
+                    rep_social['type'] = type
+                    rep_social['link'] = SOCIAL_ENDPOINTS[type] + social['id']
+                    print(rep['social'])
+                    rep['social'].append(rep_social)
                 my_reps.append(rep)
 
     r = requests.get(GOOGLE_GEOCODE_ENDPOINT, params=payload)
