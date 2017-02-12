@@ -14,10 +14,12 @@
 
             <div class="tile is-parent">
 
-                <!--      pictures     -->
+                <!--      PICTURE     -->
                 <div class="tile is-child is-2">
                     <img src="{{ rep.photo }}">
                 </div>
+
+                <!-- CONTACT AND SHIT -->
                 <div class="tile is-child is-3">
 
 
@@ -25,15 +27,17 @@
                         <div class="message-body has-text-left">
                             {% for key, value in rep.contact.items() %}
 
-                            {% if loop.last %}
-                            <br>
-                            <a href="{{ value }}" target="_blank">{{ value }}</a>
-                            {% else %}
-                            <p> {{ value }} </p>
-                            {% endif %}
+                                {% if loop.last %}
+                                    <br>
+                                    <a href="{{ value }}" target="_blank">{{ value }}</a>
+                                {% else %}
+                                    <p> {{ value }} </p>
+                                {% endif %}
+
                             {% endfor %}
                         </div>
                     </article>
+                    {% if rep.committees %}
                     <article class="message is-success">
                         <div class="message-body has-text-left">
                             {% for value in rep.committees %}
@@ -41,11 +45,22 @@
                             {% endfor %}
                         </div>
                     </article>
+                    {% endif %}
+                    {% if rep.social %}
+                    <article class="message is-info">
+                        <div class="message-body has-text-left">
+                            {% for social in rep.social %}
+                            <p> {{ social.type }} and {{ social.id }}</p>
+                            {% endfor %}
+                        </div>
+                    </article>
+                    {% endif %}
 
                 </div>
-                <div class="tile is-4">
 
-                        <embed typer="image/svg+xml" src="{{ rep.chart|safe }}" style="width:100%"/>
+                <!-- BILL CHART -->
+                <div class="tile is-4">
+                    <embed typer="image/svg+xml" src="{{ rep.chart|safe }}" style="width:100%"/>
                 </div>
                 <div class="tile is-child is-3">
                     <p class="title has-text-right">{{ rep.chamber }}</p>

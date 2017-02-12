@@ -49,6 +49,7 @@ def return_data():
                 rep['contact']['address'] = '{0} {1}, {2} {3}'.format(address_map['line1'], address_map['city'],
                                                                       address_map['state'], address_map['zip'])
                 rep['contact']['url'] = civic_r.json()['officials'][index].get('urls')[0]
+                rep['social'] = civic_r.json()['officials'][index].get('channels')
                 my_reps.append(rep)
 
     r = requests.get(GOOGLE_GEOCODE_ENDPOINT, params=payload)
@@ -82,7 +83,6 @@ def return_data():
         bill_params = {'sponsor_id': sunlight_id, 'search_window': 'session:2017-2018'}
         subj_list = subject_list(bill_params)
         subject_count = collections.Counter(subj_list)
-        # make a chart
         pie_chart = pygal.Pie(show_legend=False, style=LEGIS_STYLE)
         pie_chart.title = 'Bills Speak Louder than Words'
         for subject, count in subject_count.items():
