@@ -1,11 +1,22 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, Blueprint
 import collections
 import requests
 import json
+import datetime
+import os
+import io
+
+from dateutil.relativedelta import relativedelta
 import pygal
+import nltk
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud, STOPWORDS
 from pygal.style import Style
-##test git user
+
 app = Flask(__name__)
+# create additional static directory
+blueprint = Blueprint('clouds', __name__, static_url_path='/clouds', static_folder='clouds/')
+app.register_blueprint(blueprint)
 
 API_KEY = 'AIzaSyCtLpZ3MKo33ziOynkUbDJwqvF_baYY1ls'
 GOOGLE_CIVIC_KEY = 'AIzaSyDny6NNitDS3FIGkXWKO8sMgsNb9-G-h6E'
@@ -17,6 +28,8 @@ LEGISLATOR_ENDPOINT = 'http://openstates.org/api/v1/legislators/geo/'
 BILL_ENDPOINT = 'http://openstates.org/api/v1/bills/'
 COMMITTEE_ENDPOINT = 'http://openstates.org/api/v1/committees/{0}'
 
+
+# todo - make class that represents a legislator. this shit is just getting out of hand
 
 @app.route('/')
 def index():
@@ -80,14 +93,27 @@ def return_data():
         # get billz
         # rep['bills'] = []
         print('SUNLIGHT ID', sunlight_id, rep['name'])
-        bill_params = {'sponsor_id': sunlight_id, 'search_window': 'session:2017-2018'}
-        subj_list = subject_list(bill_params)
-        subject_count = collections.Counter(subj_list)
-        pie_chart = pygal.Pie(show_legend=False, style=LEGIS_STYLE)
-        pie_chart.title = 'Bills Speak Louder than Words'
-        for subject, count in subject_count.items():
-            pie_chart.add(subject, count)
-        rep['chart'] = pie_chart.render_data_uri()
+
+        # one_year = datetime.datetime.now() + relativedelta(months=-12)
+        # bill_params = {'sponsor_id': sunlight_id, 'updated_since': one_year.strftime('%Y-%m-%d')}
+
+        # title_subject_data = subject_list(bill_params)
+        # subject_count = collections.Counter(title_subject_data['subjects'])
+        # title_words = ' '.join(title_subject_data['titles'])
+        # print(title_words)
+        # wordcloud = WordCloud(stopwords=STOPWORDS).generate(title_words)
+        # rep['wordcloud'] = wordcloud
+        ## PIE CHART
+        # pie_chart = pygal.Pie(show_legend=False, style=LEGIS_STYLE)
+        # pie_chart.title = 'Bills Speak Louder than Words'
+        # for subject, count in subject_count.items():
+        #     pie_chart.add(subject, count)
+        # rep['chart'] = pie_chart.render_data_uri()
+        is_word_cloud, chart = make_bill_chart(sunlight_id)
+        if is_word_cloud:
+            rep['wordcloud_loc'] = chart
+        else:
+            rep['pie_chart'] = chart
         # bill_r = requests.get(BILL_ENDPOINT, params=bill_params)
         # for sunlight_bill in bill_r.json():
         #     bill = {}
@@ -106,15 +132,54 @@ def return_data():
 
 
 
+def make_bill_chart(sunlight_id):
+    one_year = datetime.datetime.now() + relativedelta(months=-12)
+    bill_params = {'sponsor_id': sunlight_id, 'updated_since': one_year.strftime('%Y-%m-%d')}
+    title_subject_data = subject_list(bill_params)
+    subject_count = collections.Counter(title_subject_data['subjects'])
+    # if 'None" comprises 50%+ of total subject data, then render a word cloud of titles instead.
+    if subject_count.most_common(1)[0][0] == 'None':
+        # check if it is 50%
+        composition = {subject: subject_count[subject]/float(len(title_subject_data['subjects'])) for subject in subject_count}
+        print(composition)
+        if composition.get('None') > .5:
+            # get rid of verbs
+            good_words = nltk_process(title_subject_data['titles'], 'V')
+            # make word cloud
+            cloud = WordCloud(height=300, width=600).generate(' '.join(good_words))
+            filename = '{}.png'.format(sunlight_id)
+            cloud.to_file(os.path.join('clouds', filename))
+            return True, filename
+    else:
+        pie_chart = pygal.Pie(show_legend=False, style=LEGIS_STYLE)
+        pie_chart.title = 'Bills Speak Louder than Words'
+        for subject, count in subject_count.items():
+            pie_chart.add(subject, count)
+        return False, pie_chart.render_data_uri()
+
+
+def nltk_process(word_list, filter_initial_letter):
+    tokens = nltk.word_tokenize(' '.join(word_list))
+    tagged = nltk.pos_tag(tokens)
+    good_words = [word for word, pos_tag in tagged if not pos_tag.startswith(filter_initial_letter)]
+    return good_words
+
+
 def subject_list(bill_params):
     bill_r = requests.get(BILL_ENDPOINT, params=bill_params)
-    subjects = []
-    for sunlight_bill in bill_r.json():
-        if sunlight_bill['subjects']:
-            subjects += sunlight_bill['subjects']
-        else:
-            subjects.append('None')
-    return subjects
+    print(bill_r.url)
+    relevant_bill_data = {'subjects': [], 'titles': []}
+    if type(bill_r.json()) == list:
+        for sunlight_bill in bill_r.json():
+            if sunlight_bill['subjects']:
+                relevant_bill_data['subjects'] += sunlight_bill['subjects']
+            else:
+                relevant_bill_data['subjects'].append('None')
+            if sunlight_bill['title']:
+                relevant_bill_data['titles'].append(sunlight_bill['title'])
+    else:
+        raise ValueError(type(bill_r.json()), bill_r.json())
+    return relevant_bill_data
 
 LEGIS_STYLE = Style(background='transparent',
                     plot_background='transparent',
