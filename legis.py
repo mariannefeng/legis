@@ -4,7 +4,7 @@ import requests
 import json
 import pygal
 from pygal.style import Style
-
+##test git user
 app = Flask(__name__)
 
 API_KEY = 'AIzaSyCtLpZ3MKo33ziOynkUbDJwqvF_baYY1ls'
@@ -44,7 +44,6 @@ def return_data():
         if office['divisionId'] !=  "ocd-division/country:us":
             for index in office['officialIndices']:
                 rep = {}
-                print(office)
                 rep['name'] = civic_r.json()['officials'][index]['name']
                 rep['party']  = civic_r.json()['officials'][index]['party']
                 rep['chamber']  = office['name']
@@ -94,6 +93,7 @@ def return_data():
         sunlight_id = legislator.get('id')
         # get billz
         # rep['bills'] = []
+        print('SUNLIGHT ID', sunlight_id, rep['name'])
         bill_params = {'sponsor_id': sunlight_id, 'search_window': 'session:2017-2018'}
         subj_list = subject_list(bill_params)
         subject_count = collections.Counter(subj_list)
