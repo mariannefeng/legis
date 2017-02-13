@@ -88,10 +88,10 @@
 
                 <!-- BILL CHART -->
                 <div class="tile is-3">
-                    {% if rep.pie_chart %}
-                    <embed type="image/svg+xml" src="{{ rep.pie_chart|safe }}" style="width:100%"/>
-                    {% elif rep.wordcloud_loc %}
-                    <img src="clouds/{{ rep.wordcloud_loc }}" style="width:100%">
+                    {% if rep.bill_chart_type == 'pie' %}
+                    <embed type="image/svg+xml" src="{{ rep.bill_chart|safe }}" style="width:100%"/>
+                    {% elif rep.bill_chart_type == 'word_cloud' %}
+                    <img src="clouds/{{ rep.bill_chart }}" style="width:100%">
                     {% endif %}
                 </div>
 
