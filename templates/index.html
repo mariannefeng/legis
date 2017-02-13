@@ -8,18 +8,22 @@
 </head>
 <body class="container is-fluid"  style="margin-top:20px">
 {% block body %}
-<div class="columns is-mobile" style="margin-top:20%">
+<!--<div class="columns">-->
+    <!--<div class="column is-half is-offset-one-quarter">-->
+        <!--<h1 class="title is-1 has-text-centered">Who do I call?</h1>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="columns is-mobile is-multiline" style="margin-top:20%">
+    <div class="column is-half is-offset-one-quarter">
+        <h1 class="title is-1 has-text-centered is-fluid">Who Represents Me?</h1>
+    </div>
     <form class="column is-half is-offset-one-quarter" action="{{ url_for('return_data') }}"   method="POST">
-
-
         <p class="control">
             <input class="input" type="text" placeholder="Address" name="address">
         </p>
-
         <p class="control">
             <input class="input" type="text" placeholder="City" name="city">
         </p>
-
 
         <p class="control">
             <input class="input" type="text" placeholder="State" name="state">
