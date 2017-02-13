@@ -37,10 +37,11 @@ def return_data():
 
     civic_r = requests.get(vars.GOOGLE_CIVIC_ENDPOINT, params=civic_payload)
 
+    state = civic_r.json()['normalizedInput']['state']
     for office in civic_r.json()['offices']:
         if office['divisionId'] != "ocd-division/country:us":
             for index in office['officialIndices']:
-                rep = leg.map_json_to_us_leg(civic_r.json()['officials'][index], office['name'])
+                rep = leg.map_json_to_us_leg(civic_r.json()['officials'][index], office['name'], state)
                 my_reps.append(rep)
 
     r = requests.get(vars.GOOGLE_GEOCODE_ENDPOINT, params=payload)

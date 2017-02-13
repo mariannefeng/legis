@@ -2,6 +2,7 @@ import os
 import math
 import random
 import datetime
+import re
 
 import nltk
 import pygal
@@ -17,18 +18,18 @@ def get_house_members():
     master_house_list = {}
     house_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('house'), headers=vars.PRO_PUB_HEADERS)
     for member in house_r.json()['results'][0]['members']:
-        master_house_list['{0} {1}'.format(member['first_name'], member['last_name'])] = {}
-        master_house_list['{0} {1}'.format(member['first_name'], member['last_name'])]['id'] = member['id']
-        master_house_list['{0} {1}'.format(member['first_name'], member['last_name'])]['detail_url'] = member['api_uri']
+        master_house_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])] = {}
+        master_house_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])]['id'] = member['id']
+        master_house_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])]['detail_url'] = member['api_uri']
     return master_house_list
 
 def get_senate_members():
     master_senate_list = {}
     senate_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('senate'), headers=vars.PRO_PUB_HEADERS)
     for member in senate_r.json()['results'][0]['members']:
-        master_senate_list['{0} {1}'.format(member['first_name'], member['last_name'])] = {}
-        master_senate_list['{0} {1}'.format(member['first_name'], member['last_name'])]['id'] = member['id']
-        master_senate_list['{0} {1}'.format(member['first_name'], member['last_name'])]['detail_url'] = member['api_uri']
+        master_senate_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])] = {}
+        master_senate_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])]['id'] = member['id']
+        master_senate_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])]['detail_url'] = member['api_uri']
     return master_senate_list
 
 HOUSE_PROPUB = get_house_members()
@@ -100,17 +101,32 @@ class USLegislator(Legislator):
         self.level = 'US'
         self.finance = finance
 
-    def get_financial_data(self, names):
+    def get_financial_data(self, name, state):
         if vars.CURRENT_YEAR % 2 == 0:
             election_year = vars.CURRENT_YEAR
         else:
             election_year = vars.CURRENT_YEAR - 1
-        committee_search_filter = {'q': names,
+        committee_search_filter = {'q': name,
                                    'cycle': election_year,
                                    'api_key': vars.OPEN_FEC_KEY}
         committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
+
+        name_committee_detail = committees_r.json()['results']
+        if len(name_committee_detail) == 0:
+            name_list = name.split()
+            committee_search_filter = {'q': name_list[len(name_list) - 1],
+                                       'cycle': election_year,
+                                       'state': state,
+                                       'api_key': vars.OPEN_FEC_KEY}
+            print(committee_search_filter)
+            committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
+            print(committees_r.json())
+            name_committee_detail = committees_r.json()['results']
+
+
+
         candidate_committees = []
-        for result in committees_r.json()['results']:
+        for result in name_committee_detail:
             cand_comm = {}
             cand_comm['candidate'] = result['name']
             cand_comm['committee_id'] = result['principal_committees'][0]['committee_id']
@@ -221,17 +237,19 @@ class StateLegislator(Legislator):
             self.bill_chart = pie_chart.render_data_uri()
 
 
-def map_json_to_us_leg(mapper, chamber):
+def map_json_to_us_leg(mapper, chamber, state):
     rep = USLegislator()
     rep.name = mapper['name']
     rep.party = mapper['party']
-    rep.get_financial_data(rep.name)
+    rep.get_financial_data(rep.name, state)
     rep.chamber = chamber
 
+    full_name = rep.name.split()
+    name_key = str.lower(full_name[len(full_name) - 1]) + str.lower(full_name[0][0]) + state
     if chamber == 'United States Senate':
-        member_details = SENATE_PROPUB[rep.name]['detail_url']
+        member_details = SENATE_PROPUB[name_key]['detail_url']
     else:
-        member_details = HOUSE_PROPUB[rep.name]['detail_url']
+        member_details = HOUSE_PROPUB[name_key]['detail_url']
 
     country_comm_r = requests.get(member_details, headers=vars.PRO_PUB_HEADERS)
     comms_current = []
@@ -244,8 +262,6 @@ def map_json_to_us_leg(mapper, chamber):
         rep.committees.append(comm_curr)
 
     # votes_r = requests.get(PRO_PUBLICA_MEMBER_VOTE_ENDPOINT.format(pro_pub_id), params=PRO_PUB_PARAMS)
-
-
     rep.photo = mapper.get('photoUrl')
     rep.contact['phone'] = mapper.get('phones')[0]
     address_map = mapper.get('address')[0]
