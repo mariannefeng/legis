@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, Blueprint
+from flask import Flask, request, jsonify, render_template, Blueprint, flash
 import requests
 import requests_cache
 import os
@@ -13,6 +13,7 @@ import VARS as vars
 
 
 app = Flask(__name__)
+app.secret_key = 'super secret key'
 # create additional static directory
 blueprint = Blueprint('clouds', __name__, static_url_path='/clouds', static_folder='clouds/')
 app.register_blueprint(blueprint)
@@ -30,6 +31,17 @@ def return_data():
     my_reps = []
     # print(list(request.form.values()))
     # need validations on form
+    errs = []
+    for field, value in request.form.items():
+        if not value:
+           errs.append(field)
+    if errs:
+        if len(errs) == 1:
+            flash("Field Required: {}".format(errs[0]).title())
+        else:
+            flash("Fields Required: {}".format(', '.join(errs)).title())
+        return render_template('index.html')
+
     googled_string = ', '.join(list(request.form.values()))
 
     payload = {'address': googled_string, 'key': vars.API_KEY}
