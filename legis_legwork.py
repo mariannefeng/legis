@@ -13,6 +13,26 @@ from dateutil.relativedelta import relativedelta
 
 import VARS as vars
 
+def get_house_members():
+    master_house_list = {}
+    house_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('house'), headers=vars.PRO_PUB_HEADERS)
+    for member in house_r.json()['results'][0]['members']:
+        master_house_list['{0} {1}'.format(member['first_name'], member['last_name'])] = {}
+        master_house_list['{0} {1}'.format(member['first_name'], member['last_name'])]['id'] = member['id']
+        master_house_list['{0} {1}'.format(member['first_name'], member['last_name'])]['detail_url'] = member['api_uri']
+    return master_house_list
+
+def get_senate_members():
+    master_senate_list = {}
+    senate_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('senate'), headers=vars.PRO_PUB_HEADERS)
+    for member in senate_r.json()['results'][0]['members']:
+        master_senate_list['{0} {1}'.format(member['first_name'], member['last_name'])] = {}
+        master_senate_list['{0} {1}'.format(member['first_name'], member['last_name'])]['id'] = member['id']
+        master_senate_list['{0} {1}'.format(member['first_name'], member['last_name'])]['detail_url'] = member['api_uri']
+    return master_senate_list
+
+HOUSE_PROPUB = get_house_members()
+SENATE_PROPUB = get_senate_members()
 
 class Legislator:
     def __init__(self,
@@ -68,17 +88,17 @@ class USLegislator(Legislator):
                  social=None,
                  committees=None,
                  level=None,
+                 finance=None,
                  old_term_ordinal=None,
                  old_committees=None,
                  bills=None,
                  bill_chart=None,
-                 bill_chart_type=None,
-                 contrib_chart=None):
+                 bill_chart_type=None):
         super().__init__(name, party, chamber, photo, bill_chart,
                          contact, social, committees, bill_chart_type,
-                         old_term_ordinal, old_committees, bills)
+                         old_term_ordinal, old_committees, bills, finance)
         self.level = 'US'
-        self.contrib_chart = contrib_chart
+        self.finance = finance
 
     def get_financial_data(self, names):
         if vars.CURRENT_YEAR % 2 == 0:
@@ -96,19 +116,23 @@ class USLegislator(Legislator):
             cand_comm['committee_id'] = result['principal_committees'][0]['committee_id']
             candidate_committees.append(cand_comm)
 
-        contrib_pie = pygal.Pie(show_legend=False, style=vars.LEGIS_STYLE)
-        contrib_pie.title = '% Total Contributions By Size'
+        contrib_bar = pygal.HorizontalBar(show_legend=False, style=vars.FINANCE_BAR_STYLE)
+        contrib_bar.title = '% Total Contributions By Size'
 
         for cand in candidate_committees:
-            # print(cand['candidate'])
             commitee_id = cand['committee_id']
             contrib_params = {'api_key' : vars.OPEN_FEC_KEY,
-                              'cycle' : election_year}
+                              'cycle' : election_year,
+                              'sort' : 'size'}
             contrib_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/committee/{0}/schedules/schedule_a/by_size/'.format(commitee_id), params=contrib_params)
-            for contrib in contrib_r.json()['results']:
-                # print(contrib)
-                contrib_pie.add(contrib['size'], contrib['total'])
-        self.contrib_chart = contrib_pie.render_data_uri()
+            for i, contrib in enumerate(contrib_r.json()['results']):
+                if i == 0:
+                    contrib_bar.add(str(contrib['size']) + '-' + str(contrib_r.json()['results'][i + 1]['size']), contrib['total'])
+                elif i == len(contrib_r.json()['results']) - 1:
+                    contrib_bar.add(str(contrib['size']) + '+', contrib['total'])
+                else:
+                    contrib_bar.add(str(contrib['size']) + '-' + str(contrib_r.json()['results'][i + 1]['size']), contrib['total'])
+        self.finance = contrib_bar.render_data_uri()
 
 
 class StateLegislator(Legislator):
@@ -136,10 +160,11 @@ class StateLegislator(Legislator):
 
     def get_committee(self, role_array):
         committees = []
-        for role in role_array:
-            if role.get('committee_id'):
-                committee = {'position': role.get('position').title(), 'name': role.get('committee')}
-                committees.append(committee)
+        if role_array:
+            for role in role_array:
+                if role.get('committee_id'):
+                    committee = {'position': role.get('position').title(), 'name': role.get('committee')}
+                    committees.append(committee)
         return committees
 
     def set_old_roles(self, legislator):
@@ -187,7 +212,7 @@ class StateLegislator(Legislator):
                 self.bill_chart_type = 'word_cloud'
                 self.bill_chart = filename
         else:
-            pie_chart = pygal.Pie(show_legend=False, style=vars.LEGIS_STYLE, opacity_hover=.9)
+            pie_chart = pygal.Pie(show_legend=False, style=vars.BILL_CHART_STYLE, opacity_hover=.9)
             pie_chart.force_uri_protocol = 'http'
             pie_chart.title = 'Bills Speak Louder than Words'
             for subject, count in subject_count.items():
@@ -200,7 +225,27 @@ def map_json_to_us_leg(mapper, chamber):
     rep = USLegislator()
     rep.name = mapper['name']
     rep.party = mapper['party']
+    rep.get_financial_data(rep.name)
     rep.chamber = chamber
+
+    if chamber == 'United States Senate':
+        member_details = SENATE_PROPUB[rep.name]['detail_url']
+    else:
+        member_details = HOUSE_PROPUB[rep.name]['detail_url']
+
+    country_comm_r = requests.get(member_details, headers=vars.PRO_PUB_HEADERS)
+    comms_current = []
+    for comm in country_comm_r.json()['results'][0]['roles']:
+        if comm['congress'] == '115':
+            comms_current = comm['committees']
+            break
+
+    for comm_curr in comms_current:
+        rep.committees.append(comm_curr)
+
+    # votes_r = requests.get(PRO_PUBLICA_MEMBER_VOTE_ENDPOINT.format(pro_pub_id), params=PRO_PUB_PARAMS)
+
+
     rep.photo = mapper.get('photoUrl')
     rep.contact['phone'] = mapper.get('phones')[0]
     address_map = mapper.get('address')[0]

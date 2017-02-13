@@ -4,6 +4,9 @@ import requests_cache
 import os
 
 import datetime
+import pygal
+from pygal.style import Style
+##test git user
 
 import legis_legwork as leg
 import VARS as vars
@@ -16,9 +19,6 @@ app.register_blueprint(blueprint)
 
 # cache for requests
 requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
-
-
-# todo - make class that represents a legislator. this shit is just getting out of hand
 
 @app.route('/')
 def index():
