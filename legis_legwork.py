@@ -9,39 +9,13 @@ import requests
 import collections
 from pygal.style import Style
 from wordcloud import WordCloud, STOPWORDS
-
-
 from dateutil.relativedelta import relativedelta
 
-CURRENT_YEAR = datetime.datetime.now().year
-LEGISLATOR_ENDPOINT = 'http://openstates.org/api/v1/legislators/geo/'
-CUSTOM_FONT = os.path.join('static', 'Helvetica-Light.ttf')
-BILL_ENDPOINT = 'http://openstates.org/api/v1/bills/'
-OPEN_FEC_ENDPOINT = 'https://api.open.fec.gov/v1'
-OPEN_FEC_KEY = 'FiiYWSsRi01pGXUNkfhwbEX6tF84AJpJq2zp3gzq'
-PRO_PUBLICA_KEY = 'oCmlfzzjf14vd9eOG16H0aLG4wJLkRxn6GX54rRS'
-
-PRO_PUBLICA_MEMBERS_ENDPOINT = 'https://api.propublica.org/congress/v1/115/{0}/members.json'
-PRO_PUBLICA_MEMBER_VOTE_ENDPOINT = 'https://api.propublica.org/congress/v1/members/{0}/votes.json'
-PRO_PUB_HEADERS = {'X-API-Key': PRO_PUBLICA_KEY}
-
-SOCIAL_ENDPOINTS = {
-    'Facebook' : 'https://www.facebook/com/',
-    'Twitter' : 'https://twitter.com/',
-    'YouTube' : 'https://www.youtube.com/user/',
-    'GooglePlus' : 'https://plus.google.com/'
-}
-
-FINANCE_BAR_STYLE = Style(background='transparent',
-                          plot_background='transparent',
-                          transition='50ms ease-in',
-                          opacity='.6',
-                          opacity_hover='.9',
-                          title_font_size=20)
+import VARS as vars
 
 def get_house_members():
     master_house_list = {}
-    house_r = requests.get(PRO_PUBLICA_MEMBERS_ENDPOINT.format('house'), headers=PRO_PUB_HEADERS)
+    house_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('house'), headers=vars.PRO_PUB_HEADERS)
     for member in house_r.json()['results'][0]['members']:
         master_house_list['{0} {1}'.format(member['first_name'], member['last_name'])] = {}
         master_house_list['{0} {1}'.format(member['first_name'], member['last_name'])]['id'] = member['id']
@@ -50,7 +24,7 @@ def get_house_members():
 
 def get_senate_members():
     master_senate_list = {}
-    senate_r = requests.get(PRO_PUBLICA_MEMBERS_ENDPOINT.format('senate'), headers=PRO_PUB_HEADERS)
+    senate_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('senate'), headers=vars.PRO_PUB_HEADERS)
     for member in senate_r.json()['results'][0]['members']:
         master_senate_list['{0} {1}'.format(member['first_name'], member['last_name'])] = {}
         master_senate_list['{0} {1}'.format(member['first_name'], member['last_name'])]['id'] = member['id']
@@ -126,14 +100,14 @@ class USLegislator(Legislator):
         self.finance = finance
 
     def get_financial_data(self, names):
-        if CURRENT_YEAR % 2 == 0:
-            election_year = CURRENT_YEAR
+        if vars.CURRENT_YEAR % 2 == 0:
+            election_year = vars.CURRENT_YEAR
         else:
-            election_year = CURRENT_YEAR - 1
+            election_year = vars.CURRENT_YEAR - 1
         committee_search_filter = {'q': names,
-                                   'cycle' : election_year,
-                                   'api_key': OPEN_FEC_KEY}
-        committees_r = requests.get(OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
+                                   'cycle': election_year,
+                                   'api_key': vars.OPEN_FEC_KEY}
+        committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
         candidate_committees = []
         for result in committees_r.json()['results']:
             cand_comm = {}
@@ -141,15 +115,15 @@ class USLegislator(Legislator):
             cand_comm['committee_id'] = result['principal_committees'][0]['committee_id']
             candidate_committees.append(cand_comm)
 
-        contrib_bar = pygal.HorizontalBar(show_legend=False, style=FINANCE_BAR_STYLE)
+        contrib_bar = pygal.HorizontalBar(show_legend=False, style=vars.FINANCE_BAR_STYLE)
         contrib_bar.title = '% Total Contributions By Size'
 
         for cand in candidate_committees:
             commitee_id = cand['committee_id']
-            contrib_params = {'api_key' : OPEN_FEC_KEY,
+            contrib_params = {'api_key' : vars.OPEN_FEC_KEY,
                               'cycle' : election_year,
                               'sort' : 'size'}
-            contrib_r = requests.get(OPEN_FEC_ENDPOINT + '/committee/{0}/schedules/schedule_a/by_size/'.format(commitee_id), params=contrib_params)
+            contrib_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/committee/{0}/schedules/schedule_a/by_size/'.format(commitee_id), params=contrib_params)
             for i, contrib in enumerate(contrib_r.json()['results']):
                 if i == 0:
                     contrib_bar.add(str(contrib['size']) + '-' + str(contrib_r.json()['results'][i + 1]['size']), contrib['total'])
@@ -203,7 +177,7 @@ class StateLegislator(Legislator):
             self.old_term_ordinal = ordinal(latest)
 
     def get_bill_info(self, bill_params):
-        bill_r = requests.get(BILL_ENDPOINT, params=bill_params)
+        bill_r = requests.get(vars.BILL_ENDPOINT, params=bill_params)
         relevant_bill_data = {'subjects': [], 'titles': []}
         if type(bill_r.json()) == list:
             for sunlight_bill in bill_r.json():
@@ -231,13 +205,13 @@ class StateLegislator(Legislator):
                 good_words = nltk_process(title_subject_data['titles'], 'V')
                 # make word cloud
                 # make circle mask
-                cloud = WordCloud(font_path=CUSTOM_FONT, height=400, width=400, background_color="#ffffff").generate(' '.join(good_words))
+                cloud = WordCloud(font_path=vars.CUSTOM_FONT, height=400, width=400, background_color="#ffffff").generate(' '.join(good_words))
                 filename = '{}.png'.format(sunlight_id)
                 cloud.recolor(color_func=grey_color_func, random_state=3).to_file(os.path.join('clouds', filename))
                 self.bill_chart_type = 'word_cloud'
                 self.bill_chart = filename
         else:
-            pie_chart = pygal.Pie(show_legend=False, style=BILL_CHART_STYLE, opacity_hover=.9)
+            pie_chart = pygal.Pie(show_legend=False, style=vars.BILL_CHART_STYLE, opacity_hover=.9)
             pie_chart.force_uri_protocol = 'http'
             pie_chart.title = 'Bills Speak Louder than Words'
             for subject, count in subject_count.items():
@@ -258,7 +232,7 @@ def map_json_to_us_leg(mapper, chamber):
     else:
         member_details = HOUSE_PROPUB[rep.name]['detail_url']
 
-    country_comm_r = requests.get(member_details, headers=PRO_PUB_HEADERS)
+    country_comm_r = requests.get(member_details, headers=vars.PRO_PUB_HEADERS)
     comms_current = []
     for comm in country_comm_r.json()['results'][0]['roles']:
         if comm['congress'] == '115':
@@ -282,7 +256,7 @@ def map_json_to_us_leg(mapper, chamber):
         rep_social = {}
         type = social['type']
         rep_social['type'] = type
-        rep_social['link'] = SOCIAL_ENDPOINTS[type] + social['id']
+        rep_social['link'] = vars.SOCIAL_ENDPOINTS[type] + social['id']
         rep.social.append(rep_social)
     return rep
 
@@ -311,7 +285,7 @@ def map_json_to_state_leg(legislator):
 
 
 def subject_list(bill_params):
-    bill_r = requests.get(BILL_ENDPOINT, params=bill_params)
+    bill_r = requests.get(vars.BILL_ENDPOINT, params=bill_params)
     # print(bill_r.url)
     relevant_bill_data = {'subjects': [], 'titles': []}
     if type(bill_r.json()) == list:
@@ -325,10 +299,6 @@ def subject_list(bill_params):
     else:
         raise ValueError(type(bill_r.json()), bill_r.json())
     return relevant_bill_data
-
-BILL_CHART_STYLE = Style(background='transparent',
-                         plot_background='transparent',
-                         transition='400ms ease-in')
 
 
 def nltk_process(word_list, filter_initial_letter):
