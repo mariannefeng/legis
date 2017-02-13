@@ -118,12 +118,8 @@ class USLegislator(Legislator):
                                        'cycle': election_year,
                                        'state': state,
                                        'api_key': vars.OPEN_FEC_KEY}
-            print(committee_search_filter)
             committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
-            print(committees_r.json())
             name_committee_detail = committees_r.json()['results']
-
-
 
         candidate_committees = []
         for result in name_committee_detail:
