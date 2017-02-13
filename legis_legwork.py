@@ -85,8 +85,8 @@ class USLegislator(Legislator):
         else:
             election_year = vars.CURRENT_YEAR - 1
         committee_search_filter = {'q': names,
-                                   'cycle' : election_year,
-                                   'api_key': OPEN_FEC_KEY}
+                                   'cycle': election_year,
+                                   'api_key': vars.OPEN_FEC_KEY}
         committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
         candidate_committees = []
         for result in committees_r.json()['results']:
@@ -95,7 +95,7 @@ class USLegislator(Legislator):
             cand_comm['committee_id'] = result['principal_committees'][0]['committee_id']
             candidate_committees.append(cand_comm)
 
-        contrib_pie = pygal.Pie(show_legend=False, style=LEGIS_STYLE)
+        contrib_pie = pygal.Pie(show_legend=False, style=vars.LEGIS_STYLE)
         contrib_pie.title = '% Total Contributions By Size'
 
         for cand in candidate_committees:
@@ -186,7 +186,7 @@ class StateLegislator(Legislator):
                 self.bill_chart_type = 'word_cloud'
                 self.bill_chart = filename
         else:
-            pie_chart = pygal.Pie(show_legend=False, style=LEGIS_STYLE, opacity_hover=.9)
+            pie_chart = pygal.Pie(show_legend=False, style=vars.LEGIS_STYLE, opacity_hover=.9)
             pie_chart.force_uri_protocol = 'http'
             pie_chart.title = 'Bills Speak Louder than Words'
             for subject, count in subject_count.items():
@@ -255,9 +255,6 @@ def subject_list(bill_params):
         raise ValueError(type(bill_r.json()), bill_r.json())
     return relevant_bill_data
 
-LEGIS_STYLE = Style(background='transparent',
-                    plot_background='transparent',
-                    transition='400ms ease-in')
 
 
 def nltk_process(word_list, filter_initial_letter):

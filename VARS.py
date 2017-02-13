@@ -1,6 +1,8 @@
 import datetime
 import os
 
+from pygal.style import Style
+
 API_KEY = 'AIzaSyCtLpZ3MKo33ziOynkUbDJwqvF_baYY1ls'
 GOOGLE_CIVIC_KEY = 'AIzaSyDny6NNitDS3FIGkXWKO8sMgsNb9-G-h6E'
 OS_API_KEY= 'f8686fdf6e4871299219f398f88d508a'
@@ -23,4 +25,8 @@ SOCIAL_ENDPOINTS = {
     'Twitter' : 'https://twitter.com/',
     'YouTube' : 'https://www.youtube.com/user/',
     'GooglePlus' : 'https://plus.google.com/'
-}
+    }
+
+LEGIS_STYLE = Style(background='transparent',
+                    plot_background='transparent',
+                    transition='400ms ease-in')
