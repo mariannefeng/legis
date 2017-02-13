@@ -45,7 +45,17 @@
                     {% if rep.committees %}
                     <article class="message is-success">
                         <div class="message-body has-text-left">
+                            <p><b>Current Term</b></p>
                             {% for value in rep.committees %}
+                            <p> {{ value.position }} of <b>{{value.name}}</b> Committee</p>
+                            {% endfor %}
+                        </div>
+                    </article>
+                    {% elif rep.old_committees %}
+                    <article class="message is-success">
+                        <div class="message-body has-text-left">
+                            <p><b>{{ rep.old_term_ordinal }} Term</b></p>
+                            {% for value in rep.old_committees %}
                             <p> {{ value.position }} of <b>{{value.name}}</b> Committee</p>
                             {% endfor %}
                         </div>
