@@ -78,15 +78,15 @@
 
                 <!-- BILL CHART -->
 
-                <div class="tile is-4">
+                <div class="tile is-3">
                     {% if rep.pie_chart %}
                     <embed type="image/svg+xml" src="{{ rep.pie_chart|safe }}" style="width:100%"/>
                     {% elif rep.wordcloud_loc %}
-                    <img src="clouds/{{ rep.wordcloud_loc }}">
+                    <img src="clouds/{{ rep.wordcloud_loc }}" style="width:100%">
                     {% endif %}
                 </div>
 
-                <div class="tile is-child is-3">
+                <div class="tile is-child is-4">
                     <p class="title has-text-right">{{ rep.chamber }}</p>
 
                 </div>

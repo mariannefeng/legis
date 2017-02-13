@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify, render_template, Blueprint
 import collections
 import requests
+import requests_cache
 import json
+import random
 import datetime
 import os
 import io
@@ -17,6 +19,9 @@ app = Flask(__name__)
 # create additional static directory
 blueprint = Blueprint('clouds', __name__, static_url_path='/clouds', static_folder='clouds/')
 app.register_blueprint(blueprint)
+
+# cache for requests
+requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 
 API_KEY = 'AIzaSyCtLpZ3MKo33ziOynkUbDJwqvF_baYY1ls'
 GOOGLE_CIVIC_KEY = 'AIzaSyDny6NNitDS3FIGkXWKO8sMgsNb9-G-h6E'
@@ -34,6 +39,8 @@ SOCIAL_ENDPOINTS = {
     'YouTube' : 'https://www.youtube.com/user/',
     'GooglePlus' : 'https://plus.google.com/'
 }
+
+CUSTOM_FONT = os.path.join('static', 'Helvetica-Light.ttf')
 
 # todo - make class that represents a legislator. this shit is just getting out of hand
 
@@ -98,6 +105,7 @@ def return_data():
         rep['contact'].pop('type')
         #  get committee info
         rep['committees'] = []
+        print(json.dumps(legislator))
         for role in legislator.get('roles'):
             if role.get('committee_id'):
                 committee = {'position': role.get('position').title(), 'name': role.get('committee')}
@@ -145,6 +153,14 @@ def return_data():
     return render_template('reps.html', reps=my_reps)
 
 
+def turq_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+    pastels = ["rgb(64,224,208)", "rgb(0,255,255)","rgb(224,255,255)", "rgb(95,158,160)"]
+    return random.choice(pastels)
+
+
+def grey_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+    return "hsl(0, 0%%, %d%%)" % random.randint(60, 90)
+
 
 def make_bill_chart(sunlight_id):
     one_year = datetime.datetime.now() + relativedelta(months=-12)
@@ -160,9 +176,10 @@ def make_bill_chart(sunlight_id):
             # get rid of verbs
             good_words = nltk_process(title_subject_data['titles'], 'V')
             # make word cloud
-            cloud = WordCloud(height=300, width=600).generate(' '.join(good_words))
+            cloud = WordCloud(font_path=CUSTOM_FONT, height=400, width=400, background_color="#ffffff").generate(' '.join(good_words))
             filename = '{}.png'.format(sunlight_id)
-            cloud.to_file(os.path.join('clouds', filename))
+            cmap = plt.get_cmap('Blues')
+            cloud.recolor(color_func=grey_color_func,random_state=3).to_file(os.path.join('clouds', filename))
             return True, filename
     else:
         pie_chart = pygal.Pie(show_legend=False, style=LEGIS_STYLE)
