@@ -57,6 +57,7 @@ class Legislator:
         self.bill_chart_type = bill_chart_type
         self.bill_chart = bill_chart
 
+
 class USLegislator(Legislator):
     def __init__(self,
                  name=None,
@@ -254,7 +255,6 @@ def subject_list(bill_params):
     else:
         raise ValueError(type(bill_r.json()), bill_r.json())
     return relevant_bill_data
-
 
 
 def nltk_process(word_list, filter_initial_letter):

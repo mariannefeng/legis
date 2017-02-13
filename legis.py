@@ -24,6 +24,7 @@ requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 def index():
     return render_template('index.html')
 
+
 @app.route('/my_reps', methods=['POST'])
 def return_data():
     my_reps = []
@@ -49,19 +50,9 @@ def return_data():
     r = requests.get(vars.LEGISLATOR_ENDPOINT, params=sunlight_payload)
     legislators_info = r.json()
     for legislator in legislators_info:
-        print(legislator)
         rep = leg.map_json_to_state_leg(legislator)
         my_reps.append(rep)
     return render_template('reps.html', reps=my_reps)
-
-
-
-SOCIAL_ENDPOINTS = {
-    'Facebook' : 'https://www.facebook/com/',
-    'Twitter' : 'https://twitter.com/',
-    'YouTube' : 'https://www.youtube.com/user/',
-    'GooglePlus' : 'https://plus.google.com/'
-}
 
 
 if __name__ == '__main__':
