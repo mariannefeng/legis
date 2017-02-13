@@ -250,6 +250,7 @@ def map_json_to_state_leg(legislator):
     # # pull legislator id for bill info
     sunlight_id = legislator.get('id')
     rep.create_chart(sunlight_id)
+    return rep
 
 
 def subject_list(bill_params):

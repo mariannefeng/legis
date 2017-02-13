@@ -1,25 +1,11 @@
 from flask import Flask, request, jsonify, render_template, Blueprint
-import collections
 import requests
 import requests_cache
-import json
-import random
-import datetime
 import os
-import io
-import math
 
-from dateutil.relativedelta import relativedelta
 import datetime
-import pygal
-import nltk
-import numpy as np
-import matplotlib.pyplot as plt
-from wordcloud import WordCloud, STOPWORDS
-from pygal.style import Style
-from PIL import Image
 
-import legis_objektz as leg
+import legis_legwork as leg
 
 app = Flask(__name__)
 # create additional static directory
@@ -76,8 +62,9 @@ def return_data():
     r = requests.get(LEGISLATOR_ENDPOINT, params=sunlight_payload)
     legislators_info = r.json()
     for legislator in legislators_info:
+        print(legislator)
         rep = leg.map_json_to_state_leg(legislator)
-        my_reps.append(rep)
+        my_reps.append(rep.__dict__)
     return render_template('reps.html', reps=my_reps)
 
 
