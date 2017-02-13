@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 import collections
 import requests
 import json
+import datetime
 import pygal
 from pygal.style import Style
 ##test git user
@@ -10,19 +11,16 @@ app = Flask(__name__)
 API_KEY = 'AIzaSyCtLpZ3MKo33ziOynkUbDJwqvF_baYY1ls'
 GOOGLE_CIVIC_KEY = 'AIzaSyDny6NNitDS3FIGkXWKO8sMgsNb9-G-h6E'
 OS_API_KEY= 'f8686fdf6e4871299219f398f88d508a'
+OPEN_FEC_KEY = 'FiiYWSsRi01pGXUNkfhwbEX6tF84AJpJq2zp3gzq'
 
 GOOGLE_GEOCODE_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json'
 GOOGLE_CIVIC_ENDPOINT = 'https://www.googleapis.com/civicinfo/v2/representatives'
 LEGISLATOR_ENDPOINT = 'http://openstates.org/api/v1/legislators/geo/'
 BILL_ENDPOINT = 'http://openstates.org/api/v1/bills/'
 COMMITTEE_ENDPOINT = 'http://openstates.org/api/v1/committees/{0}'
+OPEN_FEC_ENDPOINT = 'https://api.open.fec.gov/v1'
 
-SOCIAL_ENDPOINTS = {
-    'Facebook' : 'https://www.facebook/com/',
-    'Twitter' : 'https://twitter.com/',
-    'YouTube' : 'https://www.youtube.com/user/',
-    'GooglePlus' : 'https://plus.google.com/'
-}
+CURRENT_YEAR = datetime.datetime.now().year
 
 @app.route('/')
 def index():
@@ -45,6 +43,7 @@ def return_data():
             for index in office['officialIndices']:
                 rep = {}
                 rep['name'] = civic_r.json()['officials'][index]['name']
+                rep['finance'] = get_financial_data(rep['name'])
                 rep['party']  = civic_r.json()['officials'][index]['party']
                 rep['chamber']  = office['name']
                 rep['photo'] = civic_r.json()['officials'][index].get('photoUrl')
@@ -61,7 +60,6 @@ def return_data():
                     type = social['type']
                     rep_social['type'] = type
                     rep_social['link'] = SOCIAL_ENDPOINTS[type] + social['id']
-                    print(rep['social'])
                     rep['social'].append(rep_social)
                 my_reps.append(rep)
 
@@ -134,6 +132,44 @@ LEGIS_STYLE = Style(background='transparent',
                     plot_background='transparent',
                     transition='400ms ease-in')
 
+def get_financial_data(names):
+    if CURRENT_YEAR % 2 == 0:
+        election_year = CURRENT_YEAR
+    else:
+        election_year = CURRENT_YEAR - 1
+    committee_search_filter = {'q': names,
+                              'cycle' : election_year,
+                              'api_key': OPEN_FEC_KEY}
+    committees_r = requests.get(OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
+    candidate_committees = []
+    for result in committees_r.json()['results']:
+        cand_comm = {}
+        cand_comm['candidate'] = result['name']
+        cand_comm['committee_id'] = result['principal_committees'][0]['committee_id']
+        candidate_committees.append(cand_comm)
+
+    contrib_pie = pygal.Pie(show_legend=False, style=LEGIS_STYLE)
+    contrib_pie.title = '% Total Contributions By Size'
+
+    for cand in candidate_committees:
+        print(cand['candidate'])
+        commitee_id = cand['committee_id']
+        contrib_params = {'api_key' : OPEN_FEC_KEY,
+                          'cycle' : election_year}
+        contrib_r = requests.get(OPEN_FEC_ENDPOINT + '/committee/{0}/schedules/schedule_a/by_size/'.format(commitee_id), params=contrib_params)
+        for contrib in contrib_r.json()['results']:
+            print(contrib)
+            contrib_pie.add(contrib['size'], contrib['total'])
+
+    return contrib_pie.render_data_uri()
+
+
+SOCIAL_ENDPOINTS = {
+    'Facebook' : 'https://www.facebook/com/',
+    'Twitter' : 'https://twitter.com/',
+    'YouTube' : 'https://www.youtube.com/user/',
+    'GooglePlus' : 'https://plus.google.com/'
+}
 
 
 if __name__ == '__main__':

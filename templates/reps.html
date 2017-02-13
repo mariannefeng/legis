@@ -78,11 +78,16 @@
 
                 <!-- BILL CHART -->
                 <div class="tile is-4">
+                    {% if rep.chart %}
                     <embed typer="image/svg+xml" src="{{ rep.chart|safe }}" style="width:100%"/>
+                    {% endif %}
+                    
+                    {% if rep.finance %}
+                    <embed typer="image/svg+xml" src="{{ rep.finance|safe }}" style="width:100%"/>
+                    {% endif %}
                 </div>
                 <div class="tile is-child is-3">
                     <p class="title has-text-right">{{ rep.chamber }}</p>
-
                 </div>
 
             </div>
