@@ -42,21 +42,12 @@
                         </div>
                     </article>
 
-                    {% if rep.committees %}
-                    <article class="message is-success">
-                        <div class="message-body has-text-left">
-                            {% for value in rep.committees %}
-                            <p> {{ value.position }} of <b>{{value.name}}</b> Committee</p>
-                            {% endfor %}
-                        </div>
-                    </article>
-                    {% endif %}
-
                     {% if rep.social %}
-                        <article class="message is-warning is-fluid" style = "display: inline-block">
-                            <div class="message-body has-text-left">
-                                {% for social in rep.social %}
-                                <a class="icon-link"href="{{social.link}}" target = "_blank"><span class="icon is-medium">
+                    <article class="message is-warning">
+                        <div class="message-body has-text-left">
+                            {% for social in rep.social %}
+                            <a class="icon-link"href="{{social.link}}" target = "_blank"><span class="icon is-medium">
+
                                 {% if social.type == 'GooglePlus' %}
                                 <i class="fa fa-google-plus-square"></i>
                                 {% elif social.type == 'Facebook' %}
@@ -67,21 +58,37 @@
                                 <i class="fa fa-youtube"></i>
                                 {% endif %}
                             </span>
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </article>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </article>
+                    {% endif %}
 
+                    {% if rep.committees %}
+                    <article class="message is-success">
+                        <div class="message-body has-text-left">
+                                {% for value in rep.committees %}
+                            <p>
+                            {% if value.position %}
+                                        {{ value.position }} of
+                                    {% endif %}
+                            <b>{{value.name.replace("&#39;", "'")}}</b>
+                            </p>
+                            {% endfor %}
+                        </div>
+                    </article>
                     {% endif %}
 
                 </div>
+
+
 
                 <!-- BILL CHART -->
                 <div class="tile is-4">
                     {% if rep.chart %}
                     <embed typer="image/svg+xml" src="{{ rep.chart|safe }}" style="width:100%"/>
                     {% endif %}
-                    
+
                     {% if rep.finance %}
                     <embed typer="image/svg+xml" src="{{ rep.finance|safe }}" style="width:100%"/>
                     {% endif %}
