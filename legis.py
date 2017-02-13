@@ -45,12 +45,12 @@ def return_data():
     googled_string = ', '.join(list(request.form.values()))
 
     payload = {'address': googled_string, 'key': API_KEY}
-    civic_payload = {'address' : googled_string, 'key': GOOGLE_CIVIC_KEY, 'levels':'country'}
+    civic_payload = {'address': googled_string, 'key': GOOGLE_CIVIC_KEY, 'levels':'country'}
 
     civic_r = requests.get(GOOGLE_CIVIC_ENDPOINT, params=civic_payload)
 
     for office in civic_r.json()['offices']:
-        if office['divisionId'] !=  "ocd-division/country:us":
+        if office['divisionId'] != "ocd-division/country:us":
             for index in office['officialIndices']:
                 rep = leg.map_json_to_us_leg(civic_r.json()['officials'][index], office['name'])
                 my_reps.append(rep)
@@ -64,7 +64,7 @@ def return_data():
     for legislator in legislators_info:
         print(legislator)
         rep = leg.map_json_to_state_leg(legislator)
-        my_reps.append(rep.__dict__)
+        my_reps.append(rep)
     return render_template('reps.html', reps=my_reps)
 
 
