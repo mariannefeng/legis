@@ -3,6 +3,7 @@
 
 <div class="tile is-ancestor">
     <div class="tile is-vertical is-parent">
+
         {% for rep in reps %}
         <article class="tile is-child box">
 
@@ -26,7 +27,6 @@
                 <!-- CONTACT AND SHIT -->
                 <div class="tile is-child is-3">
 
-
                     <article class="message is-dark">
                         <div class="message-body has-text-left">
                             {% for key, value in rep.contact.items() %}
@@ -46,8 +46,7 @@
                     <article class="message is-warning">
                         <div class="message-body has-text-left">
                             {% for social in rep.social %}
-                            <a class="icon-link"href="{{social.link}}" target = "_blank"><span class="icon is-medium">
-
+                            <a class="icon-link" href="{{social.link}}" target="_blank"><span class="icon is-medium">
                                 {% if social.type == 'GooglePlus' %}
                                 <i class="fa fa-google-plus-square"></i>
                                 {% elif social.type == 'Facebook' %}
@@ -67,13 +66,23 @@
                     {% if rep.committees %}
                     <article class="message is-success">
                         <div class="message-body has-text-left">
-                                {% for value in rep.committees %}
+                            <p><b>Current Term</b></p>
+                            {% for value in rep.committees %}
                             <p>
-                            {% if value.position %}
-                                        {{ value.position }} of
-                                    {% endif %}
-                            <b>{{value.name.replace("&#39;", "'")}}</b>
+                                {% if value.position %}
+                                {{ value.position }} of
+                                {% endif %}
+                                <b>{{value.name.replace("&#39;", "'")}}</b>
                             </p>
+                            {% endfor %}
+                        </div>
+                    </article>
+                    {% elif rep.old_committees %}
+                    <article class="message is-success">
+                        <div class="message-body has-text-left">
+                            <p><b>{{ rep.old_term_ordinal }} Term</b></p>
+                            {% for value in rep.old_committees %}
+                            <p> {{ value.position }} of <b>{{value.name}}</b></p>
                             {% endfor %}
                         </div>
                     </article>
@@ -82,18 +91,20 @@
                 </div>
 
 
-
                 <!-- BILL CHART -->
                 <div class="tile is-4">
-                    {% if rep.chart %}
-                    <embed typer="image/svg+xml" src="{{ rep.chart|safe }}" style="width:100%"/>
-                    {% endif %}
-
                     {% if rep.finance %}
                     <embed typer="image/svg+xml" src="{{ rep.finance|safe }}" style="width:100%"/>
                     {% endif %}
+
+                    {% if rep.bill_chart_type == 'pie' %}
+                    <embed type="image/svg+xml" src="{{ rep.bill_chart|safe }}" style="width:100%"/>
+                    {% elif rep.bill_chart_type == 'word_cloud' %}
+                    <img src="clouds/{{ rep.bill_chart }}" style="width:100%">
+                    {% endif %}
                 </div>
-                <div class="tile is-child is-3">
+
+                <div class="tile is-child is-4">
                     <p class="title has-text-right">{{ rep.chamber }}</p>
                 </div>
 
