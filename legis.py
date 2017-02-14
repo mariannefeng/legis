@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, Blueprint, flash
+from flask import Flask, request, jsonify, render_template, Blueprint, flash, redirect, url_for
 import requests
 import requests_cache
 import os
@@ -46,7 +46,7 @@ def return_data():
             flash("Field Required: {}".format(errs[0]).title())
         else:
             flash("Fields Required: {}".format(', '.join(errs)).title())
-        return render_template('index.html')
+        return redirect(url_for('index'))
 
     googled_string = ', '.join(list(request.form.values()))
 
@@ -54,12 +54,16 @@ def return_data():
     civic_payload = {'address': googled_string, 'key': vars.GOOGLE_CIVIC_KEY, 'levels': 'country'}
 
     civic_r = requests.get(vars.GOOGLE_CIVIC_ENDPOINT, params=civic_payload)
+    google_result = civic_r.json()
+    if google_result.get('error'):
+        flash("Error from Google Civic API: {}".format(google_result['error'].get('message')))
+        return redirect(url_for('index'))
 
-    state = civic_r.json()['normalizedInput']['state']
-    for office in civic_r.json()['offices']:
+    state = google_result['normalizedInput']['state']
+    for office in google_result['offices']:
         if office['divisionId'] != "ocd-division/country:us":
             for index in office['officialIndices']:
-                rep = leg.map_json_to_us_leg(civic_r.json()['officials'][index], office['name'], state)
+                rep = leg.map_json_to_us_leg(google_result['officials'][index], office['name'], state)
                 my_reps.append(rep)
 
     r = requests.get(vars.GOOGLE_GEOCODE_ENDPOINT, params=payload)
