@@ -37,9 +37,22 @@ SENATE_PROPUB = get_senate_members()
 
 
 class Constituent:
-    """Class representing the human
+    """Class representing the politically-curious human
     currently methods are just the google methods, but I figure we might do more later,
     maybe we can save constituent info so people can tag what is important to them or something
+
+    :param address: House Number / Street Info
+    :param state: State they reside in
+    :param city: City they reside in
+
+    :param google_address: formatted address for Google API
+    :param representatives: List of representatives that represent this Constituent
+
+    :method get_google_civic_info:
+        return the result of google's civic API on countrywide scale based on the address
+
+    :method get_google_location:
+        return dict of {'lat': latitude, 'long': longitude} based on address
     """
     def __init__(self, address, city, state, representatives=None):
         self.address = address
@@ -69,6 +82,7 @@ class Constituent:
 
 
 class Legislator:
+    """Abstract class"""
     def __init__(self,
                  name=None,
                  party=None,
@@ -113,6 +127,7 @@ class Legislator:
 
 
 class USLegislator(Legislator):
+    """US Legislator"""
     def __init__(self,
                  name=None,
                  party=None,
@@ -135,6 +150,7 @@ class USLegislator(Legislator):
         self.finance = finance
 
     def get_financial_data(self, name, state):
+        """create chart from FEC data and set it to finance attribute"""
         if vars.CURRENT_YEAR % 2 == 0:
             election_year = vars.CURRENT_YEAR
         else:
@@ -204,6 +220,10 @@ class StateLegislator(Legislator):
         pass
 
     def get_committee(self, role_array):
+        """Specific to OpenStates API, get committe info (position held, name of committee) based
+        given a open states role array
+         :return: list of committees
+        """
         committees = []
         if role_array:
             for role in role_array:
@@ -213,6 +233,7 @@ class StateLegislator(Legislator):
         return committees
 
     def set_old_roles(self, legislator):
+        """Grab committees from latest committee info on hand"""
         old_roles = legislator.get('old_roles')
         ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(math.floor(n/10)%10!=1)*(n%10<4)*n%10::4])
         if old_roles:
@@ -222,7 +243,10 @@ class StateLegislator(Legislator):
             self.old_committees = self.get_committee(latest_array)
             self.old_term_ordinal = ordinal(latest)
 
-    def get_bill_info(self, bill_params):
+    @staticmethod
+    def get_bill_info(bill_params):
+        """openstates get subject data and title of bills
+        :return: list relevant_bill_data"""
         bill_r = requests.get(vars.BILL_ENDPOINT, params=bill_params)
         relevant_bill_data = {'subjects': [], 'titles': []}
         if type(bill_r.json()) == list:
