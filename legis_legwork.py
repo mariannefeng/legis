@@ -75,7 +75,12 @@ class Constituent:
         self.google_error = None
 
     def get_google_civic_info(self):
-        civic_payload = {'address': self.google_address, 'key': vars.GOOGLE_CIVIC_KEY, 'levels': 'country'}
+        civic_payload = {'address': self.google_address,
+                         'key': vars.GOOGLE_CIVIC_KEY,
+                         'levels': 'country'
+        #                  'roles': 'legislatorupperbody',
+        #                  'roles': 'legislatorlowerbody'
+        }
         civic_r = requests.get(vars.GOOGLE_CIVIC_ENDPOINT, params=civic_payload)
         google_result = civic_r.json()
         if google_result.get('error'):
@@ -86,7 +91,6 @@ class Constituent:
         payload = {'address': self.google_address, 'key': vars.API_KEY}
         r = requests.get(vars.GOOGLE_GEOCODE_ENDPOINT, params=payload)
         location = r.json()['results'][0]['geometry']['location']
-        print(location)
         return location
 
 
@@ -193,7 +197,8 @@ class USLegislator(Legislator):
                              'cycle': election_year,
                              'q': name}
         cand_total_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/totals/', params=cand_total_params)
-
+        print(cand_total_r.url)
+        print(cand_total_r.json())
         cand_total = cand_total_r.json()
         cand_overview['total_receipts'] = cand_total['results'][0]['receipts']
         cand_overview['disbursements'] = cand_total['results'][0]['disbursements']
@@ -363,7 +368,6 @@ def map_json_to_us_leg(mapper, chamber, state):
     name_key = str.lower(full_name[len(full_name) - 1]) + str.lower(full_name[0][0]) + state
     name_key = ''.join(e for e in name_key if e.isalnum())
 
-    print(name_key)
     if chamber == 'United States Senate':
         member_details = SENATE_PROPUB[name_key]['detail_url']
     else:

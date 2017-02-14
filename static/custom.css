@@ -58,6 +58,7 @@ body.remove-border {
 
 article.legis-box {
     box-shadow: none;
+    height: 580px !important;
     border: 1px solid #a9a9a9;
 }
 
