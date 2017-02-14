@@ -198,25 +198,22 @@ class USLegislator(Legislator):
                              'q': name}
         cand_total_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/totals/', params=cand_total_params)
         print(cand_total_r.url)
-        print(cand_total_r.json())
-        cand_total = cand_total_r.json()
-        cand_overview['total_receipts'] = cand_total['results'][0]['receipts']
-        cand_overview['disbursements'] = cand_total['results'][0]['disbursements']
-        cand_overview['cash_on_hand'] = cand_total['results'][0]['cash_on_hand_end_period']
-        cand_overview['debt'] = cand_total['results'][0]['debts_owed_by_committee']
-
+        cand_total = cand_total_r.json().get('results')
         if len(cand_total) == 0:
             name_list = name.split()
+            print(name_list)
             cand_name_filter = {'q': name_list[len(name_list) - 1],
                                        'cycle': election_year,
                                        'state': state,
                                        'api_key': vars.OPEN_FEC_KEY}
             cand_total_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/totals/', params=cand_name_filter)
-            cand_total = cand_total_r.json()
-            cand_overview['total_receipts'] = cand_total['results'][0]['receipts']
-            cand_overview['total_receipts'] = cand_total['results'][0]['disbursements']
-            cand_overview['cash_on_hand'] = cand_total['results'][0]['cash_on_hand_end_period']
-            cand_overview['debt'] = cand_total['results'][0]['debts_owed_by_committee']
+            cand_total = cand_total_r.json()['results']
+
+        if len(cand_total) > 0:
+            cand_overview['total_receipts'] = cand_total[0]['receipts']
+            cand_overview['disbursements'] = cand_total[0]['disbursements']
+            cand_overview['cash_on_hand'] = cand_total[0]['cash_on_hand_end_period']
+            cand_overview['debt'] = cand_total[0]['debts_owed_by_committee']
         return cand_overview
 
     @staticmethod
