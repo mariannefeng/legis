@@ -90,11 +90,22 @@
 
 
                 <!-- BILL CHART -->
-                <div class="tile is-4">
+                <div class="tile is-4 is-vertical">
                     {% if rep.finance %}
                         {% if rep.finance.contrib %}
 
-                        <embed typer="image/svg+xml" src="{{ rep.finance.contrib |safe }}" style="width:100%"/>
+                        <div class="tile">
+                            <embed typer="image/svg+xml" src="{{ rep.finance.contrib |safe }}" style="width:100%;"/>
+                        </div>
+
+                        {% endif %}
+
+                        {% if rep.finance.overall %}
+                            <!--<div class="tile finance-overview">-->
+                                <!--{% for key, value in rep.finance.overall.items() %}-->
+                                <!--<span>{{ key }}: {{ value }}</span>-->
+                                <!--{% endfor %}-->
+                            <!--</div>-->
 
                         {% endif %}
                     {% endif %}

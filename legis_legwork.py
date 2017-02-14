@@ -158,21 +158,9 @@ class USLegislator(Legislator):
         self.level = 'US'
         self.finance = finance
 
-    def get_financial_data(self, name, state):
-        """create chart from FEC data and set it to finance attribute"""
-        # find current election cycle year
-        if vars.CURRENT_YEAR % 2 == 0:
-            election_year = vars.CURRENT_YEAR
-        else:
-            election_year = vars.CURRENT_YEAR - 1
-        name_committee_detail = self.__pull_contrib_chart_data(name, state, election_year)
-        candidate_committees = []
-        for result in name_committee_detail:
-            cand_comm = {}
-            cand_comm['candidate'] = result['name']
-            cand_comm['committee_id'] = result['principal_committees'][0]['committee_id']
-            candidate_committees.append(cand_comm)
-
+    @staticmethod
+    def __create_contrib_chart(candidate_committees, election_year):
+        # create contributions breakdown by size
         contrib_bar = pygal.HorizontalBar(style=vars.FINANCE_BAR_STYLE,
                                           max_scale=4,
                                           js=[],
@@ -194,13 +182,40 @@ class USLegislator(Legislator):
                     contrib_bar.add(str(contrib['size']) + '+', contrib['total'])
                 else:
                     contrib_bar.add(str(contrib['size']) + '-' + str(contrib_r.json()['results'][i + 1]['size']), contrib['total'])
+        return contrib_bar.render_data_uri()
 
-        # configure finance object
-        self.finance = {}
-        self.finance['overall'] = {}
-        self.finance['contrib'] = contrib_bar.render_data_uri()
+    @staticmethod
+    def __pull_contrib_totals(name, state, election_year):
+        cand_overview = {}
 
-    def __pull_contrib_chart_data(self, name, state, election_year):
+        # create contributes breakdown by receipts + spending
+        cand_total_params = {'api_key': vars.OPEN_FEC_KEY,
+                             'cycle': election_year,
+                             'q': name}
+        cand_total_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/totals/', params=cand_total_params)
+
+        cand_total = cand_total_r.json()
+        cand_overview['total_receipts'] = cand_total['results'][0]['receipts']
+        cand_overview['disbursements'] = cand_total['results'][0]['disbursements']
+        cand_overview['cash_on_hand'] = cand_total['results'][0]['cash_on_hand_end_period']
+        cand_overview['debt'] = cand_total['results'][0]['debts_owed_by_committee']
+
+        if len(cand_total) == 0:
+            name_list = name.split()
+            cand_name_filter = {'q': name_list[len(name_list) - 1],
+                                       'cycle': election_year,
+                                       'state': state,
+                                       'api_key': vars.OPEN_FEC_KEY}
+            cand_total_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/totals/', params=cand_name_filter)
+            cand_total = cand_total_r.json()
+            cand_overview['total_receipts'] = cand_total['results'][0]['receipts']
+            cand_overview['total_receipts'] = cand_total['results'][0]['disbursements']
+            cand_overview['cash_on_hand'] = cand_total['results'][0]['cash_on_hand_end_period']
+            cand_overview['debt'] = cand_total['results'][0]['debts_owed_by_committee']
+        return cand_overview
+
+    @staticmethod
+    def __pull_contrib_chart_data(name, state, election_year):
         # create search filter based on full name from google civics
         committee_search_filter = {'q': name,
                                    'cycle': election_year,
@@ -217,8 +232,26 @@ class USLegislator(Legislator):
                                        'api_key': vars.OPEN_FEC_KEY}
             committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
             name_committee_detail = committees_r.json()['results']
-
         return name_committee_detail
+
+    def get_financial_data(self, name, state):
+        """create chart from FEC data and set it to finance attribute"""
+        # find current election cycle year
+        if vars.CURRENT_YEAR % 2 == 0:
+            election_year = vars.CURRENT_YEAR
+        else:
+            election_year = vars.CURRENT_YEAR - 1
+
+        name_committee_detail = self.__pull_contrib_chart_data(name, state, election_year)
+
+        candidate_committees = []
+        for result in name_committee_detail:
+            cand_comm = {'candidate': result['name'],
+                         'committee_id': result['principal_committees'][0]['committee_id']}
+            candidate_committees.append(cand_comm)
+
+        self.finance = {'overall': self.__pull_contrib_totals(name, state, election_year),
+                        'contrib': self.__create_contrib_chart(candidate_committees, election_year)}
 
 
 class StateLegislator(Legislator):

@@ -60,3 +60,7 @@ article.legis-box {
     box-shadow: none;
     border: 1px solid #a9a9a9;
 }
+
+div.finance-overview {
+    height: 15px;
+}
