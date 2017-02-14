@@ -31,9 +31,9 @@
                         <div class="message-body has-text-left">
                             {% for key, value in rep.contact.items() %}
 
-                            {% if loop.last %}
+                            {% if key == 'url' %}
                             <br>
-                            <a href="{{ value }}" target="_blank">{{ value }}</a>
+                            <a href="{{ value }}" target="_blank">Website</a>
                             {% else %}
                             <p> {{ value }} </p>
                             {% endif %}
@@ -100,7 +100,7 @@
                     {% if rep.bill_chart_type == 'pie' %}
                     <embed type="image/svg+xml" src="{{ rep.bill_chart|safe }}" style="width:100%"/>
                     {% elif rep.bill_chart_type == 'word_cloud' %}
-                    <img src="clouds/{{ rep.bill_chart }}" style="width:100%">
+                    <img src="clouds/{{ rep.bill_chart }}" style="width:100%;max-height:100%;height:auto;object-fit:contain"/>
                     {% endif %}
                 </div>
 

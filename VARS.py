@@ -44,4 +44,4 @@ FINANCE_BAR_STYLE = Style(background='transparent',
                           title_font_size=20)
 
 PYGAL_COLORS = ['rgb(186,104,200)', 'rgb(247,123,114)', 'rgb(121,133,203)', 'rgb(77,181,172)', 'rgb(149,117,204)',
-                'rgb(81,118,148)']
+                'rgb(81,118,148)', 'rgb(224, 94, 85)', 'rgb(78, 150, 143)']
