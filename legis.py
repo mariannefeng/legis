@@ -24,9 +24,8 @@ requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 
 @app.route('/')
 def index():
-    bulma_colors = ['is-success', 'is-info', 'is-primary', 'is-warning', 'is-danger']
-    background_color = random.choice(bulma_colors)
-    button_colors = [color for color in bulma_colors if color != background_color]
+    background_color = random.choice(vars.BULMA_COLORS)
+    button_colors = [color for color in vars.BULMA_COLORS if color != background_color]
     button_color = random.choice(button_colors)
     return render_template('index.html',
                            background_color=background_color,
