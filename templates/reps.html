@@ -32,7 +32,6 @@
                             {% for key, value in rep.contact.items() %}
 
                             {% if key == 'url' %}
-                            <br>
                             <a href="{{ value }}" target="_blank">Website</a>
                             {% else %}
                             <p> {{ value }} </p>
@@ -79,7 +78,7 @@
                     </article>
                     {% elif rep.old_committees %}
                     <article class="message is-success">
-                        <div class="message-body has-text-left">
+                        <div class="message-body has-text-left" style="max-height:100px;overflow:scroll">
                             <p><b>{{ rep.old_term_ordinal }} Term</b></p>
                             {% for value in rep.old_committees %}
                             <p> {{ value.position }} of <b>{{value.name}}</b></p>

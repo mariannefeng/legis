@@ -1,13 +1,7 @@
 from flask import Flask, request, jsonify, render_template, Blueprint, flash, redirect, url_for
 import requests
 import requests_cache
-import os
 import random
-
-import datetime
-import pygal
-from pygal.style import Style
-##test git user
 
 import legis_legwork as leg
 import VARS as vars
@@ -34,9 +28,6 @@ def index():
 
 @app.route('/my_reps', methods=['POST'])
 def return_data():
-    my_reps = []
-    # print(list(request.form.values()))
-    # need validations on form
     errs = []
     for field, value in request.form.items():
         if not value:
@@ -48,34 +39,29 @@ def return_data():
             flash("Fields Required: {}".format(', '.join(errs)).title())
         return redirect(url_for('index'))
 
-    googled_string = ', '.join(list(request.form.values()))
+    human = leg.Constituent(**request.form)
+    google_result = human.get_google_civic_info()
 
-    payload = {'address': googled_string, 'key': vars.API_KEY}
-    civic_payload = {'address': googled_string, 'key': vars.GOOGLE_CIVIC_KEY, 'levels': 'country'}
-
-    civic_r = requests.get(vars.GOOGLE_CIVIC_ENDPOINT, params=civic_payload)
-    google_result = civic_r.json()
-    if google_result.get('error'):
-        flash("Error from Google Civic API: {}".format(google_result['error'].get('message')))
+    if human.google_error:
+        flash("Error from Google Civic API: {}".format(human.google_error))
         return redirect(url_for('index'))
 
+    # Get US level legislative info
     state = google_result['normalizedInput']['state']
     for office in google_result['offices']:
         if office['divisionId'] != "ocd-division/country:us":
             for index in office['officialIndices']:
                 rep = leg.map_json_to_us_leg(google_result['officials'][index], office['name'], state)
-                my_reps.append(rep)
+                human.representatives.append(rep)
 
-    r = requests.get(vars.GOOGLE_GEOCODE_ENDPOINT, params=payload)
-    location_obj = r.json()['results'][0]['geometry']['location']
-
-    sunlight_payload = {'lat': location_obj.get('lat'), 'long': location_obj.get('lng')}
+    # Get State level legislative info
+    sunlight_payload = {'lat': human.location.get('lat'), 'long': human.location.get('lng')}
     r = requests.get(vars.LEGISLATOR_ENDPOINT, params=sunlight_payload)
     legislators_info = r.json()
     for legislator in legislators_info:
         rep = leg.map_json_to_state_leg(legislator)
-        my_reps.append(rep)
-    return render_template('reps.html', reps=my_reps)
+        human.representatives.append(rep)
+    return render_template('reps.html', reps=human.representatives)
 
 
 if __name__ == '__main__':
