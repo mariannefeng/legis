@@ -275,7 +275,7 @@ class StateLegislator(Legislator):
                 good_words = nltk_process(title_subject_data['titles'], 'V')
                 # make word cloud
                 # make circle mask
-                cloud = WordCloud(font_path=vars.CUSTOM_FONT, height=400, width=400, background_color="#ffffff").generate(' '.join(good_words))
+                cloud = WordCloud(font_path=vars.CUSTOM_FONT, height=400, width=400, background_color="#f5f5f5").generate(' '.join(good_words))
                 filename = '{}.png'.format(sunlight_id)
                 cloud.recolor(color_func=turq_color_func, random_state=3).to_file(os.path.join('clouds', filename))
                 self.bill_chart_type = 'word_cloud'

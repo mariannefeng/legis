@@ -99,7 +99,7 @@
                     {% if rep.bill_chart_type == 'pie' %}
                     <embed type="image/svg+xml" src="{{ rep.bill_chart|safe }}" style="width:100%"/>
                     {% elif rep.bill_chart_type == 'word_cloud' %}
-                    <img src="clouds/{{ rep.bill_chart }}" style="width:100%;max-height:100%;height:auto;object-fit:contain"/>
+                    <img src="clouds/{{ rep.bill_chart }}" style="object-fit:scale-down;object-position:0% 0%;padding-left:2%;"/>
                     {% endif %}
                 </div>
 
