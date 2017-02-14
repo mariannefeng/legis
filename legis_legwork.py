@@ -200,6 +200,10 @@ class USLegislator(Legislator):
         print(cand_total_r.url)
         print(cand_total_r.json())
         cand_total = cand_total_r.json()
+        if len(cand_total['results']) == 0:
+            ## DO SOMETHING HERE 
+            print(name)
+            
         cand_overview['total_receipts'] = cand_total['results'][0]['receipts']
         cand_overview['disbursements'] = cand_total['results'][0]['disbursements']
         cand_overview['cash_on_hand'] = cand_total['results'][0]['cash_on_hand_end_period']
