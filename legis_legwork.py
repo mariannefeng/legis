@@ -52,7 +52,7 @@ class Constituent:
         return the result of google's civic API on countrywide scale based on the address
 
     :method get_google_location:
-        return dict of {'lat': latitude, 'long': longitude} based on address
+        return dict of {'lat': latitude, 'lng': longitude} based on address
     """
     def __init__(self, address, city, state, representatives=None):
         self.address = address

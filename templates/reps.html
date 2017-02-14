@@ -1,11 +1,11 @@
 {% extends 'index.html' %}
 {% block body %}
-<body class="container is-fluid" style="margin-top:20px">
-<div class="tile is-ancestor">
+<body class="container is-fluid is-mobile" style="margin-top:20px">
+<div class="tile is-ancestor is-mobile">
     <div class="tile is-vertical is-parent">
 
         {% for rep in reps %}
-        <article class="tile is-child box">
+        <article class="tile is-child box notification">
 
             <div class="level">
                 <p class="level-left title">{{ rep.name }}
@@ -103,7 +103,7 @@
                     {% endif %}
                 </div>
 
-                <div class="tile is-child is-4">
+                <div class="tile is-child is-3">
                     <p class="title has-text-right">{{ rep.chamber }}</p>
                 </div>
 
