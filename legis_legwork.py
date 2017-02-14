@@ -18,18 +18,27 @@ def get_house_members():
     master_house_list = {}
     house_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('house'), headers=vars.PRO_PUB_HEADERS)
     for member in house_r.json()['results'][0]['members']:
-        master_house_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])] = {}
-        master_house_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])]['id'] = member['id']
-        master_house_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])]['detail_url'] = member['api_uri']
+        last_name_list = member['last_name'].split()
+        parsed_last_name = last_name_list[len(last_name_list) - 1]
+        name_key = ''.join(e for e in parsed_last_name if e.isalnum())
+        print(name_key)
+        master_house_list['{0}{1}{2}'.format(name_key.lower(),
+                                             member['first_name'][0].lower(),
+                                             member['state'])] = {}
+        master_house_list['{0}{1}{2}'.format(name_key.lower(), member['first_name'][0].lower(), member['state'])]['id'] = member['id']
+        master_house_list['{0}{1}{2}'.format(name_key.lower(), member['first_name'][0].lower(), member['state'])]['detail_url'] = member['api_uri']
     return master_house_list
 
 def get_senate_members():
     master_senate_list = {}
     senate_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('senate'), headers=vars.PRO_PUB_HEADERS)
     for member in senate_r.json()['results'][0]['members']:
-        master_senate_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])] = {}
-        master_senate_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])]['id'] = member['id']
-        master_senate_list['{0}{1}{2}'.format(member['last_name'].lower(), member['first_name'][0].lower(), member['state'])]['detail_url'] = member['api_uri']
+        last_name_list = member['last_name'].split()
+        parsed_last_name = last_name_list[len(last_name_list) - 1]
+        name_key = ''.join(e for e in parsed_last_name if e.isalnum())
+        master_senate_list['{0}{1}{2}'.format(name_key.lower(), member['first_name'][0].lower(), member['state'])] = {}
+        master_senate_list['{0}{1}{2}'.format(name_key.lower(), member['first_name'][0].lower(), member['state'])]['id'] = member['id']
+        master_senate_list['{0}{1}{2}'.format(name_key.lower(), member['first_name'][0].lower(), member['state'])]['detail_url'] = member['api_uri']
     return master_senate_list
 
 HOUSE_PROPUB = get_house_members()
@@ -78,6 +87,7 @@ class Constituent:
         payload = {'address': self.google_address, 'key': vars.API_KEY}
         r = requests.get(vars.GOOGLE_GEOCODE_ENDPOINT, params=payload)
         location = r.json()['results'][0]['geometry']['location']
+        print(location)
         return location
 
 
@@ -237,7 +247,9 @@ class StateLegislator(Legislator):
         old_roles = legislator.get('old_roles')
         ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(math.floor(n/10)%10!=1)*(n%10<4)*n%10::4])
         if old_roles:
+            print(old_roles.keys())
             terms = [int(term.strip('th').strip('st').strip('rd')) for term in old_roles.keys()]
+            # terms = [term.strip('th').strip('st').strip('rd') for term in old_roles.keys()]
             latest = max(terms)
             latest_array = old_roles.get(ordinal(latest))
             self.old_committees = self.get_committee(latest_array)
@@ -297,11 +309,17 @@ def map_json_to_us_leg(mapper, chamber, state):
     rep.get_financial_data(rep.name, state)
     rep.chamber = chamber
 
+    print(rep.name)
+
     full_name = rep.name.split()
     name_key = str.lower(full_name[len(full_name) - 1]) + str.lower(full_name[0][0]) + state
+    name_key = ''.join(e for e in name_key if e.isalnum())
+
+    print(name_key)
     if chamber == 'United States Senate':
         member_details = SENATE_PROPUB[name_key]['detail_url']
     else:
+        print(HOUSE_PROPUB)
         member_details = HOUSE_PROPUB[name_key]['detail_url']
 
     country_comm_r = requests.get(member_details, headers=vars.PRO_PUB_HEADERS)
