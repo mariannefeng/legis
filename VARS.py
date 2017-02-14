@@ -23,7 +23,7 @@ PRO_PUB_HEADERS = {'X-API-Key': PRO_PUBLICA_KEY}
 CURRENT_YEAR = datetime.datetime.now().year
 
 CUSTOM_FONT = os.path.join('static', 'Helvetica-Light.ttf')
-BULMA_COLORS = ['is-success', 'is-info', 'is-primary', 'is-warning', 'is-danger']
+BULMA_COLORS = ['is-success', 'is-info', 'is-primary', 'is-danger']
 
 SOCIAL_ENDPOINTS = {
     'Facebook' : 'https://www.facebook/com/',
