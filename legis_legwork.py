@@ -11,7 +11,7 @@ import collections
 from pygal.style import Style
 from wordcloud import WordCloud, STOPWORDS
 from dateutil.relativedelta import relativedelta
-
+#gittest
 import VARS as vars
 
 def get_house_members():
@@ -61,7 +61,7 @@ class Constituent:
         return the result of google's civic API on countrywide scale based on the address
 
     :method get_google_location:
-        return dict of {'lat': latitude, 'long': longitude} based on address
+        return dict of {'lat': latitude, 'lng': longitude} based on address
     """
     def __init__(self, address, city, state, representatives=None):
         self.address = address
@@ -287,7 +287,7 @@ class StateLegislator(Legislator):
                 good_words = nltk_process(title_subject_data['titles'], 'V')
                 # make word cloud
                 # make circle mask
-                cloud = WordCloud(font_path=vars.CUSTOM_FONT, height=400, width=400, background_color="#ffffff").generate(' '.join(good_words))
+                cloud = WordCloud(font_path=vars.CUSTOM_FONT, height=400, width=400, background_color="#f5f5f5").generate(' '.join(good_words))
                 filename = '{}.png'.format(sunlight_id)
                 cloud.recolor(color_func=turq_color_func, random_state=3).to_file(os.path.join('clouds', filename))
                 self.bill_chart_type = 'word_cloud'
