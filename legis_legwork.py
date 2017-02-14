@@ -11,7 +11,7 @@ import collections
 from pygal.style import Style
 from wordcloud import WordCloud, STOPWORDS
 from dateutil.relativedelta import relativedelta
-
+#gittest
 import VARS as vars
 
 def get_house_members():
