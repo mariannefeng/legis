@@ -8,7 +8,7 @@ GOOGLE_CIVIC_KEY = 'AIzaSyDny6NNitDS3FIGkXWKO8sMgsNb9-G-h6E'
 OS_API_KEY= 'f8686fdf6e4871299219f398f88d508a'
 OPEN_FEC_KEY = 'FiiYWSsRi01pGXUNkfhwbEX6tF84AJpJq2zp3gzq'
 PRO_PUBLICA_KEY = 'oCmlfzzjf14vd9eOG16H0aLG4wJLkRxn6GX54rRS'
-
+DEFAULT_FONT = 'Helvetica-Light'
 
 GOOGLE_GEOCODE_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json'
 GOOGLE_CIVIC_ENDPOINT = 'https://www.googleapis.com/civicinfo/v2/representatives'
@@ -40,8 +40,16 @@ FINANCE_BAR_STYLE = Style(background='transparent',
                           plot_background='transparent',
                           transition='50ms ease-in',
                           opacity='.6',
-                          opacity_hover='.9',
-                          title_font_size=20)
+                          title_font_size=30,
+                          title_font_family=DEFAULT_FONT,
+                          legend_font_size=20,
+                          legend_font_family=DEFAULT_FONT,
+                          label_font_size=15,
+                          label_font_family=DEFAULT_FONT,
+                          major_label_font_family=DEFAULT_FONT,
+                          no_data_font_family=DEFAULT_FONT,
+                          value_font_family=DEFAULT_FONT,
+                          value_font_size=23)
 
 PYGAL_COLORS = ['rgb(186,104,200)', 'rgb(247,123,114)', 'rgb(121,133,203)', 'rgb(77,181,172)', 'rgb(149,117,204)',
                 'rgb(81,118,148)', 'rgb(224, 94, 85)', 'rgb(78, 150, 143)']

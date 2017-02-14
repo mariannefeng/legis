@@ -55,3 +55,8 @@ body.remove-border {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
+
+article.legis-box {
+    box-shadow: none;
+    border: 1px solid #a9a9a9;
+}

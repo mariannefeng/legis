@@ -5,7 +5,7 @@
     <div class="tile is-vertical is-parent">
 
         {% for rep in reps %}
-        <article class="tile is-child box notification">
+        <article class="tile is-child box notification legis-box">
 
             <div class="level">
                 <p class="level-left title">{{ rep.name }}
@@ -40,7 +40,6 @@
                             {% endfor %}
                         </div>
                     </article>
-
                     {% if rep.social %}
                     <article class="message is-warning">
                         <div class="message-body has-text-left">
@@ -93,7 +92,11 @@
                 <!-- BILL CHART -->
                 <div class="tile is-4">
                     {% if rep.finance %}
-                    <embed typer="image/svg+xml" src="{{ rep.finance|safe }}" style="width:100%"/>
+                        {% if rep.finance.contrib %}
+
+                        <embed typer="image/svg+xml" src="{{ rep.finance.contrib |safe }}" style="width:100%"/>
+
+                        {% endif %}
                     {% endif %}
 
                     {% if rep.bill_chart_type == 'pie' %}

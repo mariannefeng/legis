@@ -21,7 +21,6 @@ def get_house_members():
         last_name_list = member['last_name'].split()
         parsed_last_name = last_name_list[len(last_name_list) - 1]
         name_key = ''.join(e for e in parsed_last_name if e.isalnum())
-        print(name_key)
         master_house_list['{0}{1}{2}'.format(name_key.lower(),
                                              member['first_name'][0].lower(),
                                              member['state'])] = {}
@@ -161,25 +160,12 @@ class USLegislator(Legislator):
 
     def get_financial_data(self, name, state):
         """create chart from FEC data and set it to finance attribute"""
+        # find current election cycle year
         if vars.CURRENT_YEAR % 2 == 0:
             election_year = vars.CURRENT_YEAR
         else:
             election_year = vars.CURRENT_YEAR - 1
-        committee_search_filter = {'q': name,
-                                   'cycle': election_year,
-                                   'api_key': vars.OPEN_FEC_KEY}
-        committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
-
-        name_committee_detail = committees_r.json()['results']
-        if len(name_committee_detail) == 0:
-            name_list = name.split()
-            committee_search_filter = {'q': name_list[len(name_list) - 1],
-                                       'cycle': election_year,
-                                       'state': state,
-                                       'api_key': vars.OPEN_FEC_KEY}
-            committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
-            name_committee_detail = committees_r.json()['results']
-
+        name_committee_detail = self.__pull_contrib_chart_data(name, state, election_year)
         candidate_committees = []
         for result in name_committee_detail:
             cand_comm = {}
@@ -187,8 +173,13 @@ class USLegislator(Legislator):
             cand_comm['committee_id'] = result['principal_committees'][0]['committee_id']
             candidate_committees.append(cand_comm)
 
-        contrib_bar = pygal.HorizontalBar(show_legend=False, style=vars.FINANCE_BAR_STYLE)
-        contrib_bar.title = '% Total Contributions By Size'
+        contrib_bar = pygal.HorizontalBar(style=vars.FINANCE_BAR_STYLE,
+                                          max_scale=4,
+                                          js=[],
+                                          print_values=True,
+                                          print_values_position='center',
+                                          value_formatter=lambda x: '${:20,.2f}'.format(x))
+        contrib_bar.title = 'Total Contributions By Size - ' + str(election_year)
 
         for cand in candidate_committees:
             commitee_id = cand['committee_id']
@@ -203,7 +194,31 @@ class USLegislator(Legislator):
                     contrib_bar.add(str(contrib['size']) + '+', contrib['total'])
                 else:
                     contrib_bar.add(str(contrib['size']) + '-' + str(contrib_r.json()['results'][i + 1]['size']), contrib['total'])
-        self.finance = contrib_bar.render_data_uri()
+
+        # configure finance object
+        self.finance = {}
+        self.finance['overall'] = {}
+        self.finance['contrib'] = contrib_bar.render_data_uri()
+
+    def __pull_contrib_chart_data(self, name, state, election_year):
+        # create search filter based on full name from google civics
+        committee_search_filter = {'q': name,
+                                   'cycle': election_year,
+                                   'api_key': vars.OPEN_FEC_KEY}
+        committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
+        name_committee_detail = committees_r.json()['results']
+
+        # if could not find using full name from google civics, then search by last name + cycle + state
+        if len(name_committee_detail) == 0:
+            name_list = name.split()
+            committee_search_filter = {'q': name_list[len(name_list) - 1],
+                                       'cycle': election_year,
+                                       'state': state,
+                                       'api_key': vars.OPEN_FEC_KEY}
+            committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
+            name_committee_detail = committees_r.json()['results']
+
+        return name_committee_detail
 
 
 class StateLegislator(Legislator):
@@ -319,7 +334,6 @@ def map_json_to_us_leg(mapper, chamber, state):
     if chamber == 'United States Senate':
         member_details = SENATE_PROPUB[name_key]['detail_url']
     else:
-        print(HOUSE_PROPUB)
         member_details = HOUSE_PROPUB[name_key]['detail_url']
 
     country_comm_r = requests.get(member_details, headers=vars.PRO_PUB_HEADERS)
