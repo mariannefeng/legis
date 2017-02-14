@@ -29,3 +29,29 @@ img.rep-photo {
     top: 50%;
     left: 50%;
 }
+
+input.custom-home-btn {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+p.address-p {
+    margin-top: 30px;
+}
+
+p.address-p input {
+    height: 55px;
+    font-size: 25px;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    /*color: #808080;*/
+    color: #666666;
+}
+
+body.remove-border {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
