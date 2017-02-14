@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template, Blueprint, flash
 import requests
 import requests_cache
 import os
+import random
 
 import datetime
 import pygal
@@ -23,7 +24,13 @@ requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    bulma_colors = ['is-success', 'is-info', 'is-primary', 'is-warning', 'is-danger']
+    background_color = random.choice(bulma_colors)
+    button_colors = [color for color in bulma_colors if color != background_color]
+    button_color = random.choice(button_colors)
+    return render_template('index.html',
+                           background_color=background_color,
+                           button_color=button_color)
 
 
 @app.route('/my_reps', methods=['POST'])

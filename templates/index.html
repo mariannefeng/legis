@@ -6,60 +6,67 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
 </head>
-<body class="container is-fluid"  style="margin-top:20px">
+
 {% block body %}
 <!--<div class="columns">-->
-    <!--<div class="column is-half is-offset-one-quarter">-->
-        <!--<h1 class="title is-1 has-text-centered">Who do I call?</h1>-->
-    <!--</div>-->
+<!--<div class="column is-half is-offset-one-quarter">-->
+<!--<h1 class="title is-1 has-text-centered">Who do I call?</h1>-->
 <!--</div>-->
-<div class="hero is-fullheight is-primary is-mobile">
+<!--</div>-->
+<body class="container is-fluid">
+<div class="hero is-fullheight {{ background_color }} is-mobile">
     <div class="hero-head is-multiline"></div>
     <div class="hero-body is-half is-offset-one-quarter" style="margin-bottom:0px">
-        <div class="columns is-multiline">
-            <div class="column is-half is-offset-one-quarter">
-        <h1 class="title is-1 has-text-centered is-fluid">Who Represents Me?</h1><br>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-        <h3 class="subtitle title is-4 has-text-centered">{{ message }}</h3>
-            {% endfor %}
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical is-half is-offset-one-quarter">
+                <div class="tile is-parent is-vertical is-centered">
+                    <!--<div class="columns is-multiline is-centered is-mobile">-->
+                    <!--<div class="column is-half is-offset-one-quarter">-->
+                    <h1 class="title is-1 has-text-centered is-fluid">Who Represents Me?</h1><br>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <h3 class="subtitle title is-4 has-text-centered">{{ message }}</h3>
+                    {% endfor %}
 
-        {% endif %}
-        {% endwith %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+
+                <form class="column is-half is-offset-one-quarter" action="{{ url_for('return_data') }}"
+                      method="POST">
+                    <p class="control">
+                        <input class="input" type="text" placeholder="Address" name="address">
+                    </p>
+                    <p class="control">
+                        <input class="input" type="text" placeholder="City" name="city">
+                    </p>
+
+                    <p class="control">
+                        <input class="input" type="text" placeholder="State" name="state">
+                    </p>
+                    <input class="button is-large {{ button_color }} is-outlined" type="submit"/>
+                </form>
             </div>
-
-        <form class="column is-half is-offset-one-quarter" action="{{ url_for('return_data') }}"   method="POST">
-            <p class="control">
-                <input class="input" type="text" placeholder="Address" name="address">
-            </p>
-            <p class="control">
-                <input class="input" type="text" placeholder="City" name="city">
-            </p>
-
-            <p class="control">
-                <input class="input" type="text" placeholder="State" name="state">
-            </p>
-            <input class="button is-large is-info is-outlined" type="submit"/>
-        </form>
         </div>
     </div>
-    <!--<form class="column is-half is-offset-one-quarter" action="{{ url_for('return_data') }}"   method="POST">-->
-        <!--<p class="control">-->
-            <!--<input class="input" type="text" placeholder="Address" name="address">-->
-        <!--</p>-->
-        <!--<p class="control">-->
-            <!--<input class="input" type="text" placeholder="City" name="city">-->
-        <!--</p>-->
-
-        <!--<p class="control">-->
-            <!--<input class="input" type="text" placeholder="State" name="state">-->
-        <!--</p>-->
-        <!--<input class="button is-large is-info is-outlined" type="submit"/>-->
-    <!--</form>-->
 </div>
+<!--<form class="column is-half is-offset-one-quarter" action="{{ url_for('return_data') }}"   method="POST">-->
+<!--<p class="control">-->
+<!--<input class="input" type="text" placeholder="Address" name="address">-->
+<!--</p>-->
+<!--<p class="control">-->
+<!--<input class="input" type="text" placeholder="City" name="city">-->
+<!--</p>-->
 
-{% endblock %}
+<!--<p class="control">-->
+<!--<input class="input" type="text" placeholder="State" name="state">-->
+<!--</p>-->
+<!--<input class="button is-large is-info is-outlined" type="submit"/>-->
+<!--</form>-->
+</div>
 </body>
+{% endblock %}
+
 <script src="https://use.fontawesome.com/46a18a6e30.js"></script>
 </html>
