@@ -220,7 +220,7 @@ class StateLegislator(Legislator):
                 # make circle mask
                 cloud = WordCloud(font_path=vars.CUSTOM_FONT, height=400, width=400, background_color="#ffffff").generate(' '.join(good_words))
                 filename = '{}.png'.format(sunlight_id)
-                cloud.recolor(color_func=grey_color_func, random_state=3).to_file(os.path.join('clouds', filename))
+                cloud.recolor(color_func=turq_color_func, random_state=3).to_file(os.path.join('clouds', filename))
                 self.bill_chart_type = 'word_cloud'
                 self.bill_chart = filename
         else:
@@ -322,8 +322,7 @@ def nltk_process(word_list, filter_initial_letter):
 
 
 def turq_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    pastels = ["rgb(64,224,208)", "rgb(0,255,255)","rgb(224,255,255)", "rgb(95,158,160)"]
-    return random.choice(pastels)
+    return random.choice(vars.PYGAL_COLORS)
 
 
 def grey_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
