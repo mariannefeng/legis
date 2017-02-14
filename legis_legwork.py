@@ -35,6 +35,39 @@ def get_senate_members():
 HOUSE_PROPUB = get_house_members()
 SENATE_PROPUB = get_senate_members()
 
+
+class Constituent:
+    """Class representing the human
+    currently methods are just the google methods, but I figure we might do more later,
+    maybe we can save constituent info so people can tag what is important to them or something
+    """
+    def __init__(self, address, city, state, representatives=None):
+        self.address = address
+        self.city = city
+        self.state = state
+        self.google_address = '{0}, {1}, {2}'.format(self.address, self.city, self.state)
+        self.location = self.get_google_location()
+        if representatives:
+            self.representatives = representatives
+        else:
+            self.representatives = []
+        self.google_error = None
+
+    def get_google_civic_info(self):
+        civic_payload = {'address': self.google_address, 'key': vars.GOOGLE_CIVIC_KEY, 'levels': 'country'}
+        civic_r = requests.get(vars.GOOGLE_CIVIC_ENDPOINT, params=civic_payload)
+        google_result = civic_r.json()
+        if google_result.get('error'):
+            self.google_error = google_result['error'].get('message')
+        return google_result
+
+    def get_google_location(self):
+        payload = {'address': self.google_address, 'key': vars.API_KEY}
+        r = requests.get(vars.GOOGLE_GEOCODE_ENDPOINT, params=payload)
+        location = r.json()['results'][0]['geometry']['location']
+        return location
+
+
 class Legislator:
     def __init__(self,
                  name=None,
@@ -231,38 +264,6 @@ class StateLegislator(Legislator):
                 pie_chart.add(subject, count)
             self.bill_chart_type = 'pie'
             self.bill_chart = pie_chart.render_data_uri()
-
-
-class Constituent:
-    """Class representing the human
-    currently methods are just the google methods, but I figure we might do more later,
-    maybe we can save
-    """
-    def __init__(self, address, city, state, representatives=None):
-        self.address = address
-        self.city = city
-        self.state = state
-        self.google_address = '{0}, {1}, {2}'.format(self.address, self.city, self.state)
-        self.location = self.get_google_location()
-        if representatives:
-            self.representatives = representatives
-        else:
-            self.representatives = []
-        self.google_error = None
-
-    def get_google_civic_info(self):
-        civic_payload = {'address': self.google_address, 'key': vars.GOOGLE_CIVIC_KEY, 'levels': 'country'}
-        civic_r = requests.get(vars.GOOGLE_CIVIC_ENDPOINT, params=civic_payload)
-        google_result = civic_r.json()
-        if google_result.get('error'):
-            self.google_error = google_result['error'].get('message')
-        return google_result
-
-    def get_google_location(self):
-        payload = {'address': self.google_address, 'key': vars.API_KEY}
-        r = requests.get(vars.GOOGLE_GEOCODE_ENDPOINT, params=payload)
-        location = r.json()['results'][0]['geometry']['location']
-        return location
 
 
 def map_json_to_us_leg(mapper, chamber, state):
