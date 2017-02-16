@@ -24,25 +24,37 @@
 
 <script type="text/javascript">
     var change_count = 0;
+    var isConnected = false;
+    var isDirty = false;
+    var oldTime = new Date().getTime();
+    var sentData = false;
 
     // on page load connect to websocket
     var socket = io.connect('http://' + document.domain + ':' + location.port);
     socket.on('connect', function() {
-        console.log('connected');
+        isConnected = true;
     });
 
-    var area = document.querySelector('textarea#what_happen_text');
 
+    var area = document.querySelector('textarea#what_happen_text');
     if (area.addEventListener) {
         area.addEventListener('input', function() {
-            change_count++;
+
+            if (!isDirty) {
+                isDirty = true;
+                oldTime = new Date().getTime();
+            }
+
+            change_count = change_count + 1;
             console.log(change_count);
+            var timeDiff = new Date().getTime() - oldTime;
             var todo = document.getElementById("what_happen_text").value;
-            // TODO: or timeout happens
-            if (change_count == 10) {
-                // TODO: check for if connected
-                socket.emit('md change', {data: todo});
+            if (change_count == 20) {
+                console.log('SENDING SOMETHING!', isConnected, change_count, timeDiff);
+                send_md(todo);
                 change_count = 0;
+                oldTime = new Date().getTime();
+                sentData = true;
             }
 
         }, false);
@@ -53,6 +65,19 @@
         });
     }
 
+    setInterval(function() {
+        if (!sentData && isDirty) {
+            // todo: what happens after first call dirty-ing isdirty?
+            var todo = document.getElementById("what_happen_text").value;
+            send_md(todo);
+        }
+    }, 10000);
+
+    function send_md(todo) {
+        if (isConnected) {
+            socket.emit('md change', todo);
+        }
+    }
 
 </script>
 </body>

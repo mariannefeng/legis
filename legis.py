@@ -23,8 +23,11 @@ requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 
 # todo: write changes to md_file after 10 minutes - avoid concurrency issues
 @socketio.on('md change')
-def md_change(json):
-    print('received json: ' + str(json))
+def md_change(data):
+    print('received json: ' + str(data))
+    md_change = open(vars.WHAT_WERE_DOING_MD, 'r+')
+    md_change.write(str(data))
+    md_change.close()
 
 @app.route('/')
 def index():
