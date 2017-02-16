@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify, render_template, Blueprint, flash, redirect, url_for
+from flask_misaka import Misaka
+from flask_socketio import SocketIO
 import requests
 import requests_cache
 import random
@@ -8,6 +10,9 @@ import VARS as vars
 
 
 app = Flask(__name__)
+Misaka(app)
+socketio = SocketIO(app)
+
 app.secret_key = 'super secret key'
 # create additional static directory
 blueprint = Blueprint('clouds', __name__, static_url_path='/clouds', static_folder='clouds/')
@@ -15,6 +20,11 @@ app.register_blueprint(blueprint)
 
 # cache for requests
 requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
+
+# todo: write changes to md_file after 10 minutes - avoid concurrency issues
+@socketio.on('md change')
+def md_change(json):
+    print('received json: ' + str(json))
 
 @app.route('/')
 def index():
@@ -25,6 +35,11 @@ def index():
                            background_color=background_color,
                            button_color=button_color)
 
+@app.route('/whats_happenin')
+def what_happen():
+    with open(vars.WHAT_WERE_DOING_MD, 'r') as f:
+        content = f.read()
+    return render_template('what_happen_md.html', text=content)
 
 @app.route('/my_reps', methods=['POST'])
 def return_data():
@@ -65,4 +80,4 @@ def return_data():
 
 
 if __name__ == '__main__':
-    app.run()
+    socketio.run(app)
