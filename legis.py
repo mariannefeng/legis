@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template, Blueprint, flash, redirect, url_for
-from flask_misaka import Misaka
 from flask_socketio import SocketIO, emit
 import requests
 import requests_cache
@@ -10,7 +9,6 @@ import VARS as vars
 
 
 app = Flask(__name__)
-Misaka(app, strikethrough=True, hard_wrap=True, wrap=True)
 socketio = SocketIO(app)
 
 app.secret_key = 'super secret key'
@@ -21,7 +19,6 @@ app.register_blueprint(blueprint)
 # cache for requests
 requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 
-# todo: add something special if two people connected at same time
 @socketio.on('md change')
 def md_change(data):
     md_change = open(vars.WHAT_WERE_DOING_MD, 'r+')
@@ -42,7 +39,13 @@ def index():
 def what_happen():
     with open(vars.WHAT_WERE_DOING_MD, 'r') as f:
         content = f.read()
-    return render_template('what_happen_md.html', text=content.strip())
+    return render_template('what_happen.html', text=content.strip())
+
+@app.route('/whats_happenin_edit')
+def what_happen_edit():
+    with open(vars.WHAT_WERE_DOING_MD, 'r') as f:
+        content = f.read()
+    return render_template('what_happen_edit.html', text=content.strip())
 
 @app.route('/my_reps', methods=['POST'])
 def return_data():

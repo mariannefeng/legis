@@ -2,20 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>See we're doing things</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='whats_happenin.css') }}">
+    <title>See we're doing things - EDIT MODE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='what_happen.css') }}">
 </head>
 
-<body style="background-color:{{ background_color }};">
+<body>
 
 <div id="everything">
     <div id="textarea">
         <textarea id="what_happen_text">{{ text }}</textarea>
     </div>
-    <div id="preview">
-        {{ text|markdown }}
-    </div>
-
+    <div id="preview"></div>
     <div class="clear"></div>
 </div>
 
@@ -31,12 +28,11 @@
     var socket = io.connect('http://' + document.domain + ':' + location.port);
     socket.on('connect', function() {
         isConnected = true;
+        load_editor();
     });
 
     socket.on('ACK', function() {
-        converter.setOption('strikethrough', true);
-        var parsedHtml = converter.makeHtml(document.getElementById('what_happen_text').value);
-        document.getElementById("preview").innerHTML = parsedHtml;
+        load_editor();
     });
 
     //TODO: add text diff check before sending
@@ -48,6 +44,11 @@
 
     function send_md(todo) {
         if (isConnected) { socket.emit('md change', todo); }
+    }
+
+    function load_editor() {
+        var parsedHtml = converter.makeHtml(document.getElementById('what_happen_text').value);
+        document.getElementById("preview").innerHTML  = parsedHtml;
     }
 
 </script>

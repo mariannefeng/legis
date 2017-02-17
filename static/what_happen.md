@@ -6,6 +6,9 @@ Make markdown page
   * add notification for 2 users being connected at once
   * add regular view and 'edit view'
   * make sure that markdown spacing is not weird
+  * make edit view not ugly
+    * make regular view use javascript to parse markdown on load (need to pass var from flask to js)
+  * ~~make sure that default display configuration is same as js library~~
   * make it so editor box is same size as other column
   * show markdown tips somewhere?
 
@@ -71,4 +74,4 @@ possibly make historical searches more accessible?
 
 ~~Validate homepage form - JESSI~~
 
-~~Display pretty graph for financial data for country level people - MARIANNE~~~~RIANNE~~~~E~~~~~~~~~~~
+~~Display pretty graph for financial data for country level people - MARIANNE~~~~RIANNE~~~~E~~~~~~~~~~~~~~~~~~~~~~~~~RIANNE~~~~RIANNE~~~~E~~~~~~~~~~~~~~~~~~~~~~~~~
