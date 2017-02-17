@@ -1,8 +1,13 @@
-### Actively Working on 
+### Doing it
 
-_Make markdown page - MARIANNE_
+Make markdown page - MARIANNE
+  * add basic password
+  * add text diff check before sending (_right now sends every 15 seconds_)
+  * add notification for 2 users being connected at once
+  * add regular view and 'edit view'
+  * make sure that markdown spacing is not weird
 
-### Stuff we're thinking about
+### Thinking about it
 
 Dynamic placement / scrolling of boxes so if the screen is small the contact info/committees/social media info doesn’t dwarf the picture and make the tile huge
 
@@ -42,7 +47,7 @@ We need a page to list our sources
 
 possibly make historical searches more accessible?
 
-### Stuff we thought about about and did
+### Done it
 
 ~~Retrieve financial data for country level people - MARIANNE~~
 

@@ -6,10 +6,12 @@ html, body {
     height: 100%;
     font-family: "Helvetica-Light";
     background-color: #e1e1da;
+    overflow: auto;
 }
 
 div#everything {
     height: 100%;
+    overflow: auto;
 }
 
 div#everything #textarea {
