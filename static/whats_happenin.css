@@ -1,0 +1,40 @@
+.clear {
+    clear:both;
+}
+
+html, body {
+    height: 100%;
+    font-family: "Helvetica-Light";
+    background-color: #e1e1da;
+}
+
+div#everything {
+    height: 100%;
+}
+
+div#everything #textarea {
+    float: left;
+    width: 48%;
+    max-width: 48%;
+    padding: 10px;
+    height: 100%;
+    max-height: 100%;
+}
+
+div#everything #preview {
+    float: right;
+    width: 48%;
+    max-width: 48%;
+    padding: 0px 20px;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+#textarea textarea#what_happen_text {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-size: 0.95rem;
+    font-family: "Courier New";
+}

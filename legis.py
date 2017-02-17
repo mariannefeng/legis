@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify, render_template, Blueprint, flash, redirect, url_for
+from flask import Flask, request, render_template, Blueprint, flash, redirect, url_for
 from flask_misaka import Misaka
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 import requests
 import requests_cache
 import random
@@ -10,7 +10,7 @@ import VARS as vars
 
 
 app = Flask(__name__)
-Misaka(app)
+Misaka(app, strikethrough=True, hard_wrap=True, wrap=True)
 socketio = SocketIO(app)
 
 app.secret_key = 'super secret key'
@@ -21,22 +21,13 @@ app.register_blueprint(blueprint)
 # cache for requests
 requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 
-
-@app.route('/md_change', methods=['POST'])
-def md_change():
-    print(request.data)
-    return request.data
-    # a = request.args.get('a', 0, type=int)
-    # b = request.args.get('b', 0, type=int)
-    # return jsonify(result=a + b)
-
-# todo: write changes to md_file after 10 minutes - avoid concurrency issues
-# @socketio.on('md change')
-# def md_change(data):
-#     print('received json: ' + str(data))
-#     md_change = open(vars.WHAT_WERE_DOING_MD, 'r+')
-#     md_change.write(str(data))
-#     md_change.close()
+# todo: add something special if two people connected at same time
+@socketio.on('md change')
+def md_change(data):
+    md_change = open(vars.WHAT_WERE_DOING_MD, 'r+')
+    md_change.write(str(data))
+    md_change.close()
+    emit('ACK', '')
 
 @app.route('/')
 def index():
@@ -51,7 +42,7 @@ def index():
 def what_happen():
     with open(vars.WHAT_WERE_DOING_MD, 'r') as f:
         content = f.read()
-    return render_template('what_happen_md.html', text=content)
+    return render_template('what_happen_md.html', text=content.strip())
 
 @app.route('/my_reps', methods=['POST'])
 def return_data():

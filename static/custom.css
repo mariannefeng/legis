@@ -65,38 +65,3 @@ article.legis-box {
 div.finance-overview {
     height: 15px;
 }
-
-.clear {
-    clear:both;
-}
-
-
-html, body {
-    height: 100%;
-}
-
-div#everything {
-    height: 100%;
-}
-
-div#everything #textarea {
-    float: left;
-    width: 50%;
-    max-width: 45%;
-    padding: 10px;
-    height: 100%;
-    max-height: 100%;
-}
-
-div#everything #preview {
-    float: right;
-    width: 50%;
-}
-
-#textarea textarea#what_happen_text {
-    /*max-width: 90%;*/
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    max-height: 100%;
-}
