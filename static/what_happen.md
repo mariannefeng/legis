@@ -1,11 +1,13 @@
 ### Doing it
 
-Make markdown page - MARIANNE
+Make markdown page
   * add basic password
   * add text diff check before sending (_right now sends every 15 seconds_)
   * add notification for 2 users being connected at once
   * add regular view and 'edit view'
   * make sure that markdown spacing is not weird
+  * make it so editor box is same size as other column
+  * show markdown tips somewhere?
 
 ### Thinking about it
 
@@ -69,4 +71,4 @@ possibly make historical searches more accessible?
 
 ~~Validate homepage form - JESSI~~
 
-~~Display pretty graph for financial data for country level people - MARIANNE~~~~RIANNE~~~~
+~~Display pretty graph for financial data for country level people - MARIANNE~~~~RIANNE~~~~E~~~~~~~~~~~
