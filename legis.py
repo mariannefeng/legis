@@ -21,13 +21,22 @@ app.register_blueprint(blueprint)
 # cache for requests
 requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 
+
+@app.route('/md_change', methods=['POST'])
+def md_change():
+    print(request.data)
+    return request.data
+    # a = request.args.get('a', 0, type=int)
+    # b = request.args.get('b', 0, type=int)
+    # return jsonify(result=a + b)
+
 # todo: write changes to md_file after 10 minutes - avoid concurrency issues
-@socketio.on('md change')
-def md_change(data):
-    print('received json: ' + str(data))
-    md_change = open(vars.WHAT_WERE_DOING_MD, 'r+')
-    md_change.write(str(data))
-    md_change.close()
+# @socketio.on('md change')
+# def md_change(data):
+#     print('received json: ' + str(data))
+#     md_change = open(vars.WHAT_WERE_DOING_MD, 'r+')
+#     md_change.write(str(data))
+#     md_change.close()
 
 @app.route('/')
 def index():
