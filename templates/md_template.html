@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The official list of us doing things</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='md_template.css') }}">
+</head>
+
+<body id="view_md">
+
+<div id="hidden" style="display: none;">{{ text }}</div>
+<div id="happy_md_view"></div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>
+<script type="text/javascript">
+    var mkd = document.getElementById("hidden").innerHTML;
+    console.log(mkd);
+
+    var converter = new showdown.Converter({
+        strikethrough: true,
+        simpleLineBreaks: true,
+        tables: true
+    });
+
+    var parsedHtml = converter.makeHtml(mkd.trim());
+    document.getElementById("happy_md_view").innerHTML  = parsedHtml;
+
+</script>
+</body>
+</html>

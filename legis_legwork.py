@@ -8,7 +8,6 @@ import nltk
 import pygal
 import requests
 import collections
-from pygal.style import Style
 from wordcloud import WordCloud, STOPWORDS
 from dateutil.relativedelta import relativedelta
 #gittest
@@ -197,11 +196,9 @@ class USLegislator(Legislator):
                              'cycle': election_year,
                              'q': name}
         cand_total_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/totals/', params=cand_total_params)
-        print(cand_total_r.url)
         cand_total = cand_total_r.json().get('results')
         if len(cand_total) == 0:
             name_list = name.split()
-            print(name_list)
             cand_name_filter = {'q': name_list[len(name_list) - 1],
                                        'cycle': election_year,
                                        'state': state,
@@ -246,11 +243,12 @@ class USLegislator(Legislator):
 
         name_committee_detail = self.__pull_contrib_chart_data(name, state, election_year)
 
+        # sometimes people run for both house and senate. contrib values are the same so just grabs first one in results list
         candidate_committees = []
-        for result in name_committee_detail:
-            cand_comm = {'candidate': result['name'],
-                         'committee_id': result['principal_committees'][0]['committee_id']}
-            candidate_committees.append(cand_comm)
+        one_election = name_committee_detail[0]
+        cand_comm = {'candidate': one_election['name'],
+                     'committee_id': one_election['principal_committees'][0]['committee_id']}
+        candidate_committees.append(cand_comm)
 
         self.finance = {'overall': self.__pull_contrib_totals(name, state, election_year),
                         'contrib': self.__create_contrib_chart(candidate_committees, election_year)}
@@ -295,11 +293,25 @@ class StateLegislator(Legislator):
     def set_old_roles(self, legislator):
         """Grab committees from latest committee info on hand"""
         old_roles = legislator.get('old_roles')
+
         ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(math.floor(n/10)%10!=1)*(n%10<4)*n%10::4])
         if old_roles:
-            print(old_roles.keys())
-            terms = [int(term.strip('th').strip('st').strip('rd')) for term in old_roles.keys()]
-            # terms = [term.strip('th').strip('st').strip('rd') for term in old_roles.keys()]
+            terms = []
+            for term in old_roles.keys():
+                # strip add-ons and cut off number at first -
+                no_adds = term.strip('th').strip('st').strip('rd')
+
+                try:
+                    dash_index = no_adds.index('-')
+                except ValueError:
+                    dash_index = -1
+
+                if dash_index > 0:
+                    term_start = no_adds[:dash_index]
+                else:
+                    term_start = term
+                terms.append(int(term_start))
+
             latest = max(terms)
             latest_array = old_roles.get(ordinal(latest))
             self.old_committees = self.get_committee(latest_array)
@@ -329,7 +341,7 @@ class StateLegislator(Legislator):
         title_subject_data = subject_list(bill_params)
         subject_count = collections.Counter(title_subject_data['subjects'])
         # if 'None" comprises 50%+ of total subject data, then render a word cloud of titles instead.
-        if subject_count.most_common(1)[0][0] == 'None':
+        if find_none(subject_count.most_common(1)):
             # check if it is 50%
             composition = {subject: subject_count[subject]/float(len(title_subject_data['subjects'])) for subject in subject_count}
             if composition.get('None') > .5:
@@ -352,14 +364,18 @@ class StateLegislator(Legislator):
             self.bill_chart = pie_chart.render_data_uri()
 
 
+def find_none(most_common):
+    for item in most_common:
+        if str(item[0]) == 'None':
+            return True
+    return False
+
 def map_json_to_us_leg(mapper, chamber, state):
     rep = USLegislator()
     rep.name = mapper['name']
     rep.party = mapper['party']
     rep.get_financial_data(rep.name, state)
     rep.chamber = chamber
-
-    print(rep.name)
 
     full_name = rep.name.split()
     name_key = str.lower(full_name[len(full_name) - 1]) + str.lower(full_name[0][0]) + state
@@ -422,7 +438,6 @@ def map_json_to_state_leg(legislator):
 
 def subject_list(bill_params):
     bill_r = requests.get(vars.BILL_ENDPOINT, params=bill_params)
-    # print(bill_r.url)
     relevant_bill_data = {'subjects': [], 'titles': []}
     if type(bill_r.json()) == list:
         for sunlight_bill in bill_r.json():

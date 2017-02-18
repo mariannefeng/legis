@@ -6,12 +6,12 @@ html, body {
     height: 100%;
     font-family: "Helvetica-Light";
     background-color: #e1e1da;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 div#everything {
     height: 100%;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 div#everything #textarea {
@@ -39,4 +39,31 @@ div#everything #preview {
     padding: 10px;
     font-size: 0.95rem;
     font-family: "Courier New";
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #666666;
+    font-size: 1rem;
+}
+
+tr:hover {background-color: #f5f5f5}
+
+#happy_md_view th, td {
+    padding: 5px;
+}
+
+#happy_md_view th {
+    background-color: floralwhite;
+}
+
+body#view_md {
+    padding-top: 0px !important;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    display: block;
+    height: auto;
 }

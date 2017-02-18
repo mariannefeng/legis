@@ -22,6 +22,8 @@ requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 @socketio.on('md change')
 def md_change(data):
     md_change = open(vars.WHAT_WERE_DOING_MD, 'r+')
+    md_change.truncate()
+
     md_change.write(str(data))
     md_change.close()
     emit('ACK', '')
@@ -35,17 +37,31 @@ def index():
                            background_color=background_color,
                            button_color=button_color)
 
+
+@app.route('/thank_you')
+def sources():
+    with open(vars.THANK_YOU_MD, 'r') as z:
+        content = z.read()
+    return render_template('md_template.html',
+                           text=content.strip(),
+                           title='Thank you')
+
+
 @app.route('/whats_happenin')
 def what_happen():
     with open(vars.WHAT_WERE_DOING_MD, 'r') as f:
         content = f.read()
-    return render_template('what_happen.html', text=content.strip())
+    return render_template('md_template.html',
+                           text=content.strip(),
+                           title='The official list of us doing things')
+
 
 @app.route('/whats_happenin_edit')
 def what_happen_edit():
     with open(vars.WHAT_WERE_DOING_MD, 'r') as f:
         content = f.read()
     return render_template('what_happen_edit.html', text=content.strip())
+
 
 @app.route('/my_reps', methods=['POST'])
 def return_data():

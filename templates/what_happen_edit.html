@@ -18,11 +18,13 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>
+
 <script type="text/javascript">
     var isConnected = false;
     var converter = new showdown.Converter({
         strikethrough: true,
-        simpleLineBreaks: true
+        simpleLineBreaks: true,
+        tables: true
     });
 
     var socket = io.connect('http://' + document.domain + ':' + location.port);
@@ -35,19 +37,18 @@
         load_editor();
     });
 
-    //TODO: add text diff check before sending
     setInterval(function() {
-        console.log('sent updates');
-        var todo = document.getElementById("what_happen_text").value;
-        send_md(todo.trim());
+        var todo = document.getElementById("what_happen_text").value.trim();
+        send_md(todo);
     }, 5000);
 
     function send_md(todo) {
+        console.log('sending msg');
         if (isConnected) { socket.emit('md change', todo); }
     }
 
     function load_editor() {
-        var parsedHtml = converter.makeHtml(document.getElementById('what_happen_text').value);
+        var parsedHtml = converter.makeHtml(document.getElementById('what_happen_text').value.trim());
         document.getElementById("preview").innerHTML  = parsedHtml;
     }
 
