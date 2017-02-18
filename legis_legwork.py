@@ -20,11 +20,13 @@ def get_house_members():
         last_name_list = member['last_name'].split()
         parsed_last_name = last_name_list[len(last_name_list) - 1]
         name_key = ''.join(e for e in parsed_last_name if e.isalnum())
-        master_house_list['{0}{1}{2}'.format(name_key.lower(),
-                                             member['first_name'][0].lower(),
-                                             member['state'])] = {}
-        master_house_list['{0}{1}{2}'.format(name_key.lower(), member['first_name'][0].lower(), member['state'])]['id'] = member['id']
-        master_house_list['{0}{1}{2}'.format(name_key.lower(), member['first_name'][0].lower(), member['state'])]['detail_url'] = member['api_uri']
+
+        lower_name_key = name_key.lower()
+        lower_first_name = member['first_name'][0].lower()
+        formatted_key = '{0}{1}{2}'.format(lower_name_key.encode('utf-8'), lower_first_name.encode('utf-8')[0], member['state'].encode('utf-8'))
+        master_house_list[formatted_key] = {}
+        master_house_list[formatted_key]['id'] = member['id']
+        master_house_list[formatted_key]['detail_url'] = member['api_uri']
     return master_house_list
 
 def get_senate_members():
@@ -34,9 +36,13 @@ def get_senate_members():
         last_name_list = member['last_name'].split()
         parsed_last_name = last_name_list[len(last_name_list) - 1]
         name_key = ''.join(e for e in parsed_last_name if e.isalnum())
-        master_senate_list['{0}{1}{2}'.format(name_key.lower(), member['first_name'][0].lower(), member['state'])] = {}
-        master_senate_list['{0}{1}{2}'.format(name_key.lower(), member['first_name'][0].lower(), member['state'])]['id'] = member['id']
-        master_senate_list['{0}{1}{2}'.format(name_key.lower(), member['first_name'][0].lower(), member['state'])]['detail_url'] = member['api_uri']
+
+        lower_name_key = name_key.lower()
+        lower_first_name = member['first_name'][0].lower()
+        formatted_key = '{0}{1}{2}'.format(lower_name_key.encode('utf-8'), lower_first_name.encode('utf-8')[0], member['state'].encode('utf-8'))
+        master_senate_list[formatted_key] = {}
+        master_senate_list[formatted_key]['id'] = member['id']
+        master_senate_list[formatted_key]['detail_url'] = member['api_uri']
     return master_senate_list
 
 HOUSE_PROPUB = get_house_members()
