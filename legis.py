@@ -19,6 +19,7 @@ app.register_blueprint(blueprint)
 # cache for requests
 requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 
+
 @socketio.on('md change')
 def md_change(data):
     md_change = open(vars.WHAT_WERE_DOING_MD, 'r+')

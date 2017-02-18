@@ -3,6 +3,7 @@
 * checks for invalid social media link before display
 * Make it so that candidates committees are in tab for ‘current term’ 
 * Make it so that candidate committees are clickable
+* (maybe) setup docker for project (what do we gain)
 
 ### Thinking about it
 
@@ -11,13 +12,12 @@
 | -------------|-------------|-----------------|-----------------|
 | Dynamic placement / scrolling of boxes*  | Possibly also get social media things for state reps?  | HTML5 ASTEROIDS while you wait Jessi talk to Mikey? | how to display title (State House/Senate/House of Representatives) | 
 | | how to differentiate between state vs. country level | talk to Audry about site | | 
-| Separate bills into larger categories | Add actionables for contact information (using countable possibly?)_%_  | talk to Ryan about site |
-| Start writing tests | Add SSL
+| Separate bills into larger categories(or do wordcloud?) | Add actionables for contact information (using countable possibly?)_%_  | talk to Ryan about site design |
+| Start writing tests | Add SSL (add nginx container to dockerfile)
 | Too long of text, limit text by box | Display total money raised somewhere on rep tile
 | | How to make website faster+ 
 | | 
 | | possibly make historical searches more accessible?
-| | (maybe) setup docker for project (what do we gain)
              
 +Have requests cache, but need metrics
 *so if the screen is small the contact info/committees/social media info doesn’t dwarf the picture and make the tile huge
