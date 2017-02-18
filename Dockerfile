@@ -18,6 +18,6 @@ EXPOSE 5000
 # turn on debugging for development
 ENV FLASK_DEBUG=1
 ENV PYTHON_UNBUFFERED=1
+ENV FLASK_APP=legis.py
 
-ENTRYPOINT ["python"]
-CMD ["legis.py"]
+CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]
