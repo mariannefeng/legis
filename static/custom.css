@@ -16,6 +16,41 @@ article.message {
     margin-left: 20px;
 }
 
+nav.panel {
+    margin-left: 20px;
+}
+
+nav.extra-credit p.panel-heading {
+    background-color: #f6fef9;
+    border-color: #23d160;
+
+}
+
+nav.extra-credit div.panel-block {
+    background-color: #f6fef9;
+    border-color: #23d160 !important;
+}
+
+nav.extra-credit div.panel-block p span{
+    display: block;
+    margin-bottom: 3px;
+}
+
+nav.extra-credit p.panel-tabs {
+    border-color: #23d160;
+}
+
+nav.extra-credit p.panel-tabs a {
+    border-color: #23d160;
+    color: #188f41;
+}
+
+nav.extra-credit p.panel-tabs a.is-active {
+    border-color: #126d32;
+    color: #0a3a1b;
+}
+
+
 a.icon-link {
     text-decoration: none !important;
 }

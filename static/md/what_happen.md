@@ -1,9 +1,8 @@
 ### Doing it
 
-* checks for invalid social media link before display
-* Make it so that candidates committees are in tab for ‘current term’ 
+* Make it so that candidates committees are in tab for 'current term' 
 * Make it so that candidate committees are clickable
-* (maybe) setup docker for project (what do we gain)
+* (maybe) setup docker for project (what do we gain: easy SSL)
 
 ### Thinking about it
 
@@ -11,13 +10,19 @@
 | Bug Fixes     | Ideas            | Other People    |  Graphical Things
 | -------------|-------------|-----------------|-----------------|
 | Dynamic placement / scrolling of boxes*  | Possibly also get social media things for state reps?  | HTML5 ASTEROIDS while you wait Jessi talk to Mikey? | how to display title (State House/Senate/House of Representatives) | 
-| | how to differentiate between state vs. country level | talk to Audry about site | | 
+| What the fuck is going on with the encoding | how to differentiate between state vs. country level | | | 
 | Separate bills into larger categories(or do wordcloud?) | Add actionables for contact information (using countable possibly?)_%_  | talk to Ryan about site design |
-| Start writing tests | Add SSL (add nginx container to dockerfile)
+| Start writing tests (definitely need something that checks to make sure dependencies are still up) | Add SSL (add nginx container to dockerfile)
 | Too long of text, limit text by box | Display total money raised somewhere on rep tile
 | Don't think python -m flask run is right way to deploy | How to make website faster+ 
-| | 
+| | Consider possibility of making this thing local?
 | | possibly make historical searches more accessible?
+| | If you can't load picture for X from A source, maybe try B source? 
+| | Any way to add Balletopedia API? 
+| | Here's a crazy thought - what if you also got information on things that impact your LIFE (school board, public works, tranpo, housing...)
+| | Add mock data so we don't have to wait for shit when working on css changes
+| | Make it so that you can click on tabs in 'Extra Credit' and pull for old committee info
+
              
 +Have requests cache, but need metrics
 *so if the screen is small the contact info/committees/social media info doesn’t dwarf the picture and make the tile huge
@@ -49,3 +54,4 @@ _%_might render social media links useless
 ~~Make all boxes fixed height~~
 ~~Fix financial data bug (look at what happens for Arizon~~
 ~~We need a page to list our sources (gasp what if you make it markdown)~~
+~~checks for invalid social media link before display~~

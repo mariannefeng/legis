@@ -26,10 +26,10 @@ CUSTOM_FONT = os.path.join('static', 'Helvetica-Light.ttf')
 BULMA_COLORS = ['is-success', 'is-info', 'is-primary', 'is-danger']
 
 SOCIAL_ENDPOINTS = {
-    'Facebook' : 'https://www.facebook/com/',
-    'Twitter' : 'https://twitter.com/',
-    'YouTube' : 'https://www.youtube.com/user/',
-    'GooglePlus' : 'https://plus.google.com/'
+    'Facebook': 'https://www.facebook.com/',
+    'Twitter': 'https://twitter.com/',
+    'YouTube': 'https://www.youtube.com/user/',
+    'GooglePlus': 'https://plus.google.com/'
 }
 
 BILL_CHART_STYLE = Style(background='transparent',

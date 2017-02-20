@@ -321,6 +321,8 @@ class StateLegislator(Legislator):
             latest = max(terms)
             latest_array = old_roles.get(ordinal(latest))
             self.old_committees = self.get_committee(latest_array)
+            print('OOOOLLLLDDDD')
+            print(self.old_committees)
             self.old_term_ordinal = ordinal(latest)
 
     @staticmethod
@@ -413,9 +415,12 @@ def map_json_to_us_leg(mapper, chamber, state):
     for social in mapper.get('channels'):
         rep_social = {}
         type = social['type']
-        rep_social['type'] = type
-        rep_social['link'] = vars.SOCIAL_ENDPOINTS[type] + social['id']
-        rep.social.append(rep_social)
+        social_endpoint = vars.SOCIAL_ENDPOINTS[type] + social['id']
+        status = check_url(social_endpoint)
+        if status and status < 400:
+            rep_social['link'] = social_endpoint
+            rep_social['type'] = type
+            rep.social.append(rep_social)
     return rep
 
 
@@ -471,3 +476,13 @@ def turq_color_func(word, font_size, position, orientation, random_state=None, *
 
 def grey_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
     return "hsl(0, 0%%, %d%%)" % random.randint(60, 90)
+
+# checks URL. Returns status code if connected, None if couldn't connected
+def check_url(url):
+    status_code = 500
+    try:
+        r = requests.head(url)
+        status_code = r.status_code
+    except:
+        print("failed to connect")
+    return status_code

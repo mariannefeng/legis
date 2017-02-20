@@ -61,30 +61,49 @@
                     </article>
                     {% endif %}
 
-                    {% if rep.committees %}
-                    <article class="message is-success">
-                        <div class="message-body has-text-left">
-                            <p><b>Current Term</b></p>
-                            {% for value in rep.committees %}
+
+                    {% if rep.committees or  rep.old_committees %}
+
+                    <nav class="panel extra-credit">
+                        <p class="panel-heading">Extra Credit</p>
+                        <p class="panel-tabs">
+                            <a class="is-active">Current Committees</a>
+                            <a>Previous Committees</a>
+                            <a>Private</a>
+                            <a>Sources</a>
+                            <a>Forks</a>
+                        </p>
+                        {% if rep.committees %}
+
+                        <div class="panel-block current-committee">
                             <p>
-                                {% if value.position %}
-                                {{ value.position }} of
-                                {% endif %}
-                                <b>{{value.name.replace("&#39;", "'")}}</b>
+                                {% for value in rep.committees %}
+                                <span>
+                                    {% if value.position %}
+                                    {{ value.position }} of
+                                    {% endif %}
+                                    <b>{{value.name.replace("&#39;", "'")}}</b>
+                                </span>
+                                {% endfor %}
                             </p>
-                            {% endfor %}
                         </div>
-                    </article>
-                    {% elif rep.old_committees %}
-                    <article class="message is-success">
-                        <div class="message-body has-text-left" style="max-height:100px;overflow:scroll">
-                            <p><b>{{ rep.old_term_ordinal }} Term</b></p>
-                            {% for value in rep.old_committees %}
-                            <p> {{ value.position }} of <b>{{value.name}}</b></p>
-                            {% endfor %}
+
+                        {% elif rep.old_committees %}
+
+                        <div class="panel-block prev-committee">
+                            <p>
+                                <p><b>{{ rep.old_term_ordinal }} Term</b></p>
+                                {% for value in rep.old_committees %}
+                                <span> {{ value.position }} of <b>{{value.name}}</b></span>
+                                {% endfor %}
+                            </p>
                         </div>
-                    </article>
+
+                        {% endif %}
+                    </nav>
+
                     {% endif %}
+
 
                 </div>
 
@@ -128,5 +147,10 @@
         {% endfor %}
     </div>
 </div>
+
+<script type="text/javascript">
+    // on click will hide/show div accordingly
+
+</script>
 </body>
 {% endblock %}

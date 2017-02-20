@@ -4,6 +4,7 @@ import requests
 import requests_cache
 import random
 
+
 import legis_legwork as leg
 import VARS as vars
 
@@ -65,7 +66,6 @@ def what_happen_edit():
         content = f.read()
     return render_template('what_happen_edit.html', text=content.strip())
 
-
 @app.route('/my_reps', methods=['POST'])
 def return_data():
     errs = []
@@ -102,7 +102,6 @@ def return_data():
         rep = leg.map_json_to_state_leg(legislator)
         human.representatives.append(rep)
     return render_template('reps.html', reps=human.representatives)
-
 
 if __name__ == '__main__':
     socketio.run(app)
