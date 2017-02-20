@@ -23,7 +23,7 @@ def get_house_members():
 
         lower_name_key = name_key.lower()
         lower_first_name = member['first_name'][0].lower()
-        formatted_key = '{0}{1}{2}'.format(lower_name_key.encode('utf-8'), lower_first_name.encode('utf-8')[0], member['state'].encode('utf-8'))
+        formatted_key = '{0}{1}{2}'.format(lower_name_key, lower_first_name[0], member['state'])
         master_house_list[formatted_key] = {}
         master_house_list[formatted_key]['id'] = member['id']
         master_house_list[formatted_key]['detail_url'] = member['api_uri']
@@ -39,7 +39,7 @@ def get_senate_members():
 
         lower_name_key = name_key.lower()
         lower_first_name = member['first_name'][0].lower()
-        formatted_key = '{0}{1}{2}'.format(lower_name_key.encode('utf-8'), lower_first_name.encode('utf-8')[0], member['state'].encode('utf-8'))
+        formatted_key = '{0}{1}{2}'.format(lower_name_key, lower_first_name[0], member['state'])
         master_senate_list[formatted_key] = {}
         master_senate_list[formatted_key]['id'] = member['id']
         master_senate_list[formatted_key]['detail_url'] = member['api_uri']

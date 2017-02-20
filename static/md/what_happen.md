@@ -15,7 +15,7 @@
 | Separate bills into larger categories(or do wordcloud?) | Add actionables for contact information (using countable possibly?)_%_  | talk to Ryan about site design |
 | Start writing tests | Add SSL (add nginx container to dockerfile)
 | Too long of text, limit text by box | Display total money raised somewhere on rep tile
-| | How to make website faster+ 
+| Don't think python -m flask run is right way to deploy | How to make website faster+ 
 | | 
 | | possibly make historical searches more accessible?
              

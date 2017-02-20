@@ -43,8 +43,9 @@ def index():
 def sources():
     with open(vars.THANK_YOU_MD, 'r') as z:
         content = z.read()
+    parsed_text = content.strip()
     return render_template('md_template.html',
-                           text=content.strip(),
+                           text=parsed_text,
                            title='Thank you')
 
 
@@ -52,8 +53,9 @@ def sources():
 def what_happen():
     with open(vars.WHAT_WERE_DOING_MD, 'r') as f:
         content = f.read()
+    parsed_text = content.strip()
     return render_template('md_template.html',
-                           text=content.strip(),
+                           text=parsed_text,
                            title='The official list of us doing things')
 
 
