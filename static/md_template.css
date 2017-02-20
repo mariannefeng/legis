@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Helvetica-Light;
+    src: url(Helvetica-Light.ttf);
+}
+
 .clear {
     clear:both;
 }
