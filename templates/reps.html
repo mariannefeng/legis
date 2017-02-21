@@ -178,7 +178,6 @@
 
         q.defer(function(callback) {
             var pie_chart_endpoint = 'http://localhost:5000/' + id + '/bill_pie_chart';
-            console.log(pie_chart_endpoint);
             d3.json(pie_chart_endpoint, function(response) {
                 callback(null, response);
             });
@@ -188,22 +187,22 @@
     q.awaitAll(draw_bill_graphs);
 
     function draw_bill_graphs(error, results) {
+        if (error) return;
 
         results.forEach(function(rep) {
-            console.log(rep);
-
             var data = rep.data;
             var svg = d3.select("#rep-pie-" + rep.id),
-                margin = {top: 5, right: 10, bottom: 5, left: 10},
-                width = 400,
-                height = 300;
+                margin = {top: 5, right: 10, bottom: 30, left: 30};
+
+            var width = svg.node().getBoundingClientRect().width;
+            var height = svg.node().getBoundingClientRect().height;
 
             var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
                 y = d3.scaleLinear().rangeRound([height, 0]);
 
             var g = svg.append("g")
-                .attr("height", 300)
-                .attr("width", 400)
+                .attr("height", height - margin.top - margin.right)
+                .attr("width", width - margin.left - margin.bottom)
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
@@ -217,7 +216,7 @@
 
             g.append("g")
                 .attr("class", "axis axis--y")
-                .call(d3.axisLeft(y).ticks(10, "%"))
+                .call(d3.axisLeft(y).ticks(10))
                 .append("text")
                 .attr("transform", "rotate(-90)")
                 .attr("y", 6)

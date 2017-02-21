@@ -14,7 +14,7 @@
 | Separate bills into larger categories(or do wordcloud?) | Add actionables for contact information (using countable possibly?)_%_  | talk to Ryan about site design |
 | Start writing tests (definitely need something that checks to make sure dependencies are still up) | Add SSL (add nginx container to dockerfile)
 | Too long of text, limit text by box | Display total money raised somewhere on rep tile
-| Don't think python -m flask run is right way to deploy | How to make website faster+ 
+| Don't think python -m flask run is right way to deploy | How to make website faster+
 | | Consider possibility of making this thing local?
 | | possibly make historical searches more accessible?
 | | If you can't load picture for X from A source, maybe try B source? 
@@ -25,7 +25,7 @@
 | | Add on hover tip for information you're looking at - there's that one git glossary repo! 
 
              
-+Have requests cache, but need metrics
++Have requests cache, but need metrics - Marianne would really like to prioritize this
 *so if the screen is small the contact info/committees/social media info doesn’t dwarf the picture and make the tile huge
 _%_might render social media links useless
 
