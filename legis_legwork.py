@@ -102,6 +102,7 @@ class Constituent:
 class Legislator:
     """Abstract class"""
     def __init__(self,
+                 id=None,
                  name=None,
                  party=None,
                  chamber=None,
@@ -116,6 +117,7 @@ class Legislator:
                  bill_chart=None,
                  bill_chart_type=None,
                  **kwargs):
+        self.id = id
         self.name = name
         self.party = party
         self.chamber = chamber
@@ -147,6 +149,7 @@ class Legislator:
 class USLegislator(Legislator):
     """US Legislator"""
     def __init__(self,
+                 id=None,
                  name=None,
                  party=None,
                  chamber=None,
@@ -161,7 +164,7 @@ class USLegislator(Legislator):
                  bills=None,
                  bill_chart=None,
                  bill_chart_type=None):
-        super().__init__(name, party, chamber, photo, bill_chart,
+        super().__init__(id, name, party, chamber, photo, bill_chart,
                          contact, social, committees, bill_chart_type,
                          old_term_ordinal, old_committees, bills, finance)
         self.level = 'US'
@@ -262,6 +265,7 @@ class USLegislator(Legislator):
 
 class StateLegislator(Legislator):
     def __init__(self,
+                 id=None,
                  name=None,
                  party=None,
                  chamber=None,
@@ -275,7 +279,7 @@ class StateLegislator(Legislator):
                  bills=None,
                  bill_chart=None,
                  bill_chart_type=None):
-        super().__init__(name, party, chamber, photo, bill_chart,
+        super().__init__(id, name, party, chamber, photo, bill_chart,
                          contact, social, committees, bill_chart_type,
                          level, old_term_ordinal, old_committees, bills)
         self.level = 'State'
@@ -344,10 +348,13 @@ class StateLegislator(Legislator):
         return relevant_bill_data
 
     def create_chart(self, sunlight_id):
+
+        # todo: VERY IMPORTANT - MAKE SURE THAT THIS NO LONGER CALLS GET BILL DATA TWICE (possibly use another rule)
         one_year = datetime.datetime.now() + relativedelta(months=-12)
         bill_params = {'sponsor_id': sunlight_id, 'updated_since': one_year.strftime('%Y-%m-%d')}
-        title_subject_data = subject_list(bill_params)
+        title_subject_data = get_title_subject(bill_params)
         subject_count = collections.Counter(title_subject_data['subjects'])
+
         # if 'None" comprises 50%+ of total subject data, then render a word cloud of titles instead.
         if find_none(subject_count.most_common(1)):
             # check if it is 50%
@@ -363,13 +370,16 @@ class StateLegislator(Legislator):
                 self.bill_chart_type = 'word_cloud'
                 self.bill_chart = filename
         else:
-            pie_chart = pygal.Pie(show_legend=False, style=vars.BILL_CHART_STYLE, opacity_hover=.9)
-            pie_chart.force_uri_protocol = 'http'
-            pie_chart.title = 'Bills Speak Louder than Words'
-            for subject, count in subject_count.items():
-                pie_chart.add(subject, count)
+
+            # pie_chart = pygal.Pie(show_legend=False, style=vars.BILL_CHART_STYLE, opacity_hover=.9)
+            # pie_chart.force_uri_protocol = 'http'
+            # pie_chart.title = 'Bills Speak Louder than Words'
+            # for subject, count in subject_count.items():
+            #     pie_chart.add(subject, count)
+
             self.bill_chart_type = 'pie'
-            self.bill_chart = pie_chart.render_data_uri()
+
+            # self.bill_chart = pie_chart.render_data_uri()
 
 
 def find_none(most_common):
@@ -426,6 +436,7 @@ def map_json_to_us_leg(mapper, chamber, state):
 
 def map_json_to_state_leg(legislator):
     rep = StateLegislator()
+    rep.id = legislator.get('id')
     rep.name = legislator.get('full_name')
     rep.party = legislator.get('party')
     rep.photo = legislator.get('photo_url')
@@ -447,7 +458,7 @@ def map_json_to_state_leg(legislator):
     return rep
 
 
-def subject_list(bill_params):
+def get_title_subject(bill_params):
     bill_r = requests.get(vars.BILL_ENDPOINT, params=bill_params)
     relevant_bill_data = {'subjects': [], 'titles': []}
     if type(bill_r.json()) == list:

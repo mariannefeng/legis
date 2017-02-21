@@ -105,3 +105,8 @@ article.legis-box {
 div.finance-overview {
     height: 15px;
 }
+
+svg.rep-pie {
+    width: 400px;
+    height: 300px;
+}

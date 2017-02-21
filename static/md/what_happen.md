@@ -1,6 +1,6 @@
 ### Doing it
 
-* Make it so that candidates committees are in tab for 'current term' 
+* Change bill info to be displayed using D3
 * Make it so that candidate committees are clickable
 * (maybe) setup docker for project (what do we gain: easy SSL)
 
@@ -22,6 +22,7 @@
 | | Here's a crazy thought - what if you also got information on things that impact your LIFE (school board, public works, tranpo, housing...)
 | | Add mock data so we don't have to wait for shit when working on css changes
 | | Make it so that you can click on tabs in 'Extra Credit' and pull for old committee info
+| | Add on hover tip for information you're looking at - there's that one git glossary repo! 
 
              
 +Have requests cache, but need metrics
@@ -55,3 +56,4 @@ _%_might render social media links useless
 ~~Fix financial data bug (look at what happens for Arizon~~
 ~~We need a page to list our sources (gasp what if you make it markdown)~~
 ~~checks for invalid social media link before display~~
+~~Make it so that candidates committees are in tab for 'current term'~~

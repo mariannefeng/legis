@@ -1,9 +1,11 @@
-from flask import Flask, request, render_template, Blueprint, flash, redirect, url_for
+from flask import Flask, request, render_template, Blueprint, jsonify, flash, redirect, url_for
 from flask_socketio import SocketIO, emit
+from dateutil.relativedelta import relativedelta
+import datetime
 import requests
 import requests_cache
 import random
-
+import collections
 
 import legis_legwork as leg
 import VARS as vars
@@ -30,6 +32,7 @@ def md_change(data):
     md_change.close()
     emit('ACK', '')
 
+
 @app.route('/')
 def index():
     background_color = random.choice(vars.BULMA_COLORS)
@@ -38,6 +41,25 @@ def index():
     return render_template('index.html',
                            background_color=background_color,
                            button_color=button_color)
+
+
+@app.route('/<sunlight_id>/bill_pie_chart')
+def get_bill_data(sunlight_id):
+    one_year = datetime.datetime.now() + relativedelta(months=-12)
+    bill_params = {'sponsor_id': sunlight_id, 'updated_since': one_year.strftime('%Y-%m-%d')}
+    title_subject_data = leg.get_title_subject(bill_params)
+    bill_count = collections.Counter(title_subject_data['subjects'])
+    rep_bill = {
+        'id': sunlight_id,
+        'data': []
+    }
+    for key, value in bill_count.items():
+        bill_subj = {
+            'bill': key,
+            'count': value
+        }
+        rep_bill['data'].append(bill_subj)
+    return jsonify(rep_bill)
 
 
 @app.route('/thank_you')

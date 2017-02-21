@@ -1,5 +1,23 @@
 {% extends 'index.html' %}
 {% block body %}
+
+<style>
+
+    .bar {
+        fill: steelblue;
+    }
+
+    .bar:hover {
+        fill: brown;
+    }
+
+    .axis--x path {
+        display: none;
+    }
+
+</style>
+
+<body>
 <body class="container is-fluid is-mobile" style="margin-top:20px">
 <div class="tile is-ancestor is-mobile">
     <div class="tile is-vertical is-parent">
@@ -69,9 +87,6 @@
                         <p class="panel-tabs">
                             <a class="is-active">Current Committees</a>
                             <a>Previous Committees</a>
-                            <a>Private</a>
-                            <a>Sources</a>
-                            <a>Forks</a>
                         </p>
                         {% if rep.committees %}
 
@@ -130,7 +145,8 @@
                     {% endif %}
 
                     {% if rep.bill_chart_type == 'pie' %}
-                    <embed type="image/svg+xml" src="{{ rep.bill_chart|safe }}" style="width:100%"/>
+                    <svg id = "rep-pie-{{ rep.id }}" class="rep-pie">{{ rep.id }}</svg>
+
                     {% elif rep.bill_chart_type == 'word_cloud' %}
                     <img src="clouds/{{ rep.bill_chart }}" style="object-fit:scale-down;object-position:0% 0%;padding-left:2%;"/>
                     {% endif %}
@@ -147,9 +163,93 @@
         {% endfor %}
     </div>
 </div>
+<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
 
 <script type="text/javascript">
-    // on click will hide/show div accordingly
+
+    var q = d3.queue();
+    var pies = document.getElementsByClassName("rep-pie");
+    var pieLength = pies.length;
+
+    for (var i = 0; i < pieLength; i++) {
+        // grab ID then clear before rendering chart
+        var id = pies[i].innerHTML;
+        pies[i].innerHTML = "";
+
+        q.defer(function(callback) {
+            var pie_chart_endpoint = 'http://localhost:5000/' + id + '/bill_pie_chart';
+            console.log(pie_chart_endpoint);
+            d3.json(pie_chart_endpoint, function(response) {
+                callback(null, response);
+            });
+        });
+    }
+
+    q.awaitAll(draw_bill_graphs);
+
+    function draw_bill_graphs(error, results) {
+
+        results.forEach(function(rep) {
+            console.log(rep);
+
+            var data = rep.data;
+            var svg = d3.select("#rep-pie-" + rep.id),
+                margin = {top: 5, right: 10, bottom: 5, left: 10},
+                width = 400,
+                height = 300;
+
+            var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+                y = d3.scaleLinear().rangeRound([height, 0]);
+
+            var g = svg.append("g")
+                .attr("height", 300)
+                .attr("width", 400)
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+            x.domain(data.map(function(d) { return d.bill; }));
+            y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+            g.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
+
+            g.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(y).ticks(10, "%"))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.71em")
+                .attr("text-anchor", "end")
+                .text("Frequency");
+
+            g.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d) { return x(d.bill); })
+                .attr("y", function(d) { return y(d.count); })
+                .attr("width", x.bandwidth())
+                .attr("height", function(d) { return height - y(d.count); });
+
+        });
+    }
+
+    function obj_to_list(data) {
+        var data_list = []
+        for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+                var obj = {}
+                obj['bill'] = key;
+                obj['count'] = data[key]
+                data_list.push(obj)
+            }
+        }
+        return data_list;
+    }
+
 
 </script>
 </body>
