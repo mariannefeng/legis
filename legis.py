@@ -49,16 +49,22 @@ def get_bill_data(sunlight_id):
     bill_params = {'sponsor_id': sunlight_id, 'updated_since': one_year.strftime('%Y-%m-%d')}
     title_subject_data = leg.get_title_subject(bill_params)
     bill_count = collections.Counter(title_subject_data['subjects'])
+    sorted_bc = bill_count.most_common(vars.MAX_BILLS_LENGTH)
+
+    data_sum = 0
     rep_bill = {
         'id': sunlight_id,
+        'sum': sum(bill_count.values()),
         'data': []
     }
-    for key, value in bill_count.items():
+    for bc in sorted_bc:
         bill_subj = {
-            'bill': key,
-            'count': value
+            'bill': bc[0],
+            'count': bc[1]
         }
+        data_sum += bc[1]
         rep_bill['data'].append(bill_subj)
+    rep_bill['dataSum'] = data_sum
     return jsonify(rep_bill)
 
 

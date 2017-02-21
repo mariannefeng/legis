@@ -56,3 +56,6 @@ PYGAL_COLORS = ['rgb(186,104,200)', 'rgb(247,123,114)', 'rgb(121,133,203)', 'rgb
 
 WHAT_WERE_DOING_MD = 'static/md/what_happen.md'
 THANK_YOU_MD = 'static/md/thank_you.md'
+
+
+MAX_BILLS_LENGTH = 7
