@@ -15,6 +15,16 @@
         display: none;
     }
 
+    .arc text {
+        font: 12px sans-serif;
+        text-anchor: middle;
+    }
+
+    .arc path {
+        stroke: #fff;
+    }
+
+
 </style>
 
 <body>
@@ -124,7 +134,7 @@
 
 
                 <!-- BILL CHART -->
-                <div class="tile is-4 is-vertical">
+                <div class="tile is-4 is-vertical bill-charts">
                     {% if rep.finance %}
                         {% if rep.finance.contrib %}
 
@@ -145,8 +155,9 @@
                     {% endif %}
 
                     {% if rep.bill_chart_type == 'pie' %}
-                    <svg id = "rep-pie-{{ rep.id }}" class="rep-pie">{{ rep.id }}</svg>
 
+                    <svg id = "rep-bar-{{ rep.id }}" class="rep-bar">{{ rep.id }}</svg>
+                    <svg id = "rep-pie-{{ rep.id }}" class="rep-pie"></svg>
                     {% elif rep.bill_chart_type == 'word_cloud' %}
                     <img src="clouds/{{ rep.bill_chart }}" style="object-fit:scale-down;object-position:0% 0%;padding-left:2%;"/>
                     {% endif %}
@@ -168,7 +179,7 @@
 <script type="text/javascript">
 
     var q = d3.queue();
-    var pies = document.getElementsByClassName("rep-pie");
+    var pies = document.getElementsByClassName("rep-bar");
     var pieLength = pies.length;
 
     for (var i = 0; i < pieLength; i++) {
@@ -193,7 +204,80 @@
             var data = rep.data;
             var dataSum = rep.dataSum;
             var sum = rep.sum;
-            var svg = d3.select("#rep-pie-" + rep.id),
+
+            var pieData = [
+                {
+                    "label": "Currently Viewing",
+                    "count": dataSum
+                },
+                {
+                    "label": "Not Displayed",
+                    "count": sum - dataSum
+                }];
+
+            // draws the pie chart
+            var pie_svg = d3.select("#rep-pie-" + rep.id);
+            var pie_width = pie_svg.node().getBoundingClientRect().width;
+            var pie_height = pie_svg.node().getBoundingClientRect().height;
+            var radius = Math.min(pie_width, pie_height) / 2;
+            var outerRadius = radius - 10;
+            var innerRadius = 0;
+
+            var sum = 0;
+            pieData.forEach(function(slice) {
+                sum += slice.count;
+            });
+
+            var color = d3.scaleOrdinal()
+                .range(["#d2e0c1","#6C9A33"]);
+
+            var arc = d3.arc()
+                .padRadius(outerRadius)
+                .innerRadius(innerRadius);
+
+            var labelArc = d3.arc()
+                .outerRadius(radius - 40)
+                .innerRadius(radius - 40);
+
+            var pie = d3.pie()
+                .sort(null)
+                .value(function(d) { return d.count; });
+
+            var svg = pie_svg
+                .attr("width", pie_width)
+                .attr("height", pie_height)
+                .append("g")
+                .attr("transform", "translate(" + pie_width / 2 + "," + pie_height/ 2 + ")");
+
+            var g = svg.selectAll(".arc")
+                .data(pie(pieData))
+                .enter().append("g")
+                .each(function(d) { d.outerRadius = outerRadius - 10; })
+                .attr("class", "arc");
+
+            g.append("path")
+                .attr("d", arc)
+                .on("mouseover", arcTween(outerRadius, 0))
+                .on("mouseout", arcTween(outerRadius - 10, 150))
+                .style("fill", function(d) { return color(d.data.label); });
+
+            g.append("text")
+                .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+                .attr("dy", ".35em")
+                .text(function(d) { return (d.data.count / sum).toFixed(3) * 100 + "%"; });
+
+
+            function arcTween(outerRadius, delay) {
+                return function() {
+                    d3.select(this).transition().delay(delay).attrTween("d", function(d) {
+                        var i = d3.interpolate(d.outerRadius, outerRadius);
+                        return function(t) { d.outerRadius = i(t); return arc(d); };
+                    });
+                };
+            }
+
+            /////// draws the lines ///////
+            var svg = d3.select("#rep-bar-" + rep.id),
                 margin = {top: 15, right: 20, bottom: 13, left: 30};
 
             var width = svg.node().getBoundingClientRect().width - margin.right;
@@ -233,9 +317,15 @@
                 .attr("text-anchor", "end")
                 .text("Frequency");
 
-            var bars = g.selectAll(".bar")
+            var bars = g.selectAll(".symbol")
                 .data(data)
-                .enter().append("g");
+                .enter()
+                .append("g")
+                .attr("class", "symbol");
+
+//                .selectAll(".bar")
+//                .data(data)
+//                .enter().append("g");
 
             bars.append("rect")
                 .attr("class", "bar")
@@ -253,7 +343,6 @@
                 .text(function(d) { return (d.count/sum * 100).toFixed(2) + "%"; });
         });
     }
-
 
 </script>
 </body>
