@@ -3,7 +3,8 @@
 * Change bill info to be displayed using D3
 * Make it so that candidate committees are clickable
 * (maybe) setup docker for project (what do we gain: easy SSL)
-
+* Looking into best solution for metrics
+* Login for Edit Mode
 ### Thinking about it
 
 
@@ -14,11 +15,11 @@
 | Separate bills into larger categories(or do wordcloud?) | Add actionables for contact information (using countable possibly?)_%_  | talk to Ryan about site design |
 | Start writing tests (definitely need something that checks to make sure dependencies are still up) | Add SSL (add nginx container to dockerfile)
 | Too long of text, limit text by box | Display total money raised somewhere on rep tile
-| Don't think python -m flask run is right way to deploy | How to make website faster+
-| | Consider possibility of making this thing local?
+| Don't think python -m flask run is right way to deploy -- We might want to look into Heroku for app deployment I don't know much about it but bitches love it.| How to make website faster+
+|Change Form to JSON so testing isn't as annoying| Consider possibility of making this thing local?
 | | possibly make historical searches more accessible?
 | | If you can't load picture for X from A source, maybe try B source? 
-| | Any way to add Balletopedia API? 
+| | Any way to add Balletopedia API? -- I think we have to pay for it, but it would be worth it. 
 | | Here's a crazy thought - what if you also got information on things that impact your LIFE (school board, public works, tranpo, housing...)
 | | Add mock data so we don't have to wait for shit when working on css changes
 | | Make it so that you can click on tabs in 'Extra Credit' and pull for old committee info
