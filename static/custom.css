@@ -122,10 +122,25 @@ svg.rep-bar {
     /*margin-left: 20px;*/
 }
 
-svg.rep-pie {
-    width: 30%;
-    height: 40%;
-    position: absolute;
-    top: -20px;
+div.rep-title {
+    /*position: relative;*/
+    z-index: 20;
     right: 0px;
+    float: right;
+    font-size: 1.42rem;
+    position: relative;
+    right: -20px;
+    font-weight: bold;
+    text-align: right;
+}
+
+
+span.bill-percent {
+    color: #6fa860;
+    font-size: 1.45em;
+}
+
+span.bill-sum {
+    color: #798bd2;
+    font-size: 1.45em;
 }

@@ -24,9 +24,10 @@
 | | Add mock data so we don't have to wait for shit when working on css changes
 | | Make it so that you can click on tabs in 'Extra Credit' and pull for old committee info
 | | Add on hover tip for information you're looking at - there's that one git glossary repo! 
+| | Starting thinking about doing data...cleansing service. There's a better word for it. You know what I'm talking about. 
 
              
-+Have requests cache, but need metrics - Marianne would really like to prioritize this
++Have requests cache, but need metrics
 *so if the screen is small the contact info/committees/social media info doesn’t dwarf the picture and make the tile huge
 _%_might render social media links useless
 
