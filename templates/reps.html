@@ -4,24 +4,12 @@
 <style>
 
     .bar {
-        fill: steelblue;
+        /*fill: #9CDB94;*/
+        fill: #D2798B;
     }
 
     .bar:hover {
-        fill: brown;
-    }
-
-    .axis--x path {
-        display: none;
-    }
-
-    .arc text {
-        font: 12px sans-serif;
-        text-anchor: middle;
-    }
-
-    .arc path {
-        stroke: #fff;
+        fill: #df9fac;
     }
 
 
@@ -156,8 +144,8 @@
 
                     {% if rep.bill_chart_type == 'pie' %}
 
+                    <div id="rep-title-{{ rep.id }}" class="rep-title"></div>
                     <svg id = "rep-bar-{{ rep.id }}" class="rep-bar">{{ rep.id }}</svg>
-                    <svg id = "rep-pie-{{ rep.id }}" class="rep-pie"></svg>
                     {% elif rep.bill_chart_type == 'word_cloud' %}
                     <img src="clouds/{{ rep.bill_chart }}" style="object-fit:scale-down;object-position:0% 0%;padding-left:2%;"/>
                     {% endif %}
@@ -205,76 +193,9 @@
             var dataSum = rep.dataSum;
             var sum = rep.sum;
 
-            var pieData = [
-                {
-                    "label": "Currently Viewing",
-                    "count": dataSum
-                },
-                {
-                    "label": "Not Displayed",
-                    "count": sum - dataSum
-                }];
-
-            // draws the pie chart
-            var pie_svg = d3.select("#rep-pie-" + rep.id);
-            var pie_width = pie_svg.node().getBoundingClientRect().width;
-            var pie_height = pie_svg.node().getBoundingClientRect().height;
-            var radius = Math.min(pie_width, pie_height) / 2;
-            var outerRadius = radius - 10;
-            var innerRadius = 0;
-
-            var sum = 0;
-            pieData.forEach(function(slice) {
-                sum += slice.count;
-            });
-
-            var color = d3.scaleOrdinal()
-                .range(["#d2e0c1","#6C9A33"]);
-
-            var arc = d3.arc()
-                .padRadius(outerRadius)
-                .innerRadius(innerRadius);
-
-            var labelArc = d3.arc()
-                .outerRadius(radius - 40)
-                .innerRadius(radius - 40);
-
-            var pie = d3.pie()
-                .sort(null)
-                .value(function(d) { return d.count; });
-
-            var svg = pie_svg
-                .attr("width", pie_width)
-                .attr("height", pie_height)
-                .append("g")
-                .attr("transform", "translate(" + pie_width / 2 + "," + pie_height/ 2 + ")");
-
-            var g = svg.selectAll(".arc")
-                .data(pie(pieData))
-                .enter().append("g")
-                .each(function(d) { d.outerRadius = outerRadius - 10; })
-                .attr("class", "arc");
-
-            g.append("path")
-                .attr("d", arc)
-                .on("mouseover", arcTween(outerRadius, 0))
-                .on("mouseout", arcTween(outerRadius - 10, 150))
-                .style("fill", function(d) { return color(d.data.label); });
-
-            g.append("text")
-                .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-                .attr("dy", ".35em")
-                .text(function(d) { return (d.data.count / sum).toFixed(3) * 100 + "%"; });
-
-
-            function arcTween(outerRadius, delay) {
-                return function() {
-                    d3.select(this).transition().delay(delay).attrTween("d", function(d) {
-                        var i = d3.interpolate(d.outerRadius, outerRadius);
-                        return function(t) { d.outerRadius = i(t); return arc(d); };
-                    });
-                };
-            }
+            var percentage = ((dataSum / sum) * 100).toFixed(2) + "%";
+            var title = document.getElementById("rep-title-" + rep.id)
+                .innerHTML = "Currently Viewing <span class='bill-percent'>" + percentage + "</span> of <span class='bill-sum'>" + sum + "</span> bills";
 
             /////// draws the lines ///////
             var svg = d3.select("#rep-bar-" + rep.id),
@@ -322,10 +243,6 @@
                 .enter()
                 .append("g")
                 .attr("class", "symbol");
-
-//                .selectAll(".bar")
-//                .data(data)
-//                .enter().append("g");
 
             bars.append("rect")
                 .attr("class", "bar")
