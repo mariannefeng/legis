@@ -45,6 +45,7 @@ class Constituent:
         if federal[0].get('error'):
             self.google_error = federal[0]["error"]["Google Civic Api"]
         else:
+            create_charts(federal, 'FEDERAL')
             self.representatives += federal
             # get dat state sheit
             state = requests.get(url + vars.DATA_STATE_REPS_PATH, params=params).json()
