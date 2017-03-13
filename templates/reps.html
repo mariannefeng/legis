@@ -127,7 +127,7 @@
                         {% if rep.finance.contrib %}
 
                         <div class="tile">
-                            <embed typer="image/svg+xml" src="{{ rep.finance.contrib |safe }}" style="width:100%;"/>
+                            <embed typer="image/svg+xml" src="{{ rep.chart_image |safe }}" style="width:100%;"/>
                         </div>
 
                         {% endif %}
@@ -176,7 +176,7 @@
         pies[i].innerHTML = "";
 
         q.defer(function(callback) {
-            var pie_chart_endpoint = 'http://localhost:5000/' + id + '/bill_pie_chart';
+            var pie_chart_endpoint = 'http://0.0.0.0:5000/state/' + id + '/common_bill_subject_data';
             d3.json(pie_chart_endpoint, function(response) {
                 callback(null, response);
             });
