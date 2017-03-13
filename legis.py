@@ -88,12 +88,11 @@ def return_data():
         return redirect(url_for('index'))
 
     human = leg.Constituent(**request.form)
-
+    result = human.get_reps()
     if human.google_error:
         flash("Error from Google Civic API: {}".format(human.google_error))
         return redirect(url_for('index'))
-
-    return render_template('reps.html', reps=human.get_reps())
+    return render_template('reps.html', reps=result)
 
 if __name__ == '__main__':
     socketio.run(app, port=5001, host="0.0.0.0")

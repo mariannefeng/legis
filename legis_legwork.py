@@ -41,12 +41,15 @@ class Constituent:
         params = {"google_address": self.google_address}
         # add federal reps
         federal = requests.get(url + vars.DATA_US_REPS_PATH, params=params).json()
-        create_charts(federal, 'FEDERAL')
-        self.representatives += federal
-        # get dat state sheit
-        state = requests.get(url + vars.DATA_STATE_REPS_PATH, params=params).json()
-        create_charts(state, 'STATE')
-        self.representatives += state
+        # no point in going further if the Google Civic API is unhappy
+        if federal[0].get('error'):
+            self.google_error = federal[0]["error"]["Google Civic Api"]
+        else:
+            self.representatives += federal
+            # get dat state sheit
+            state = requests.get(url + vars.DATA_STATE_REPS_PATH, params=params).json()
+            create_charts(state, 'STATE')
+            self.representatives += state
         return self.representatives
 
 
