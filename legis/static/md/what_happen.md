@@ -3,7 +3,7 @@
 * Change bill info to be displayed using D3
 * Make it so that candidate committees are clickable
 * (maybe) setup docker for project (what do we gain: easy SSL)
-* Looking into best solution for metrics
+* Multiple bill download 
 * Login for Edit Mode
 ### Thinking about it
 

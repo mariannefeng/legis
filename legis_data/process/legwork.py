@@ -1,17 +1,17 @@
-import os
 import math
-import random
 import datetime
-import re
 
 import nltk
-import pygal
 import requests
+import requests_cache
 import collections
-from wordcloud import WordCloud, STOPWORDS
 from dateutil.relativedelta import relativedelta
-#gittest
-import VARS as vars
+
+import legis_data.process.VARS as vars
+
+# cache for requests
+requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
+
 
 def get_house_members():
     master_house_list = {}
@@ -29,6 +29,7 @@ def get_house_members():
         master_house_list[formatted_key]['detail_url'] = member['api_uri']
     return master_house_list
 
+
 def get_senate_members():
     master_senate_list = {}
     senate_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('senate'), headers=vars.PRO_PUB_HEADERS)
@@ -45,58 +46,9 @@ def get_senate_members():
         master_senate_list[formatted_key]['detail_url'] = member['api_uri']
     return master_senate_list
 
+# todo: we need a thread that's going to update this, maybe?
 HOUSE_PROPUB = get_house_members()
 SENATE_PROPUB = get_senate_members()
-
-
-class Constituent:
-    """Class representing the politically-curious human
-    currently methods are just the google methods, but I figure we might do more later,
-    maybe we can save constituent info so people can tag what is important to them or something
-
-    :param address: House Number / Street Info
-    :param state: State they reside in
-    :param city: City they reside in
-
-    :param google_address: formatted address for Google API
-    :param representatives: List of representatives that represent this Constituent
-
-    :method get_google_civic_info:
-        return the result of google's civic API on countrywide scale based on the address
-
-    :method get_google_location:
-        return dict of {'lat': latitude, 'lng': longitude} based on address
-    """
-    def __init__(self, address, city, state, representatives=None):
-        self.address = address
-        self.city = city
-        self.state = state
-        self.google_address = '{0}, {1}, {2}'.format(self.address, self.city, self.state)
-        self.location = self.get_google_location()
-        if representatives:
-            self.representatives = representatives
-        else:
-            self.representatives = []
-        self.google_error = None
-
-    def get_google_civic_info(self):
-        civic_payload = {'address': self.google_address,
-                         'key': vars.GOOGLE_CIVIC_KEY,
-                         'levels': 'country'
-        #                  'roles': 'legislatorupperbody',
-        #                  'roles': 'legislatorlowerbody'
-        }
-        civic_r = requests.get(vars.GOOGLE_CIVIC_ENDPOINT, params=civic_payload)
-        google_result = civic_r.json()
-        if google_result.get('error'):
-            self.google_error = google_result['error'].get('message')
-        return google_result
-
-    def get_google_location(self):
-        payload = {'address': self.google_address, 'key': vars.API_KEY}
-        r = requests.get(vars.GOOGLE_GEOCODE_ENDPOINT, params=payload)
-        location = r.json()['results'][0]['geometry']['location']
-        return location
 
 
 class Legislator:
@@ -114,14 +66,16 @@ class Legislator:
                  old_term_ordinal=None,
                  old_committees=None,
                  bills=None,
-                 bill_chart=None,
+                 bill_chart_data=None,
                  bill_chart_type=None,
+                 state=None,
                  **kwargs):
         self.id = id
         self.name = name
         self.party = party
         self.chamber = chamber
         self.photo = photo
+        self.state = state
         if contact:
             self.contact = contact
         else:
@@ -143,7 +97,10 @@ class Legislator:
         self.level = level
         self.old_term_ordinal = old_term_ordinal
         self.bill_chart_type = bill_chart_type
-        self.bill_chart = bill_chart
+        self.bill_chart_data = bill_chart_data
+
+    def grab_all_data(self):
+        raise NotImplementedError("don't touch my abstract class yo")
 
 
 class USLegislator(Legislator):
@@ -162,55 +119,46 @@ class USLegislator(Legislator):
                  old_term_ordinal=None,
                  old_committees=None,
                  bills=None,
-                 bill_chart=None,
-                 bill_chart_type=None):
-        super().__init__(id, name, party, chamber, photo, bill_chart,
-                         contact, social, committees, bill_chart_type,
-                         old_term_ordinal, old_committees, bills, finance)
+                 bill_chart_data=None,
+                 bill_chart_type=None,
+                 state=None):
+        super().__init__(id, name, party, chamber, photo, bill_chart_data, level,
+                         contact, social, committees, bill_chart_type, state,
+                         old_term_ordinal, old_committees, bills)
         self.level = 'US'
         self.finance = finance
 
-    @staticmethod
-    def __create_contrib_chart(candidate_committees, election_year):
-        # create contributions breakdown by size
-        contrib_bar = pygal.HorizontalBar(style=vars.FINANCE_BAR_STYLE,
-                                          max_scale=4,
-                                          js=[],
-                                          print_values=True,
-                                          print_values_position='center',
-                                          value_formatter=lambda x: '${:20,.2f}'.format(x))
-        contrib_bar.title = 'Total Contributions By Size - ' + str(election_year)
+    def grab_all_data(self):
+        self.get_financial_data()
 
+    @staticmethod
+    def __create_contrib_data(candidate_committees, election_year):
+        contrib_data = []
         for cand in candidate_committees:
             commitee_id = cand['committee_id']
-            contrib_params = {'api_key' : vars.OPEN_FEC_KEY,
-                              'cycle' : election_year,
-                              'sort' : 'size'}
-            contrib_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/committee/{0}/schedules/schedule_a/by_size/'.format(commitee_id), params=contrib_params)
-            for i, contrib in enumerate(contrib_r.json()['results']):
-                if i == 0:
-                    contrib_bar.add(str(contrib['size']) + '-' + str(contrib_r.json()['results'][i + 1]['size']), contrib['total'])
-                elif i == len(contrib_r.json()['results']) - 1:
-                    contrib_bar.add(str(contrib['size']) + '+', contrib['total'])
-                else:
-                    contrib_bar.add(str(contrib['size']) + '-' + str(contrib_r.json()['results'][i + 1]['size']), contrib['total'])
-        return contrib_bar.render_data_uri()
+            contrib_params = {'api_key': vars.OPEN_FEC_KEY,
+                              'cycle': election_year,
+                              'sort': 'size'}
+            contrib_r = requests.get('{0}/committee/{1}/schedules/schedule_a/by_size/'.format(vars.OPEN_FEC_ENDPOINT,
+                                                                                              commitee_id),
+                                     params=contrib_params)
+            contrib_data.append(contrib_r.json())
+        return contrib_data
 
-    @staticmethod
-    def __pull_contrib_totals(name, state, election_year):
+    def __pull_contrib_totals(self, election_year):
         cand_overview = {}
 
         # create contributes breakdown by receipts + spending
         cand_total_params = {'api_key': vars.OPEN_FEC_KEY,
                              'cycle': election_year,
-                             'q': name}
+                             'q': self.name}
         cand_total_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/totals/', params=cand_total_params)
         cand_total = cand_total_r.json().get('results')
         if len(cand_total) == 0:
-            name_list = name.split()
+            name_list = self.name.split()
             cand_name_filter = {'q': name_list[len(name_list) - 1],
                                        'cycle': election_year,
-                                       'state': state,
+                                       'state': self.state,
                                        'api_key': vars.OPEN_FEC_KEY}
             cand_total_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/totals/', params=cand_name_filter)
             cand_total = cand_total_r.json()['results']
@@ -222,10 +170,9 @@ class USLegislator(Legislator):
             cand_overview['debt'] = cand_total[0]['debts_owed_by_committee']
         return cand_overview
 
-    @staticmethod
-    def __pull_contrib_chart_data(name, state, election_year):
+    def __pull_contrib_chart_data(self, election_year):
         # create search filter based on full name from google civics
-        committee_search_filter = {'q': name,
+        committee_search_filter = {'q': self.name,
                                    'cycle': election_year,
                                    'api_key': vars.OPEN_FEC_KEY}
         committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
@@ -233,16 +180,16 @@ class USLegislator(Legislator):
 
         # if could not find using full name from google civics, then search by last name + cycle + state
         if len(name_committee_detail) == 0:
-            name_list = name.split()
+            name_list = self.name.split()
             committee_search_filter = {'q': name_list[len(name_list) - 1],
                                        'cycle': election_year,
-                                       'state': state,
+                                       'state': self.state,
                                        'api_key': vars.OPEN_FEC_KEY}
             committees_r = requests.get(vars.OPEN_FEC_ENDPOINT + '/candidates/search/', params=committee_search_filter)
             name_committee_detail = committees_r.json()['results']
         return name_committee_detail
 
-    def get_financial_data(self, name, state):
+    def get_financial_data(self):
         """create chart from FEC data and set it to finance attribute"""
         # find current election cycle year
         if vars.CURRENT_YEAR % 2 == 0:
@@ -250,17 +197,19 @@ class USLegislator(Legislator):
         else:
             election_year = vars.CURRENT_YEAR - 1
 
-        name_committee_detail = self.__pull_contrib_chart_data(name, state, election_year)
+        name_committee_detail = self.__pull_contrib_chart_data(election_year)
 
-        # sometimes people run for both house and senate. contrib values are the same so just grabs first one in results list
+        # sometimes people run for both house and senate. contrib values are the same so just grabs first one in
+        # results list
         candidate_committees = []
         one_election = name_committee_detail[0]
         cand_comm = {'candidate': one_election['name'],
                      'committee_id': one_election['principal_committees'][0]['committee_id']}
         candidate_committees.append(cand_comm)
 
-        self.finance = {'overall': self.__pull_contrib_totals(name, state, election_year),
-                        'contrib': self.__create_contrib_chart(candidate_committees, election_year)}
+        self.finance = {'overall': self.__pull_contrib_totals(election_year),
+                        'contrib': self.__create_contrib_data(candidate_committees, election_year),
+                        'election_year': election_year}
 
 
 class StateLegislator(Legislator):
@@ -277,15 +226,16 @@ class StateLegislator(Legislator):
                  old_term_ordinal=None,
                  old_committees=None,
                  bills=None,
-                 bill_chart=None,
-                 bill_chart_type=None):
-        super().__init__(id, name, party, chamber, photo, bill_chart,
+                 bill_chart_data=None,
+                 bill_chart_type=None,
+                 state=None):
+        super().__init__(id, name, party, chamber, photo, bill_chart_data,
                          contact, social, committees, bill_chart_type,
-                         level, old_term_ordinal, old_committees, bills)
+                         level, old_term_ordinal, old_committees, bills, state)
         self.level = 'State'
 
-    def load_committees(self):
-        pass
+    def grab_all_data(self):
+        self.discover_chart_data()
 
     def get_committee(self, role_array):
         """Specific to OpenStates API, get committe info (position held, name of committee) based
@@ -304,7 +254,7 @@ class StateLegislator(Legislator):
         """Grab committees from latest committee info on hand"""
         old_roles = legislator.get('old_roles')
 
-        ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(math.floor(n/10)%10!=1)*(n%10<4)*n%10::4])
+        ordinal = lambda n: "%d%s" % (n, "tsnrhtdd"[(math.floor(n/10) % 10 != 1)*(n % 10 < 4) * n % 10::4])
         if old_roles:
             terms = []
             for term in old_roles.keys():
@@ -325,8 +275,8 @@ class StateLegislator(Legislator):
             latest = max(terms)
             latest_array = old_roles.get(ordinal(latest))
             self.old_committees = self.get_committee(latest_array)
-            print('OOOOLLLLDDDD')
-            print(self.old_committees)
+            # print('OOOOLLLLDDDD')
+            # print(self.old_committees)
             self.old_term_ordinal = ordinal(latest)
 
     @staticmethod
@@ -347,39 +297,53 @@ class StateLegislator(Legislator):
             raise ValueError(type(bill_r.json()), bill_r.json())
         return relevant_bill_data
 
-    def create_chart(self, sunlight_id):
-
+    def discover_chart_data(self):
         # todo: VERY IMPORTANT - MAKE SURE THAT THIS NO LONGER CALLS GET BILL DATA TWICE (possibly use another rule)
         one_year = datetime.datetime.now() + relativedelta(months=-12)
-        bill_params = {'sponsor_id': sunlight_id, 'updated_since': one_year.strftime('%Y-%m-%d')}
+        bill_params = {'sponsor_id': self.id, 'updated_since': one_year.strftime('%Y-%m-%d')}
         title_subject_data = get_title_subject(bill_params)
         subject_count = collections.Counter(title_subject_data['subjects'])
 
         # if 'None" comprises 50%+ of total subject data, then render a word cloud of titles instead.
         if find_none(subject_count.most_common(1)):
             # check if it is 50%
-            composition = {subject: subject_count[subject]/float(len(title_subject_data['subjects'])) for subject in subject_count}
+            composition = {subject: subject_count[subject]/float(len(title_subject_data['subjects']))
+                           for subject in subject_count}
             if composition.get('None') > .5:
                 # get rid of verbs
-                good_words = nltk_process(title_subject_data['titles'], 'V')
-                # make word cloud
-                # make circle mask
-                cloud = WordCloud(font_path=vars.CUSTOM_FONT, height=400, width=400, background_color="#f5f5f5").generate(' '.join(good_words))
-                filename = '{}.png'.format(sunlight_id)
-                cloud.recolor(color_func=turq_color_func, random_state=3).to_file(os.path.join('clouds', filename))
+                self.bill_chart_data = nltk_process(title_subject_data['titles'], 'V')
                 self.bill_chart_type = 'word_cloud'
-                self.bill_chart = filename
         else:
-
-            # pie_chart = pygal.Pie(show_legend=False, style=vars.BILL_CHART_STYLE, opacity_hover=.9)
-            # pie_chart.force_uri_protocol = 'http'
-            # pie_chart.title = 'Bills Speak Louder than Words'
-            # for subject, count in subject_count.items():
-            #     pie_chart.add(subject, count)
-
             self.bill_chart_type = 'pie'
 
-            # self.bill_chart = pie_chart.render_data_uri()
+
+def create_us_leg_list(google_address):
+    civic_info = get_google_civic_info(google_address)
+    if civic_info.get('errors'):
+        return [{"error": {"Google Civic Api": civic_info['error'].get('message')}}]
+    us_leg_list = []
+    state = civic_info['normalizedInput']['state']
+    for office in civic_info['offices']:
+        if office['divisionId'] != "ocd-division/country:us":
+            for index in office['officialIndices']:
+                rep = map_json_to_us_leg(civic_info['officials'][index], office['name'], state)
+                rep.grab_all_data()
+                us_leg_list.append(rep.__dict__)
+    return us_leg_list
+
+
+def create_state_leg_list(google_address):
+    state_leg_list = []
+    location = get_google_location(google_address)
+    sunlight_payload = {'lat': location.get('lat'), 'long': location.get('lng')}
+    # todo: probably need some error handling for this sunlight API
+    r = requests.get(vars.LEGISLATOR_ENDPOINT, params=sunlight_payload)
+    legislators_info = r.json()
+    for legislator in legislators_info:
+        rep = map_json_to_state_leg(legislator)
+        rep.grab_all_data()
+        state_leg_list.append(rep.__dict__)
+    return state_leg_list
 
 
 def find_none(most_common):
@@ -388,11 +352,32 @@ def find_none(most_common):
             return True
     return False
 
+
+def get_google_civic_info(google_address):
+    civic_payload = {'address': google_address,
+                     'key': vars.GOOGLE_CIVIC_KEY,
+                     'levels': 'country'
+    #                  'roles': 'legislatorupperbody',
+    #                  'roles': 'legislatorlowerbody'
+    }
+    civic_r = requests.get(vars.GOOGLE_CIVIC_ENDPOINT, params=civic_payload)
+    google_result = civic_r.json()
+    return google_result
+
+
+def get_google_location(google_address):
+    payload = {'address': google_address, 'key': vars.API_KEY}
+    r = requests.get(vars.GOOGLE_GEOCODE_ENDPOINT, params=payload)
+    location = r.json()['results'][0]['geometry']['location']
+    return location
+
+
 def map_json_to_us_leg(mapper, chamber, state):
     rep = USLegislator()
     rep.name = mapper['name']
     rep.party = mapper['party']
-    rep.get_financial_data(rep.name, state)
+    rep.state = state
+    # rep.get_financial_data()
     rep.chamber = chamber
 
     full_name = rep.name.split()
@@ -407,12 +392,12 @@ def map_json_to_us_leg(mapper, chamber, state):
     country_comm_r = requests.get(member_details, headers=vars.PRO_PUB_HEADERS)
     comms_current = []
     for comm in country_comm_r.json()['results'][0]['roles']:
+        # todo: need to auto decide what is most recent
         if comm['congress'] == '115':
             comms_current = comm['committees']
             break
 
-    for comm_curr in comms_current:
-        rep.committees.append(comm_curr)
+    rep.committees = [comm_curr for comm_curr in comms_current]
 
     # votes_r = requests.get(PRO_PUBLICA_MEMBER_VOTE_ENDPOINT.format(pro_pub_id), params=PRO_PUB_PARAMS)
     rep.photo = mapper.get('photoUrl')
@@ -451,10 +436,6 @@ def map_json_to_state_leg(legislator):
     rep.committees = rep.get_committee(legislator.get('roles'))
     if not rep.committees:
         rep.set_old_roles(legislator)
-
-    # # pull legislator id for bill info
-    sunlight_id = legislator.get('id')
-    rep.create_chart(sunlight_id)
     return rep
 
 
@@ -480,13 +461,6 @@ def nltk_process(word_list, filter_initial_letter):
     good_words = [word for word, pos_tag in tagged if not pos_tag.startswith(filter_initial_letter)]
     return good_words
 
-
-def turq_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    return random.choice(vars.PYGAL_COLORS)
-
-
-def grey_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    return "hsl(0, 0%%, %d%%)" % random.randint(60, 90)
 
 # checks URL. Returns status code if connected, None if couldn't connected
 def check_url(url):
