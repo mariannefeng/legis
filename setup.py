@@ -8,5 +8,5 @@ setup(name='legis',
       author='Jessi Shank & Marianne Feng',
       author_email='jessishank1@gmail.com',
       # url='https://www.python.org/sigs/distutils-sig/',
-      packages=['legis', 'legis_data', 'legis_data.process'],
+      packages=['legis_data', 'legis_data.process'],
      )
