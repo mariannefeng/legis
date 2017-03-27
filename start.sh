@@ -12,6 +12,7 @@ cleanup()
 }
 trap cleanup EXIT
 
+export PYTHONPATH=${PWD}
 python3 --version
 echo "===STARTING LEGIS==="
 python3 legis_data/tastydata.py &
