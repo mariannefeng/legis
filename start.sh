@@ -17,6 +17,6 @@ python3 --version
 echo "===STARTING LEGIS==="
 python3 legis_data/tastydata.py &
 echo "===STARTED DATA SERVICE==="
-python3 legis/legis.py &
+python3 legis_view/legis.py &
 echo "===STARTED VIEW==="
 wait
