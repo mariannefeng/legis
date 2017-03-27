@@ -1,5 +1,6 @@
 Flask==0.12
 Flask_SocketIO==2.8.3
+Flask-RESTful==0.3.5
 nltk==3.2.2
 numpy==1.12.0
 Pillow==4.0.0

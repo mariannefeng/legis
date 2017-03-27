@@ -1,10 +1,11 @@
+import collections
+import datetime
+import sys
+
+import requests_cache
+from dateutil.relativedelta import relativedelta
 from flask import Flask, jsonify
 from flask_restful import reqparse
-
-from dateutil.relativedelta import relativedelta
-import datetime
-import requests_cache
-import collections
 
 import legis_data.process.VARS as vars
 import legis_data.process.legwork as leg
@@ -50,7 +51,9 @@ def get_us_reps_from_address():
     :return: list of US reps
     """
     args = address_parser.parse_args()
-    return jsonify(leg.create_us_leg_list(**args))
+    resp = leg.create_us_leg_list(**args)
+    # app.logger.info('US my reps...\n{}\n\n'.format(resp))
+    return jsonify(resp)
 
 
 # state level
@@ -91,5 +94,18 @@ def get_state_reps_from_address():
     args = address_parser.parse_args()
     return jsonify(leg.create_state_leg_list(**args))
 
+
+def main():
+    if len(sys.argv) > 1:
+        if sys.argv[1] == '--mock':
+            from legis_data.mock_proc.mock import mock_app
+            mock_app.run()
+        else:
+            print("The only alternate run mode available is --mock.")
+            sys.exit()
+    else:
+        app.run(host='0.0.0.0')
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    main()
