@@ -78,7 +78,7 @@ def get_reps_from_config_section(base_config, borg_config, class_type):
         # committees
         set_mock_committees(rep_config, rep)
         # bill charts specific stuff
-        rep.bill_chart_type = rep_config.pop('bill_chart_type', None)
+        rep.bill_chart_type = rep_config.get('bill_chart_type', None)
         if rep.bill_chart_type == 'word_cloud':
             rep.bill_chart_data = RESOURCES.get('bill_chart_data')
         # finally can iterate through the config because the rest is just
@@ -105,6 +105,7 @@ def set_mock_committees(legislator_config, legislator):
 # state level
 @mock_app.route('/state/<sunlight_id>/common_bill_subject_data')
 def get_bill_data(sunlight_id):
+    print("HITTING PIE DATA")
     pie_data = os.path.join(DATA_PATH, 'pie.json')
     with open(pie_data, 'r') as data:
         rep_bill = json.loads(data.read())
