@@ -94,7 +94,7 @@ def get_reps_from_config_section(base_config, borg_config, class_type):
 
 def set_mock_committees(legislator_config, legislator):
     if legislator_config.get('committees'):
-        committee_len = legislator_config.pop('committees', None)
+        committee_len = legislator_config.get('committees')
         mock_committees = RESOURCES.get('committees')
         if committee_len > len(mock_committees):
             legislator.committees = mock_committees
