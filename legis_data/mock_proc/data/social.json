@@ -1,0 +1,20 @@
+{
+  "social": [
+    {
+      "link": "https://plus.google.com/+pattymurray",
+      "type": "GooglePlus"
+    },
+    {
+      "link": "https://twitter.com/pattymurray",
+      "type": "Twitter"
+    },
+    {
+      "link": "https://www.facebook.com/pattymurray",
+      "type": "Facebook"
+    },
+    {
+      "link": "https://www.youtube.com/user/SenatorPattyMurray",
+      "type": "YouTube"
+    }
+  ]
+}

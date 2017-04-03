@@ -1,0 +1,57 @@
+{
+  "finance": {
+    "contrib": [
+      {
+        "pagination": {
+          "per_page": 20,
+          "count": 5,
+          "pages": 1,
+          "page": 1
+        },
+        "results": [
+          {
+            "idx": 30537,
+            "count": null,
+            "committee_id": "C00257642",
+            "total": 1556954.8,
+            "size": 0,
+            "cycle": 2016
+          },
+          {
+            "idx": 30538,
+            "count": 2500,
+            "committee_id": "C00257642",
+            "total": 671619.52,
+            "size": 200,
+            "cycle": 2016
+          },
+          {
+            "idx": 30539,
+            "count": 1785,
+            "committee_id": "C00257642",
+            "total": 975354.44,
+            "size": 500,
+            "cycle": 2016
+          },
+          {
+            "idx": 30540,
+            "count": 1562,
+            "committee_id": "C00257642",
+            "total": 1707794.35,
+            "size": 1000,
+            "cycle": 2016
+          },
+          {
+            "idx": 30541,
+            "count": 709,
+            "committee_id": "C00257642",
+            "total": 1823562.76,
+            "size": 2000,
+            "cycle": 2016
+          }
+        ],
+        "api_version": "1.0"
+      }
+    ]
+  }
+}

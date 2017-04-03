@@ -6,8 +6,13 @@ import json
 
 from flask import Flask, request, redirect, url_for, jsonify, flash
 
-import legis_data.process.VARS as vars
 import legis_data.process.legwork as leg
+
+DATA_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
+# load up resources
+resources_file = os.path.join(DATA_PATH, 'resources.json')
+with open(resources_file, 'r') as resc:
+    RESOURCES = json.loads(resc.read())
 
 mock_app = Flask(__name__)
 mock_app.secret_key = 'super secret mock-ey key'
@@ -31,6 +36,7 @@ def read_config_file():
         config = json.loads(conf.read())
     return config
 
+
 # federal level
 @mock_app.route('/us/senators/all', methods=['GET'])
 def get_senate_members():
@@ -53,34 +59,55 @@ def get_us_reps_from_address():
     ]
     :return: list of US reps
     """
-    args = address_parser.parse_args()
-    resp = leg.create_us_leg_list(**args)
-    return jsonify(resp)
+    us_reps = Borg().config.get('us')
+    if us_reps:
+        us_rep_file = os.path.join(DATA_PATH, 'us_rep.json')
+        with open(us_rep_file, 'r') as us:
+            us_rep = json.load(us)
+        reps = get_reps_from_config_section(us_rep, us_reps, leg.USLegislator)
+    else:
+        reps = []
+    return jsonify(reps)
+
+
+def get_reps_from_config_section(base_config, borg_config, class_type):
+    reps = []
+    for rep_config in borg_config:
+        rep = class_type(**base_config)
+        # this is specific stuff that isn't just true/false
+        # committees
+        set_mock_committees(rep_config, rep)
+        # bill charts specific stuff
+        rep.bill_chart_type = rep_config.pop('bill_chart_type', None)
+        if rep.bill_chart_type == 'word_cloud':
+            rep.bill_chart_data = RESOURCES.get('bill_chart_data')
+        # finally can iterate through the config because the rest is just
+        # booleans about whether or not to include the data.
+        for field, include in rep_config.items():
+            if include is True:
+                rep.__dict__[field] = RESOURCES.get(field)
+                print("SET FIELD {0} TO {1}".format(field, RESOURCES.get(field)))
+                print(rep.__dict__[field])
+        reps.append(rep.__dict__)
+    return reps
+
+
+def set_mock_committees(legislator_config, legislator):
+    if legislator_config.get('committees'):
+        committee_len = legislator_config.pop('committees', None)
+        mock_committees = RESOURCES.get('committees')
+        if committee_len > len(mock_committees):
+            legislator.committees = mock_committees
+        else:
+            legislator.committees = mock_committees[:len(mock_committees)]
 
 
 # state level
 @mock_app.route('/state/<sunlight_id>/common_bill_subject_data')
 def get_bill_data(sunlight_id):
-    one_year = datetime.datetime.now() + relativedelta(months=-12)
-    bill_params = {'sponsor_id': sunlight_id, 'updated_since': one_year.strftime('%Y-%m-%d')}
-    title_subject_data = leg.get_title_subject(bill_params)
-    bill_count = collections.Counter(title_subject_data['subjects'])
-    sorted_bc = bill_count.most_common(vars.MAX_BILLS_LENGTH)
-
-    data_sum = 0
-    rep_bill = {
-        'id': sunlight_id,
-        'sum': sum(bill_count.values()),
-        'data': []
-    }
-    for bc in sorted_bc:
-        bill_subj = {
-            'bill': bc[0],
-            'count': bc[1]
-        }
-        data_sum += bc[1]
-        rep_bill['data'].append(bill_subj)
-    rep_bill['dataSum'] = data_sum
+    pie_data = os.path.join(DATA_PATH, 'pie.json')
+    with open(pie_data, 'r') as data:
+        rep_bill = json.loads(data.read())
     response = jsonify(rep_bill)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
@@ -93,8 +120,15 @@ def get_state_reps_from_address():
 
     :return: list of State Reps
     """
-    args = address_parser.parse_args()
-    return jsonify(leg.create_state_leg_list(**args))
+    state_reps = Borg().config.get('state')
+    if state_reps:
+        state_rep_file = os.path.join(DATA_PATH, 'state_rep.json')
+        with open(state_rep_file, 'r') as state:
+            state_rep = json.load(state)
+        reps = get_reps_from_config_section(state_rep, state_reps, leg.StateLegislator)
+    else:
+        reps = []
+    return jsonify(reps)
 
 
 # sketchity sketch uploads lol
@@ -141,8 +175,4 @@ def upload_file():
 @mock_app.route('/current_config', methods=['GET'])
 def current_config():
     # this is super djanky
-    return """
-    <!doctype html>
-    <title>Current Config</title>
-    <div>{0}</div>
-    """.format(json.dumps(Borg().config))
+    return jsonify(Borg().config)
