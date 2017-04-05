@@ -1,1 +1,29 @@
-{"hi": "bye"}
+{
+  "us": [
+    {
+      "finance": true,
+      "committees": 7,
+      "contact": true,
+      "social": true
+
+    },{
+      "finance": true,
+      "committees": 1,
+      "contact": true,
+      "social": true
+
+    },{
+      "finance": true,
+      "contact": true,
+      "social": true
+
+    }
+  ],
+  "state": [
+    {
+      "bill_chart_type": "pie",
+      "contact": true,
+      "social": true
+    }
+  ]
+}

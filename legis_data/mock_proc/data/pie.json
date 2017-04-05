@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "bill": "Legislative Affairs",
+      "count": 36
+    },
+    {
+      "bill": "Other",
+      "count": 33
+    },
+    {
+      "bill": "Crime",
+      "count": 23
+    },
+    {
+      "bill": "Legal Issues",
+      "count": 21
+    },
+    {
+      "bill": "Health",
+      "count": 20
+    },
+    {
+      "bill": "Education",
+      "count": 18
+    },
+    {
+      "bill": "Labor and Employment",
+      "count": 18
+    }
+  ],
+  "dataSum": 169,
+  "id": "WAL000119",
+  "sum": 309
+}
