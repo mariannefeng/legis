@@ -19,6 +19,9 @@ requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 address_parser = reqparse.RequestParser()
 address_parser.add_argument("google_address", required=True, help="google_address param required!")
 
+time_parser = reqparse.RequestParser()
+time_parser.add_argument("yearmonthdate", required=False)
+
 """
 Lotsa shit to do regarding this.
 There aren't many endpoints, We should probably make one for individual legislators so we can give
@@ -57,11 +60,19 @@ def get_us_reps_from_address():
 
 
 @app.route('/upcoming_house', methods=['GET'])
-def upcoming_house(time_frame):
-
-    # should this always return most recent?
-    # or should it take in a time and grab last Monday's?
-    return jsonify(leg.get_upcoming_bills(time_frame))
+def upcoming_house():
+    time_arg = time_parser.parse_args()['yearmonthdate']
+    if time_arg is not None:
+        print('inside of NOT NONE')
+        result = leg.get_upcoming_bills(time_arg)
+    else:
+        print('inside of NONE')
+        # get last Monday
+        today = datetime.date.today()
+        today + datetime.timedelta(days=-today.weekday(), weeks=1)
+        today = today.strftime("%Y%m%d")
+        result = leg.get_upcoming_bills(today)
+    return jsonify(result)
 
 
 @app.route('/<state>/upcoming_bills', methods=['GET'])
