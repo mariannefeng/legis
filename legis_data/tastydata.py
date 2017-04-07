@@ -58,11 +58,15 @@ def get_us_reps_from_address():
 
 @app.route('/upcoming_house', methods=['GET'])
 def upcoming_house(time_frame):
+
+    # should this always return most recent?
+    # or should it take in a time and grab last Monday's?
     return jsonify(leg.get_upcoming_bills(time_frame))
 
 
 @app.route('/<state>/upcoming_bills', methods=['GET'])
 def upcoming_state_bills():
+    # probably call open states here if I had to guess
     return None
 
 

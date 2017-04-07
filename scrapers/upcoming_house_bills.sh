@@ -2,6 +2,9 @@
 
 # if this script has died, run it with the command '0 19 * * 1 ./upcoming_house_bills.sh'
 
+
+### THIS SCRIPT LOGIC COULD PROBABLY BE A LOT SMARTER ###
+
 # get current year, month, date
 # if today is Monday and the file isn't up yet,
 # wait 2 hours before retry up to times

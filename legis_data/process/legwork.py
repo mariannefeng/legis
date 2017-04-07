@@ -5,6 +5,8 @@ import nltk
 import requests
 import requests_cache
 import collections
+import xml.etree.ElementTree as ET
+
 from dateutil.relativedelta import relativedelta
 
 import legis_data.process.VARS as vars
@@ -455,9 +457,9 @@ def get_title_subject(bill_params):
     return relevant_bill_data
 
 
-def get_upcoming_bills(time_frame):
-    print(time_frame)
-
+def get_upcoming_bills(valid_time_frame):
+    print(valid_time_frame)
+    upcoming_bills=ET.parse('house_bills/' + valid_time_frame + '.xml')
     return None
 
 
