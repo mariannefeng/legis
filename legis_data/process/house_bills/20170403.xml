@@ -1,0 +1,165 @@
+<floorschedule congress-num="115" week-date="2017-04-03" create-date="2017-03-29T14:23:27.327" orig-publish-date="2017-03-29T16:34:36.720" update-date="2017-04-04T09:14:57.910">
+  <current-status>R</current-status>
+  <language>en-us</language>
+  <copyright>Pursuant to Title 17 Section 105 of the United States Code, this file is not subject to copyright protection and is in the public domain.</copyright>
+  <publish-dates>
+    <publish-date date="2017-03-29T16:34:36.720" />
+    <publish-date date="2017-03-29T17:08:53.340" />
+    <publish-date date="2017-03-30T18:30:05.457" />
+    <publish-date date="2017-03-31T11:04:11.917" />
+    <publish-date date="2017-04-03T13:15:45.970" />
+    <publish-date date="2017-04-03T14:03:59.317" />
+    <publish-date date="2017-04-04T09:00:17.403" />
+    <publish-date date="2017-04-04T09:14:57.910" />
+  </publish-dates>
+  <category type="Items that may be considered under suspension of the rules" sort-order="1">
+    <floor-items>
+      <floor-item id="402280" add-date="2017-03-30T18:25:00.110" remove-date="" sort-order="1" publish-date="2017-03-30T18:30:05.457">
+        <legis-num>H.R. 479</legis-num>
+        <floor-text>North Korea State Sponsor of Terrorism Designation Act of 2017, as amended </floor-text>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/HR479.pdf" doc-type="PDF" add-date="2017-03-30T18:25:00.417" sort-order="1" publish-date="2017-03-30T18:30:05.457" />
+        </files>
+      </floor-item>
+      <floor-item id="402281" add-date="2017-03-30T18:25:21.933" remove-date="" sort-order="2" publish-date="2017-03-30T18:30:05.457">
+        <legis-num>H.Res. 54</legis-num>
+        <floor-text>Reaffirming the US-Argentina Partnership and Recognizing Argentina’s Economic Reforms, as amended </floor-text>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/HRES54.pdf" doc-type="PDF" add-date="2017-03-30T18:25:22.233" sort-order="1" publish-date="2017-03-30T18:30:05.457" />
+        </files>
+      </floor-item>
+      <floor-item id="402282" add-date="2017-03-30T18:25:40.500" remove-date="" sort-order="3" publish-date="2017-03-30T18:30:05.457">
+        <legis-num>H.Res. 92</legis-num>
+        <floor-text>Condemning North Korea’s development of multiple intercontinental ballistic missiles, as amended </floor-text>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/HRES92.pdf" doc-type="PDF" add-date="2017-03-30T18:25:40.797" sort-order="1" publish-date="2017-03-30T18:30:05.457" />
+        </files>
+      </floor-item>
+      <floor-item id="402283" add-date="2017-03-30T18:25:54.383" remove-date="" sort-order="4" publish-date="2017-03-30T18:30:05.457">
+        <legis-num>Senate Amendment to H.R. 353</legis-num>
+        <floor-text>Weather Research and Forecasting Innovation Act of 2017 </floor-text>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/HR353.pdf" doc-type="PDF" add-date="2017-03-30T18:25:54.677" sort-order="1" publish-date="2017-03-30T18:30:05.457" />
+        </files>
+      </floor-item>
+      <floor-item id="402284" add-date="2017-03-30T18:26:39.200" remove-date="" sort-order="5" publish-date="2017-03-30T18:30:05.457">
+        <legis-num>H.R. 369</legis-num>
+        <floor-text>To eliminate the sunset of the Veterans Choice Program, and for other purposes</floor-text>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/HR369.pdf" doc-type="PDF" add-date="2017-03-30T18:26:39.500" sort-order="1" publish-date="2017-03-30T18:30:05.457" />
+        </files>
+      </floor-item>
+      <floor-item id="402286" add-date="2017-04-03T13:15:18.960" remove-date="" sort-order="6" publish-date="2017-04-03T13:15:45.970">
+        <legis-num>H.R. 1667</legis-num>
+        <floor-text>Financial Institution Bankruptcy Act of 2017, as amended </floor-text>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/HR1667.pdf" doc-type="PDF" add-date="2017-04-03T13:15:19.240" sort-order="1" publish-date="2017-04-03T13:15:45.970" />
+        </files>
+      </floor-item>
+      <floor-item id="402288" add-date="2017-04-04T08:47:34.990" remove-date="" sort-order="8" publish-date="2017-04-04T09:00:17.403">
+        <legis-num>S. 544</legis-num>
+        <floor-text>To amend the Veterans Access, Choice, and Accountability Act of 2014 to modify the termination date for the Veterans Choice Program, and for other purposes</floor-text>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/S544.pdf" doc-type="PDF" add-date="2017-04-04T08:47:35.390" sort-order="1" publish-date="2017-04-04T09:00:17.403" />
+        </files>
+      </floor-item>
+    </floor-items>
+  </category>
+  <category type="Items that may be considered pursuant to a rule" sort-order="4">
+    <floor-items>
+      <floor-item id="402277" add-date="2017-03-29T14:24:42.447" remove-date="" sort-order="1" publish-date="2017-03-29T17:08:53.340">
+        <legis-num>H.R. 1219</legis-num>
+        <floor-text>Supporting America's Innovators Act of 2017 (Rules Committee Print 115-12, showing the text of H.R. 1219 as ordered reported by the Committee on Financial Services.)</floor-text>
+        <updates>
+          <update-date date="2017-03-29T15:33:12.970" publish-date="2017-03-29T17:08:53.340">
+            <explanatory-notes doc-modified="False" />
+          </update-date>
+          <update-date date="2017-03-29T17:08:38.293" publish-date="2017-03-29T17:08:53.340">
+            <explanatory-notes doc-modified="False" />
+          </update-date>
+        </updates>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/BILLS-115HR1219-RCP115-12.pdf" doc-type="PDF" add-date="2017-03-29T17:08:38.760" sort-order="1" publish-date="2017-03-29T17:08:53.340" />
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/BILLS-115HR1219-RCP115-12.xml" doc-type="XML" add-date="2017-03-29T17:08:38.763" sort-order="2" publish-date="2017-03-29T17:08:53.340" />
+        </files>
+        <floor-subitems>
+          <floor-subitem id="500848" add-date="2017-03-31T11:00:49.103" remove-date="" sort-order="1" publish-date="2017-03-31T11:04:11.917">
+            <legis-num />
+            <floor-text>H. Rept. 115-70—Report from the Committee on Financial Services</floor-text>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt70/pdf/CRPT-115hrpt70.pdf" doc-type="PDF" add-date="2017-03-31T11:00:49.260" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+          <floor-subitem id="500851" add-date="2017-04-04T09:13:23.663" remove-date="" sort-order="2" publish-date="2017-04-04T09:14:57.910">
+            <legis-num />
+            <floor-text>H. Rept. 115-77—Report to accompany H. Res. 242</floor-text>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt77/pdf/CRPT-115hrpt77.pdf" doc-type="PDF" add-date="2017-04-04T09:13:24.083" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+        </floor-subitems>
+      </floor-item>
+      <floor-item id="402278" add-date="2017-03-29T14:25:21.417" remove-date="" sort-order="2" publish-date="2017-03-29T16:34:36.720">
+        <legis-num>H.R. 1343</legis-num>
+        <floor-text>Encouraging Employee Ownership Act of 2017 (Rules Committee Print 115-11, showing the text of H.R. 1343 as ordered reported by the Committee on Financial Services.)</floor-text>
+        <updates>
+          <update-date date="2017-03-29T15:32:42.440" publish-date="2017-03-29T16:34:36.720">
+            <explanatory-notes doc-modified="False" />
+          </update-date>
+          <update-date date="2017-03-29T16:16:38.357" publish-date="2017-03-29T16:34:36.720">
+            <explanatory-notes doc-modified="False" />
+          </update-date>
+        </updates>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/BILLS-115HR1343-RCP115-11.pdf" doc-type="PDF" add-date="2017-03-29T16:16:38.757" sort-order="1" publish-date="2017-03-29T16:34:36.720" />
+          <file doc-url="http://docs.house.gov/billsthisweek/20170403/BILLS-115HR1343-RCP115-11.xml" doc-type="XML" add-date="2017-03-29T16:16:38.757" sort-order="2" publish-date="2017-03-29T16:34:36.720" />
+        </files>
+        <floor-subitems>
+          <floor-subitem id="500849" add-date="2017-03-31T11:01:22.223" remove-date="" sort-order="1" publish-date="2017-03-31T11:04:11.917">
+            <legis-num />
+            <floor-text>H. Rept. 115-71—Report from the Committee on Financial Services</floor-text>
+            <updates>
+              <update-date date="2017-03-31T11:01:31.897" publish-date="2017-03-31T11:04:11.917">
+                <explanatory-notes doc-modified="False" />
+              </update-date>
+            </updates>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt71/pdf/CRPT-115hrpt71.pdf" doc-type="PDF" add-date="2017-03-31T11:01:32.053" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+          <floor-subitem id="500852" add-date="2017-04-04T09:13:56.737" remove-date="" sort-order="2" publish-date="2017-04-04T09:14:57.910">
+            <legis-num />
+            <floor-text>H. Rept. 115-75—Report to accompany H. Res. 240</floor-text>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt75/pdf/CRPT-115hrpt75.pdf" doc-type="PDF" add-date="2017-04-04T09:13:57.170" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+        </floor-subitems>
+      </floor-item>
+      <floor-item id="402285" add-date="2017-03-31T11:02:16.713" remove-date="" sort-order="4" publish-date="2017-03-31T11:04:11.917">
+        <legis-num>H.R. 1304</legis-num>
+        <floor-text>Self-Insurance Protection Act</floor-text>
+        <files>
+          <file doc-url="https://www.gpo.gov/fdsys/pkg/BILLS-115hr1304rh/pdf/BILLS-115hr1304rh.pdf" doc-type="PDF" add-date="2017-03-31T11:02:16.867" sort-order="1" publish-date="2017-03-31T11:04:11.917" />
+          <file doc-url="https://www.gpo.gov/fdsys/pkg/BILLS-115hr1304rh/xml/BILLS-115hr1304rh.xml" doc-type="XML" add-date="2017-03-31T11:02:16.870" sort-order="2" publish-date="2017-03-31T11:04:11.917" />
+        </files>
+        <floor-subitems>
+          <floor-subitem id="500850" add-date="2017-03-31T11:03:27.180" remove-date="" sort-order="1" publish-date="2017-03-31T11:04:11.917">
+            <legis-num />
+            <floor-text>H. Rept. 115-53—Report from the Committee on Education and the Workforce</floor-text>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt53/pdf/CRPT-115hrpt53-pt1.pdf" doc-type="PDF" add-date="2017-03-31T11:03:27.337" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+          <floor-subitem id="500853" add-date="2017-04-04T09:14:27.700" remove-date="" sort-order="2" publish-date="2017-04-04T09:14:57.910">
+            <legis-num />
+            <floor-text>H. Rept. 115-76—Report to accompany H. Res. 241</floor-text>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt76/pdf/CRPT-115hrpt76.pdf" doc-type="PDF" add-date="2017-04-04T09:14:28.127" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+        </floor-subitems>
+      </floor-item>
+    </floor-items>
+  </category>
+</floorschedule>

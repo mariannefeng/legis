@@ -10,4 +10,4 @@ clouds/*
 build/
 *.egg-info/
 dist/
-legis_venv/lib/
+venv/lib/

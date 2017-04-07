@@ -1,0 +1,154 @@
+<floorschedule congress-num="115" week-date="2017-03-27" create-date="2017-03-21T16:24:23.597" orig-publish-date="2017-03-21T16:49:52.327" update-date="2017-03-29T09:13:30.413">
+  <current-status>R</current-status>
+  <language>en-us</language>
+  <copyright>Pursuant to Title 17 Section 105 of the United States Code, this file is not subject to copyright protection and is in the public domain.</copyright>
+  <publish-dates>
+    <publish-date date="2017-03-21T16:49:52.327" />
+    <publish-date date="2017-03-23T15:00:55.837" />
+    <publish-date date="2017-03-24T16:08:41.733" />
+    <publish-date date="2017-03-27T09:41:21.457" />
+    <publish-date date="2017-03-27T16:58:42.293" />
+    <publish-date date="2017-03-29T09:13:30.413" />
+  </publish-dates>
+  <category type="Items that may be considered under suspension of the rules" sort-order="1">
+    <floor-items>
+      <floor-item id="402270" add-date="2017-03-22T19:57:55.970" remove-date="" sort-order="3" publish-date="2017-03-23T15:00:55.837">
+        <legis-num>H.R. 654</legis-num>
+        <floor-text>Pacific Northwest Earthquake Preparedness Act of 2017 </floor-text>
+        <updates>
+          <update-date date="2017-03-22T19:58:02.007" publish-date="2017-03-23T15:00:55.837">
+            <explanatory-notes doc-modified="False" />
+          </update-date>
+        </updates>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170327/HR654.pdf" doc-type="PDF" add-date="2017-03-22T19:57:56.050" sort-order="1" publish-date="2017-03-23T15:00:55.837" />
+        </files>
+      </floor-item>
+      <floor-item id="402271" add-date="2017-03-22T19:58:18.760" remove-date="" sort-order="4" publish-date="2017-03-23T15:00:55.837">
+        <legis-num>H.R. 1117</legis-num>
+        <floor-text>To require the Administrator of the Federal Emergency Management Agency to submit a report regarding certain plans regarding assistance to applicants and grantees during the response to an emergency or disaster </floor-text>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170327/HR1117.pdf" doc-type="PDF" add-date="2017-03-22T19:58:18.837" sort-order="1" publish-date="2017-03-23T15:00:55.837" />
+        </files>
+      </floor-item>
+      <floor-item id="402272" add-date="2017-03-22T19:58:32.100" remove-date="" sort-order="5" publish-date="2017-03-23T15:00:55.837">
+        <legis-num>H.R. 1214</legis-num>
+        <floor-text>Disaster SAVE Act, as amended </floor-text>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170327/HR1214.pdf" doc-type="PDF" add-date="2017-03-22T19:58:32.177" sort-order="1" publish-date="2017-03-23T15:00:55.837" />
+        </files>
+      </floor-item>
+    </floor-items>
+  </category>
+  <category type="Items that may be considered pursuant to a rule" sort-order="4">
+    <floor-items>
+      <floor-item id="402268" add-date="2017-03-21T16:27:27.010" remove-date="" sort-order="1" publish-date="2017-03-21T16:49:52.327">
+        <legis-num>H.R. 1304</legis-num>
+        <floor-text>Self-Insurance Protection Act</floor-text>
+        <files>
+          <file doc-url="https://www.gpo.gov/fdsys/pkg/BILLS-115hr1304rh/pdf/BILLS-115hr1304rh.pdf" doc-type="PDF" add-date="2017-03-21T16:27:26.990" sort-order="1" publish-date="2017-03-21T16:49:52.327" />
+          <file doc-url="https://www.gpo.gov/fdsys/pkg/BILLS-115hr1304rh/xml/BILLS-115hr1304rh.xml" doc-type="XML" add-date="2017-03-21T16:27:26.993" sort-order="2" publish-date="2017-03-21T16:49:52.327" />
+        </files>
+        <floor-subitems>
+          <floor-subitem id="500839" add-date="2017-03-21T16:28:59.847" remove-date="" sort-order="1" publish-date="2017-03-21T16:49:52.327">
+            <legis-num />
+            <floor-text>H. Rept. 115-53—Report from the Committee on Education and the Workforce</floor-text>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt53/pdf/CRPT-115hrpt53-pt1.pdf" doc-type="PDF" add-date="2017-03-21T16:28:59.820" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+        </floor-subitems>
+      </floor-item>
+      <floor-item id="402269" add-date="2017-03-21T16:32:14.160" remove-date="" sort-order="2" publish-date="2017-03-21T16:49:52.327">
+        <legis-num>H.R. 1215</legis-num>
+        <floor-text>Protecting Access to Care Act of 2017 (Rules Committee Print 115-10, showing the text of H.R. 1215 as ordered reported by the Committee on the Judiciary)</floor-text>
+        <files>
+          <file doc-url="http://docs.house.gov/billsthisweek/20170327/BILLS -115HR1215-RCP115-10.pdf" doc-type="PDF" add-date="2017-03-21T16:32:14.143" sort-order="1" publish-date="2017-03-21T16:49:52.327" />
+          <file doc-url="http://docs.house.gov/billsthisweek/20170327/BILLS -115HR1215-RCP115-10.xml" doc-type="XML" add-date="2017-03-21T16:32:14.147" sort-order="2" publish-date="2017-03-21T16:49:52.327" />
+        </files>
+      </floor-item>
+      <floor-item id="402273" add-date="2017-03-24T11:19:18.717" remove-date="" sort-order="3" publish-date="2017-03-24T16:08:41.733">
+        <legis-num>S.J.Res. 34</legis-num>
+        <floor-text>Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Federal Communications Commission relating to “Protecting the Privacy of Customers of Broadband and Other Telecommunications Services”.</floor-text>
+        <updates>
+          <update-date date="2017-03-24T11:26:20.853" publish-date="2017-03-24T16:08:41.733">
+            <explanatory-notes doc-modified="False" />
+          </update-date>
+        </updates>
+        <files>
+          <file doc-url="https://www.gpo.gov/fdsys/pkg/BILLS-115sjres34es/pdf/BILLS-115sjres34es.pdf" doc-type="PDF" add-date="2017-03-24T11:19:19.340" sort-order="1" publish-date="2017-03-24T16:08:41.733" />
+          <file doc-url="https://www.gpo.gov/fdsys/pkg/BILLS-115sjres34es/xml/BILLS-115sjres34es.xml" doc-type="XML" add-date="2017-03-24T11:19:19.343" sort-order="2" publish-date="2017-03-24T16:08:41.733" />
+        </files>
+        <floor-subitems>
+          <floor-subitem id="500844" add-date="2017-03-28T09:22:02.223" remove-date="" sort-order="1" publish-date="2017-03-29T09:13:30.413">
+            <legis-num />
+            <floor-text>H. Rept. 115-61—Report to accompany H. Res. 230</floor-text>
+          </floor-subitem>
+        </floor-subitems>
+      </floor-item>
+      <floor-item id="402275" add-date="2017-03-24T14:58:35.700" remove-date="" sort-order="4" publish-date="2017-03-24T16:08:41.733">
+        <legis-num>H.R. 1430</legis-num>
+        <floor-text>HONEST Act</floor-text>
+        <updates>
+          <update-date date="2017-03-27T09:39:24.097" publish-date="2017-03-27T09:41:21.457">
+            <explanatory-notes doc-modified="False" />
+          </update-date>
+        </updates>
+        <files>
+          <file doc-url="https://www.gpo.gov/fdsys/pkg/BILLS-115hr1430rh/pdf/BILLS-115hr1430rh.pdf" doc-type="PDF" add-date="2017-03-27T09:39:24.460" sort-order="5" publish-date="2017-03-24T16:08:41.733" />
+          <file doc-url="https://www.gpo.gov/fdsys/pkg/BILLS-115hr1430rh/xml/BILLS-115hr1430rh.xml" doc-type="XML" add-date="2017-03-27T09:39:24.460" sort-order="6" publish-date="2017-03-24T16:08:41.733" />
+        </files>
+        <floor-subitems>
+          <floor-subitem id="500842" add-date="2017-03-27T09:40:25.043" remove-date="" sort-order="1" publish-date="2017-03-27T09:41:21.457">
+            <legis-num />
+            <floor-text>H. Rept. 115-59—Report from the Committee on Science, Space, and Technology</floor-text>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt59/pdf/CRPT-115hrpt59.pdf" doc-type="PDF" add-date="2017-03-27T09:40:25.403" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+          <floor-subitem id="500843" add-date="2017-03-28T09:21:38.637" remove-date="" sort-order="2" publish-date="2017-03-29T09:13:30.413">
+            <legis-num />
+            <floor-text>H. Rept. 115-60—Report to accompany H. Res. 229</floor-text>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt60/pdf/CRPT-115hrpt60.pdf" doc-type="PDF" add-date="2017-03-28T09:21:39.330" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+        </floor-subitems>
+      </floor-item>
+      <floor-item id="402276" add-date="2017-03-27T16:38:24.910" remove-date="" sort-order="5" publish-date="2017-03-27T16:58:42.293">
+        <legis-num>H.R. 1431</legis-num>
+        <floor-text>EPA Science Advisory Board Reform Act of 2017</floor-text>
+        <updates>
+          <update-date date="2017-03-28T09:38:06.320" publish-date="2017-03-29T09:13:30.413">
+            <explanatory-notes doc-modified="False" />
+          </update-date>
+        </updates>
+        <files>
+          <file doc-url="https://www.gpo.gov/fdsys/pkg/BILLS-115hr1431rh/pdf/BILLS-115hr1431rh.pdf" doc-type="PDF" add-date="2017-03-28T09:38:07.027" sort-order="3" publish-date="2017-03-27T16:58:42.293" />
+          <file doc-url="https://www.gpo.gov/fdsys/pkg/BILLS-115hr1431rh/xml/BILLS-115hr1431rh.xml" doc-type="XML" add-date="2017-03-28T09:38:07.030" sort-order="4" publish-date="2017-03-27T16:58:42.293" />
+        </files>
+        <floor-subitems>
+          <floor-subitem id="500845" add-date="2017-03-28T09:39:00.683" remove-date="" sort-order="1" publish-date="2017-03-29T09:13:30.413">
+            <legis-num />
+            <floor-text>H. Rept. 115-63—Report from the Committee on Science, Space, and Technology </floor-text>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt63/pdf/CRPT-115hrpt63.pdf" doc-type="PDF" add-date="2017-03-28T09:39:01.397" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+          <floor-subitem id="500846" add-date="2017-03-29T09:12:24.657" remove-date="" sort-order="2" publish-date="2017-03-29T09:13:30.413">
+            <legis-num />
+            <floor-text>H. Rept. 115-64—Report to accompany H. Res. 233</floor-text>
+            <updates>
+              <update-date date="2017-03-29T09:12:49.833" publish-date="2017-03-29T09:13:30.413">
+                <explanatory-notes doc-modified="False" />
+              </update-date>
+            </updates>
+            <files>
+              <file doc-url="https://www.gpo.gov/fdsys/pkg/CRPT-115hrpt64/pdf/CRPT-115hrpt64.pdf" doc-type="PDF" add-date="2017-03-29T09:12:25.243" sort-order="1" publish-date="" />
+            </files>
+          </floor-subitem>
+        </floor-subitems>
+      </floor-item>
+    </floor-items>
+  </category>
+</floorschedule>

@@ -455,6 +455,12 @@ def get_title_subject(bill_params):
     return relevant_bill_data
 
 
+def get_upcoming_bills(time_frame):
+    print(time_frame)
+
+    return None
+
+
 def nltk_process(word_list, filter_initial_letter):
     tokens = nltk.word_tokenize(' '.join(word_list))
     tagged = nltk.pos_tag(tokens)

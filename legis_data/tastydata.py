@@ -56,6 +56,16 @@ def get_us_reps_from_address():
     return jsonify(resp)
 
 
+@app.route('/upcoming_house', methods=['GET'])
+def upcoming_house(time_frame):
+    return jsonify(leg.get_upcoming_bills(time_frame))
+
+
+@app.route('/<state>/upcoming_bills', methods=['GET'])
+def upcoming_state_bills():
+    return None
+
+
 # state level
 @app.route('/state/<sunlight_id>/common_bill_subject_data')
 def get_bill_data(sunlight_id):
