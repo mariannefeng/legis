@@ -302,7 +302,7 @@ class StateLegislator(Legislator):
         return relevant_bill_data
 
     def discover_chart_data(self):
-        # todo: VERY IMPORTANT - MAKE SURE THAT THIS NO LONGER CALLS GET BILL DATA TWICE (possibly use another rule)
+        # todo: MAKE SURE THAT THIS NO LONGER CALLS GET BILL DATA TWICE (possibly use another rule)
         one_year = datetime.datetime.now() + relativedelta(months=-12)
         bill_params = {'sponsor_id': self.id, 'updated_since': one_year.strftime('%Y-%m-%d')}
         title_subject_data = get_title_subject(bill_params)
@@ -484,7 +484,9 @@ def get_upcoming_bills(valid_time_frame):
                         'floor_text': None,
                         'files': []
                     },
-                    'actions': []
+                    'actions': [],
+                    'primary_subject': None,
+                    'cosponsors' : None
                 }
                 bill['floor_item']['id'] = floor_item.attrib['id']
                 bill['floor_item']['title'] = floor_item.find('legis-num').text
@@ -498,10 +500,13 @@ def get_upcoming_bills(valid_time_frame):
 
                 results = bill_detail.get('results')
                 if results is not None:
+                    # TODO: there has to be a better way to add new key value pairs to dict
                     bill['sponsor']['sponsor_name'] = results[0].get('sponsor')
                     bill['sponsor']['sponsor_uri'] = results[0].get('sponsor_uri')
+                    # TODO: why is this not sorted
                     bill['actions'] = results[0].get('actions')
-
+                    bill['primary_subject'] = results[0].get('primary_subject')
+                    bill['cosponsors'] = results[0].get('cosponsors')
                 this_week.append(bill)
     return this_week
 
