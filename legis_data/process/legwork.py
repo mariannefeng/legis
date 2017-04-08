@@ -6,6 +6,7 @@ import nltk
 import requests
 import requests_cache
 import collections
+import re
 import xml.etree.ElementTree as ET
 
 from dateutil.relativedelta import relativedelta
@@ -18,7 +19,7 @@ requests_cache.install_cache('test_cache', backend='sqlite', expire_after=300)
 
 def get_house_members():
     master_house_list = {}
-    house_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('house'), headers=vars.PRO_PUB_HEADERS)
+    house_r = requests.get(vars.PP_MEMBERS.format('house'), headers=vars.PP_HEADERS)
     for member in house_r.json()['results'][0]['members']:
         last_name_list = member['last_name'].split()
         parsed_last_name = last_name_list[len(last_name_list) - 1]
@@ -35,7 +36,7 @@ def get_house_members():
 
 def get_senate_members():
     master_senate_list = {}
-    senate_r = requests.get(vars.PRO_PUBLICA_MEMBERS_ENDPOINT.format('senate'), headers=vars.PRO_PUB_HEADERS)
+    senate_r = requests.get(vars.PP_MEMBERS.format('senate'), headers=vars.PP_HEADERS)
     for member in senate_r.json()['results'][0]['members']:
         last_name_list = member['last_name'].split()
         parsed_last_name = last_name_list[len(last_name_list) - 1]
@@ -286,7 +287,7 @@ class StateLegislator(Legislator):
     def get_bill_info(bill_params):
         """openstates get subject data and title of bills
         :return: list relevant_bill_data"""
-        bill_r = requests.get(vars.BILL_ENDPOINT, params=bill_params)
+        bill_r = requests.get(vars.OP_BILLS, params=bill_params)
         relevant_bill_data = {'subjects': [], 'titles': []}
         if type(bill_r.json()) == list:
             for sunlight_bill in bill_r.json():
@@ -340,7 +341,7 @@ def create_state_leg_list(google_address):
     location = get_google_location(google_address)
     sunlight_payload = {'lat': location.get('lat'), 'long': location.get('lng')}
     # todo: probably need some error handling for this sunlight API
-    r = requests.get(vars.LEGISLATOR_ENDPOINT, params=sunlight_payload)
+    r = requests.get(vars.OP_LEGISLATORS, params=sunlight_payload)
     legislators_info = r.json()
     for legislator in legislators_info:
         rep = map_json_to_state_leg(legislator)
@@ -392,7 +393,7 @@ def map_json_to_us_leg(mapper, chamber, state):
     else:
         member_details = HOUSE_PROPUB[name_key]['detail_url']
 
-    country_comm_r = requests.get(member_details, headers=vars.PRO_PUB_HEADERS)
+    country_comm_r = requests.get(member_details, headers=vars.PP_HEADERS)
     comms_current = []
     for comm in country_comm_r.json()['results'][0]['roles']:
         # todo: need to auto decide what is most recent
@@ -443,7 +444,7 @@ def map_json_to_state_leg(legislator):
 
 
 def get_title_subject(bill_params):
-    bill_r = requests.get(vars.BILL_ENDPOINT, params=bill_params)
+    bill_r = requests.get(vars.OP_BILLS, params=bill_params)
     relevant_bill_data = {'subjects': [], 'titles': []}
     if type(bill_r.json()) == list:
         for sunlight_bill in bill_r.json():
@@ -465,24 +466,43 @@ def get_upcoming_bills(valid_time_frame):
     root = upcoming_bills.getroot()
     this_week = []
 
-    category = root.find('category')
-    for floor_items in category:
-        for floor_item in floor_items:
-            bill = {
-                'type': category.attrib['type'],
-                'floor_item': {
-                    'id': None,
-                    'title': None,
-                    'floor_text': None,
-                    'files': []
+    categories = root.findall('category')
+    for category in categories:
+        type = category.get('type')
+        for floor_items in category:
+            for floor_item in floor_items:
+                # lay out basic bill object TODO: does this need to be turned to an object?
+                bill = {
+                    'type': type,
+                    'sponsor': {
+                        'sponsor_name' : None,
+                        'sponsor_uri' : None,
+                    },
+                    'floor_item': {
+                        'id': None,
+                        'title': None,
+                        'floor_text': None,
+                        'files': []
+                    },
+                    'actions': []
                 }
-            }
-            bill['floor_item']['id'] = floor_item.attrib['id']
-            bill['floor_item']['title'] = floor_item.find('legis-num').text
-            bill['floor_item']['floor_text'] = floor_item.find('floor-text').text
-            for file in floor_item.find('files'):
-                bill['floor_item']['files'].append(file.attrib['doc-url'])
-            this_week.append(bill)
+                bill['floor_item']['id'] = floor_item.attrib['id']
+                bill['floor_item']['title'] = floor_item.find('legis-num').text
+                bill['floor_item']['floor_text'] = floor_item.find('floor-text').text
+                for file in floor_item.find('files'):
+                    bill['floor_item']['files'].append(file.attrib['doc-url'])
+
+                # TODO: regex is slow in java - not sure if same is the case for python
+                bill_trim = re.sub('[^A-Za-z0-9]+', '', bill['floor_item']['title'])
+                bill_detail = requests.get(vars.PP_BILL_DETAIL.format(bill_trim), headers=vars.PP_HEADERS).json()
+
+                results = bill_detail.get('results')
+                if results is not None:
+                    bill['sponsor']['sponsor_name'] = results[0].get('sponsor')
+                    bill['sponsor']['sponsor_uri'] = results[0].get('sponsor_uri')
+                    bill['actions'] = results[0].get('actions')
+
+                this_week.append(bill)
     return this_week
 
 
