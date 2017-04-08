@@ -1,3 +1,4 @@
+import os
 import math
 import datetime
 
@@ -458,8 +459,9 @@ def get_title_subject(bill_params):
 
 
 def get_upcoming_bills(valid_time_frame):
-    house_bill_file='house_bills/' + valid_time_frame + '.xml'
-    upcoming_bills=ET.parse(house_bill_file)
+    fp = os.path.dirname(os.path.realpath(__file__))
+    house_bill_file = os.path.join(fp, 'house_bills/' + valid_time_frame + '.xml')
+    upcoming_bills = ET.parse(house_bill_file)
     print(upcoming_bills)
     return None
 
