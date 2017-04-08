@@ -462,8 +462,19 @@ def get_upcoming_bills(valid_time_frame):
     fp = os.path.dirname(os.path.realpath(__file__))
     house_bill_file = os.path.join(fp, 'house_bills/' + valid_time_frame + '.xml')
     upcoming_bills = ET.parse(house_bill_file)
+    this_week = []
+    bills = {
+        'type': None,
+        'floor_item': {
+            'id': None,
+
+        }
+    }
     print(upcoming_bills)
-    return None
+
+
+
+    return this_week
 
 
 def nltk_process(word_list, filter_initial_letter):
