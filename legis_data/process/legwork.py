@@ -511,6 +511,10 @@ def get_upcoming_bills(valid_time_frame):
     return this_week
 
 
+def get_state_bills():
+
+    return None
+
 def nltk_process(word_list, filter_initial_letter):
     tokens = nltk.word_tokenize(' '.join(word_list))
     tagged = nltk.pos_tag(tokens)

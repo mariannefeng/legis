@@ -22,6 +22,9 @@ address_parser.add_argument("google_address", required=True, help="google_addres
 time_parser = reqparse.RequestParser()
 time_parser.add_argument("yearmonthdate", required=False)
 
+state_bill_parser = reqparse.RequestParser()
+state_bill_parser.add_argument("keyword", required=False)
+
 """
 Lotsa shit to do regarding this.
 There aren't many endpoints, We should probably make one for individual legislators so we can give
