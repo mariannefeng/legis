@@ -462,18 +462,29 @@ def get_upcoming_bills(valid_time_frame):
     fp = os.path.dirname(os.path.realpath(__file__))
     house_bill_file = os.path.join(fp, 'house_bills/' + valid_time_frame + '.xml')
     upcoming_bills = ET.parse(house_bill_file)
+    root = upcoming_bills.getroot()
     this_week = []
-    bills = {
-        'type': None,
-        'floor_item': {
-            'id': None,
 
-        }
-    }
-    print(upcoming_bills)
-
-
-
+    # make this logic better here - can make use of xmltree's find and whatnot
+    for child in root:
+        if child.tag == 'category':
+            for floor_items in child:
+                for floor_item in floor_items:
+                    bill = {
+                        'type': child.attrib['type'],
+                        'floor_item': {
+                            'id': None,
+                            'title': None,
+                            'floor_text': None,
+                            'files': []
+                        }
+                    }
+                    bill['floor_item']['id'] = floor_item.attrib['id']
+                    bill['floor_item']['title'] = floor_item.find('legis-num').text
+                    bill['floor_item']['floor_text'] = floor_item.find('floor-text').text
+                    for file in floor_item.find('files'):
+                        bill['floor_item']['files'].append(file.attrib['doc-url'])
+                    this_week.append(bill)
     return this_week
 
 
