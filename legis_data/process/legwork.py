@@ -486,7 +486,7 @@ def get_upcoming_bills(valid_time_frame):
                     },
                     'actions': [],
                     'primary_subject': None,
-                    'cosponsors' : None
+                    'cosponsors': None
                 }
                 bill['floor_item']['id'] = floor_item.attrib['id']
                 bill['floor_item']['title'] = floor_item.find('legis-num').text
