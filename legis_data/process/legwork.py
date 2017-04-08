@@ -458,8 +458,9 @@ def get_title_subject(bill_params):
 
 
 def get_upcoming_bills(valid_time_frame):
-    print(valid_time_frame)
-    upcoming_bills=ET.parse('house_bills/' + valid_time_frame + '.xml')
+    house_bill_file='house_bills/' + valid_time_frame + '.xml'
+    upcoming_bills=ET.parse(house_bill_file)
+    print(upcoming_bills)
     return None
 
 

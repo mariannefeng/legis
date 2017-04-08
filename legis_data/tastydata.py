@@ -63,13 +63,12 @@ def get_us_reps_from_address():
 def upcoming_house():
     time_arg = time_parser.parse_args()['yearmonthdate']
     if time_arg is not None:
-        print('inside of NOT NONE')
         result = leg.get_upcoming_bills(time_arg)
     else:
-        print('inside of NONE')
         # get last Monday
         today = datetime.date.today()
-        today + datetime.timedelta(days=-today.weekday(), weeks=1)
+        today = today - datetime.timedelta(days=today.weekday())
+
         today = today.strftime("%Y%m%d")
         result = leg.get_upcoming_bills(today)
     return jsonify(result)
