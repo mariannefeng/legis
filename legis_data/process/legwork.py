@@ -1,6 +1,8 @@
 import os
+import abc
 import math
 import datetime
+
 
 import nltk
 import requests
@@ -103,8 +105,10 @@ class Legislator:
         self.bill_chart_type = bill_chart_type
         self.bill_chart_data = bill_chart_data
 
+    @abc.abstractmethod
     def grab_all_data(self):
-        raise NotImplementedError("don't touch my abstract class yo")
+        """grab all related data"""
+        return
 
 
 class USLegislator(Legislator):
@@ -459,6 +463,68 @@ def get_title_subject(bill_params):
     return relevant_bill_data
 
 
+class Bill:
+    # TODO: Figure out which of these attributes *actually* belong in this abstract class
+    def __init__(self,
+                 bill_type,
+                 sponsor=None,
+                 id=None,
+                 title=None,
+                 floor_data=None,
+                 actions=None,
+                 primary_subject=None,
+                 cosponsors=None):
+        if not sponsor:
+            sponsor = {}
+        if not floor_data:
+            floor_data = {}
+        if not actions:
+            actions = []
+        self.type = bill_type
+        self.sponsor = sponsor
+        self.id = id
+        self.title = title
+        self.floor_data = floor_data
+        self.actions = actions
+        self.primary_subject = primary_subject
+        self.cosponsors = cosponsors
+
+    __metaclass__ = abc.ABCMeta
+
+    @abc.abstractmethod
+    def populate_from_sources(self):
+        raise NotImplementedError("abstract class")
+
+
+class UsBill(Bill):
+    def __init__(self,
+                 bill_type,
+                 sponsor=None,
+                 floor_item=None,
+                 actions=None,
+                 primary_subject=None,
+                 cosponsors=None):
+        super().__init__(bill_type, sponsor, floor_item, actions, primary_subject, cosponsors)
+
+    def populate_from_sources(self):
+        pass
+
+    def populate_from_floor_item(self):
+        """
+
+        :return: 
+        """
+        self.floor_item['id'] = floor_item.attrib['id']
+
+
+
+
+
+
+def map_floor_item_to_bill(bill, floor_item_dict):
+    pass
+
+
 def get_upcoming_bills(valid_time_frame):
     fp = os.path.dirname(os.path.realpath(__file__))
     house_bill_file = os.path.join(fp, 'house_bills/' + valid_time_frame + '.xml')
@@ -471,42 +537,27 @@ def get_upcoming_bills(valid_time_frame):
         type = category.get('type')
         for floor_items in category:
             for floor_item in floor_items:
-                # lay out basic bill object TODO: does this need to be turned to an object?
-                bill = {
-                    'type': type,
-                    'sponsor': {
-                        'sponsor_name' : None,
-                        'sponsor_uri' : None,
-                    },
-                    'floor_item': {
-                        'id': None,
-                        'title': None,
-                        'floor_text': None,
-                        'files': []
-                    },
-                    'actions': [],
-                    'primary_subject': None,
-                    'cosponsors': None
-                }
-                bill['floor_item']['id'] = floor_item.attrib['id']
-                bill['floor_item']['title'] = floor_item.find('legis-num').text
-                bill['floor_item']['floor_text'] = floor_item.find('floor-text').text
+                bill = Bill(type)
+                bill.floor_item['id'] = floor_item.attrib['id']
+                bill.floor_item['title'] = floor_item.find('legis-num').text
+                bill.floor_item['floor_text'] = floor_item.find('floor-text').text
                 for file in floor_item.find('files'):
-                    bill['floor_item']['files'].append(file.attrib['doc-url'])
+                    bill.floor_item['files'].append(file.attrib['doc-url'])
 
                 # TODO: regex is slow in java - not sure if same is the case for python
-                bill_trim = re.sub('[^A-Za-z0-9]+', '', bill['floor_item']['title'])
+                #
+                bill_trim = re.sub('[^A-Za-z0-9]+', '', bill.floor_item['title'])
                 bill_detail = requests.get(vars.PP_BILL_DETAIL.format(bill_trim), headers=vars.PP_HEADERS).json()
 
                 results = bill_detail.get('results')
                 if results is not None:
                     # TODO: there has to be a better way to add new key value pairs to dict
-                    bill['sponsor']['sponsor_name'] = results[0].get('sponsor')
-                    bill['sponsor']['sponsor_uri'] = results[0].get('sponsor_uri')
+                    bill.sponsor['sponsor_name'] = results[0].get('sponsor')
+                    bill.sponsor['sponsor_uri'] = results[0].get('sponsor_uri')
                     # TODO: why is this not sorted
-                    bill['actions'] = results[0].get('actions')
-                    bill['primary_subject'] = results[0].get('primary_subject')
-                    bill['cosponsors'] = results[0].get('cosponsors')
+                    bill.actions = results[0].get('actions')
+                    bill.primary_subject = results[0].get('primary_subject')
+                    bill.cosponsors = results[0].get('cosponsors')
                 this_week.append(bill)
     return this_week
 
