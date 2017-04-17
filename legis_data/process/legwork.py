@@ -528,8 +528,8 @@ class UsBill(Bill):
             self.additional_files.append(file.attrib['doc-url'])
 
     def _populate_detail_from_propublica(self):
-        bill_trim = re.sub('[^A-Za-z0-9]+', '', self.title)
-        bill_detail = requests.get(vars.PP_BILL_DETAIL.format(bill_trim), headers=vars.PP_HEADERS).json()
+        bill_trim = list(filter(lambda x: x.isalnum(), self.title))
+        bill_detail = requests.get(vars.PP_BILL_DETAIL.format(''.join(bill_trim)), headers=vars.PP_HEADERS).json()
         results = bill_detail.get('results')
         if results:
             # TODO: there has to be a better way to add new key value pairs to dict
@@ -539,14 +539,6 @@ class UsBill(Bill):
             self.actions = results[0].get('actions')
             self.primary_subject = results[0].get('primary_subject')
             self.cosponsors = results[0].get('cosponsors')
-
-
-
-
-
-
-def map_floor_item_to_bill(bill, floor_item_dict):
-    pass
 
 
 def get_upcoming_bills(valid_time_frame):
@@ -563,7 +555,7 @@ def get_upcoming_bills(valid_time_frame):
             for floor_item in floor_items:
                 bill = UsBill(type)
                 bill.populate_from_sources({'floor_item': floor_item})
-                this_week.append(bill)
+                this_week.append(bill.__dict__)
     return this_week
 
 
