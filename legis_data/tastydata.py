@@ -1,6 +1,8 @@
 import collections
 import datetime
 import sys
+import os
+import json
 
 import requests_cache
 from dateutil.relativedelta import relativedelta
@@ -33,6 +35,15 @@ Also should be the ability to filter with query parameters when grabbing legisla
 data the request doesn't want
 """
 
+
+@app.route('/us/map', methods=['GET'])
+def get_topojson_us_map(): 
+    fp = os.path.dirname(os.path.realpath(__file__))
+    topo_map = os.path.join(fp, 'process/misc/us-topojson.json')
+    with open(topo_map) as data_file:    
+        data = json.load(data_file)
+    
+    return jsonify(data)
 
 # # federal level
 @app.route('/us/senators/all', methods=['GET'])
