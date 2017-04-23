@@ -1,126 +1,117 @@
-<!DOCTYPE html>
-<!--COPIED FROM https://gist.github.com/thedod/4548858-->
-<meta charset="utf-8">
-<script src="http://d3js.org/d3.v2.min.js?2.9.6"></script>
-<script src="histograms.js"></script>
-<style>
+<html>
+<head>
+    <style>
 
-.background {
-  fill: none;
-  pointer-events: all;
-}
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", sans-serif;
+        }
 
-#states {
-  stroke: #000;
-  stroke-width: 1.5px;
-}
+        .subunit {
+            fill: #ddd;
+            stroke: #fff;
+            stroke-width: 1px;
+        }
+        .subunit-boundary {
+            fill: none;
+            stroke: #3a403d;
+        }
 
-#states text {
-  fill: #000;
-  stroke: none;
-  text-anchor:middle;
-  font-size: 10px;
-}
+        .place-label {
+            font-size: .7em;
+            text-shadow: 0px 0px 2px #fff;
+        }
 
-#states .active {
-  fill: steelblue !important;
-}
+    </style>
 
-#states text.active {
-  font-size: 12px;
-  font-weight:bold;
-  fill: #fff;
-  stroke-width: .5px;
-  fill: #fff !important;
-  stroke: #000;
-}
-
-</style>
+</head>
 <body>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js"></script>
+
 <script>
-var hits = {};
-var parade = window.histograms.states;
-for (var i = 0 ; i<parade.length ; i++)
-    hits[parade[i].name] = parade[i].hits;
+    var width = window.innerWidth, height = window.innerHeight;
 
-var width = 960,
-    height = 500,
-    centered;
+    var projection = d3.geoMercator();
 
-var projection = d3.geo.albersUsa()
-    .scale(width)
-    .translate([0, 0]);
+    var path = d3.geoPath()
+        .projection(projection)
+        .pointRadius(2);
 
-var path = d3.geo.path()
-    .projection(projection);
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height);
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    var g = svg.append("g");
 
-svg.append("rect")
-    .attr("class", "background")
-    .attr("width", width)
-    .attr("height", height)
-    .on("click", click);
+    var us_map_endpoint = "http://0.0.0.0:5000/something";
 
-var g = svg.append("g")
-    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
-  .append("g")
-    .attr("id", "states");
+    d3.json(us_map_endpoint, function(error, data) {
 
-d3.json("states.json", function(json) {
-  var heatmap = d3.scale.linear()
-    .domain([0,d3.max(json.features, function(d) { return Math.log(hits[d.properties.abbr] || 1); })])
-    .interpolate(d3.interpolateRgb)
-    .range(["#ffffff","#073f07"])
-  var states = g.selectAll("path")
-    .data(json.features)
-    .enter().append("path")
-      .attr("d", path)
-      .attr("id", function(d) { return d.properties.abbr; })
-      .style("fill", function(d) { return heatmap(Math.log(hits[d.properties.abbr] || 1)); })
-      .on("click", click)
-  var labels = g.selectAll("text")
-    .data(json.features)
-    .enter().append("text")
-      .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-      .attr("id", function(d) { return 'label-'+d.properties.abbr; })
-      .attr("dy", ".35em")
-      .on("click", click)
-      .text(function(d) { return d.properties.abbr; });
-});
+        if (error) throw error;
 
-function click(d) {
-  var x = 0,
-      y = 0,
-      k = 1;
+        var boundary = centerZoom(data);
+        drawSubUnits(data);
+        drawPlaces(data);
+        drawOuterBoundary(data, boundary);
 
-  if (d && centered !== d) {
-    var centroid = path.centroid(d);
-    x = -centroid[0];
-    y = -centroid[1];
-    k = 4;
-    centered = d;
-  } else {
-    centered = null;
-  }
+    });
 
-  g.selectAll("path")
-      .classed("active", centered && function(d) { return d === centered; });
-  g.selectAll("text")
-      .text(function(d) { return d.properties.abbr; })
-      .classed("active",false);
-  if (centered) {
-      g.select("#label-"+centered.properties.abbr)
-          .text(function(d) { return d.properties.name+': '+(hits[d.properties.abbr]||'(none)'); })
-          .classed("active", centered && function(d) { return d === centered; });
-  }
+    // This function "centers" and "zooms" a map by setting its projection's scale and translate according to its outer boundary
+    // It also returns the boundary itself in case you want to draw it to the map
+    function centerZoom(data){
+        var o = topojson.mesh(data, data.objects.polygons, function(a, b) { return a === b; });
 
-  g.transition()
-      .duration(1000)
-      .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
-      .style("stroke-width", 1.5 / k + "px");
-}
+        projection
+            .scale(1)
+            .translate([0, 0]);
+
+        var b = path.bounds(o),
+            s = 1 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+            t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+
+        projection
+            .scale(s)
+            .translate(t);
+
+        return o;
+    }
+
+    function drawOuterBoundary(data, boundary){
+        g.append("path")
+            .datum(boundary)
+            .attr("d", path)
+            .attr("class", "subunit-boundary");
+    }
+
+    function drawPlaces(data){
+        g.append("path")
+            .datum(topojson.feature(data, data.objects.places))
+            .attr("d", path)
+            .attr("class", "place");
+
+        g.selectAll(".place-label")
+            .data(topojson.feature(data, data.objects.places).features)
+            .enter().append("text")
+            .attr("class", "place-label")
+            .attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
+            .attr("dy", ".35em")
+            .attr("x", 6)
+            .style("text-anchor", "start")
+            .text(function(d) { return d.properties.name; });
+    }
+
+    function drawSubUnits(data){
+        g.selectAll(".subunit")
+            .data(topojson.feature(data, data.objects.polygons).features)
+            .enter().append("path")
+            .attr("class", "subunit")
+            .attr("d", path);
+    }
+
 
 </script>
+
+</body>
+</html>
