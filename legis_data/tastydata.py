@@ -40,7 +40,7 @@ data the request doesn't want
 def get_topojson_us_map(): 
     fp = os.path.dirname(os.path.realpath(__file__))
     topo_map = os.path.join(fp, 'process/misc/us-topojson.json')
-    with open(topo_map) as data_file:    
+    with open(topo_map, 'r') as data_file:    
         data = json.load(data_file)
 
     response = jsonify(data)
