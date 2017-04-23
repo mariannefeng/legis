@@ -31,9 +31,11 @@ var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-d3.json("0.0.0.0:5000/us/map", function(error, us) {
+d3.json("http://0.0.0.0:5000/us/map", function(error, us) {
 
-  svg.append("path")
+    console.log('LOADED?');
+
+    svg.append("path")
       .attr("class", "states")
       .datum(topojson.feature(us, us.objects.states))
       .on("click", function(d,i){

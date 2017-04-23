@@ -42,8 +42,10 @@ def get_topojson_us_map():
     topo_map = os.path.join(fp, 'process/misc/us-topojson.json')
     with open(topo_map) as data_file:    
         data = json.load(data_file)
-    
-    return jsonify(data)
+
+    response = jsonify(data)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 # # federal level
 @app.route('/us/senators/all', methods=['GET'])
