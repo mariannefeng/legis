@@ -33,21 +33,10 @@ var svg = d3.select("body").append("svg")
 
 d3.json("http://0.0.0.0:5000/us/map", function(error, us) {
 
-    console.log('LOADED?');
-
     svg.append("path")
       .attr("class", "states")
-      .datum(topojson.feature(us, us.objects.states))
-      .on("click", function(d,i){
-        //   navigate to next view ? or blur out 
-        // either way we'll have to hit a url 
-        // handle events here
-        // d - datum
-        // i - identifier or index
-        // this - the `<rect>` that was clicked
-      })
+      .datum(topojson.feature(us, us.objects.state))
       .attr("d", path);
-
 
 });
 
