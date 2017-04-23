@@ -1,117 +1,46 @@
-<html>
-<head>
-    <style>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
 
-        body {
-            margin: 0;
-            font-family: "Helvetica Neue", sans-serif;
-        }
+.states {
+  fill: #ccc;
+  stroke: #fff;
+}
 
-        .subunit {
-            fill: #ddd;
-            stroke: #fff;
-            stroke-width: 1px;
-        }
-        .subunit-boundary {
-            fill: none;
-            stroke: #3a403d;
-        }
-
-        .place-label {
-            font-size: .7em;
-            text-shadow: 0px 0px 2px #fff;
-        }
-
-    </style>
-
-</head>
+</style>
 <body>
+<script src="https://d3js.org/d3-array.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo.v1.min.js"></script>
 
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js"></script>
+<script src="https://d3js.org/d3-selection.v1.min.js"></script>
 
+<script src="https://d3js.org/d3-collection.v1.min.js"></script>
+<script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+<script src="https://d3js.org/d3-request.v1.min.js"></script>
+
+<script src="http://d3js.org/topojson.v1.min.js"></script>
 <script>
-    var width = window.innerWidth, height = window.innerHeight;
+var width = 960,
+    height = 500;
 
-    var projection = d3.geoMercator();
+var projection = d3.geoAlbersUsa();
+var path = d3.geoPath()
+    .projection(projection);
 
-    var path = d3.geoPath()
-        .projection(projection)
-        .pointRadius(2);
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
-    var svg = d3.select("body").append("svg")
-        .attr("width", width)
-        .attr("height", height);
+d3.json("us.json", function(error, us) {
 
-    var g = svg.append("g");
+  svg.append("path")
+      .attr("class", "states")
+      .datum(topojson.feature(us, us.objects.states))
+      .attr("d", path);
 
-    var us_map_endpoint = "http://0.0.0.0:5000/something";
 
-    d3.json(us_map_endpoint, function(error, data) {
-
-        if (error) throw error;
-
-        var boundary = centerZoom(data);
-        drawSubUnits(data);
-        drawPlaces(data);
-        drawOuterBoundary(data, boundary);
-
-    });
-
-    // This function "centers" and "zooms" a map by setting its projection's scale and translate according to its outer boundary
-    // It also returns the boundary itself in case you want to draw it to the map
-    function centerZoom(data){
-        var o = topojson.mesh(data, data.objects.polygons, function(a, b) { return a === b; });
-
-        projection
-            .scale(1)
-            .translate([0, 0]);
-
-        var b = path.bounds(o),
-            s = 1 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
-            t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
-
-        projection
-            .scale(s)
-            .translate(t);
-
-        return o;
-    }
-
-    function drawOuterBoundary(data, boundary){
-        g.append("path")
-            .datum(boundary)
-            .attr("d", path)
-            .attr("class", "subunit-boundary");
-    }
-
-    function drawPlaces(data){
-        g.append("path")
-            .datum(topojson.feature(data, data.objects.places))
-            .attr("d", path)
-            .attr("class", "place");
-
-        g.selectAll(".place-label")
-            .data(topojson.feature(data, data.objects.places).features)
-            .enter().append("text")
-            .attr("class", "place-label")
-            .attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
-            .attr("dy", ".35em")
-            .attr("x", 6)
-            .style("text-anchor", "start")
-            .text(function(d) { return d.properties.name; });
-    }
-
-    function drawSubUnits(data){
-        g.selectAll(".subunit")
-            .data(topojson.feature(data, data.objects.polygons).features)
-            .enter().append("path")
-            .attr("class", "subunit")
-            .attr("d", path);
-    }
+});
 
 
 </script>
 
-</body>
-</html>
