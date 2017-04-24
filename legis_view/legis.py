@@ -46,8 +46,6 @@ def index():
                            background_color=background_color,
                            button_color=button_color)
 
-
-
 @app.route('/thank_you')
 def sources():
     with open(vars.THANK_YOU_MD, 'r') as z:
