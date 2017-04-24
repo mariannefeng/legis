@@ -2,13 +2,26 @@
 <meta charset="utf-8">
 <style>
 
-.states {
-  fill: #ccc;
-  stroke: #fff;
+.states :hover {
+    fill: orange;
 }
+.states {
+    fill: gray;
+}
+
+.state-borders {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 0.5px;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    pointer-events: none;
+}
+
 
 </style>
 <body>
+<svg width="960" height="600"></svg>
 <script src="https://d3js.org/d3-array.v1.min.js"></script>
 <script src="https://d3js.org/d3-geo.v1.min.js"></script>
 
@@ -18,24 +31,24 @@
 <script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
 <script src="https://d3js.org/d3-request.v1.min.js"></script>
 
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="http://d3js.org/topojson.v2.min.js"></script>
 <script>
-var width = 960,
-    height = 500;
+
 
 var projection = d3.geoAlbersUsa();
 var path = d3.geoPath()
     .projection(projection);
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+var svg = d3.select("svg");
 
 d3.json("http://0.0.0.0:5000/us/map", function(error, us) {
+    if (error) throw error;
 
-    svg.append("path")
+    svg.append("g")
       .attr("class", "states")
-      .datum(topojson.feature(us, us.objects.state))
+        .selectAll("path")
+      .data(topojson.feature(us, us.objects.states).features)
+        .enter().append("path")
       .on("click", function(d,i){
         console.log("MUAHAHAHAHAHAHA")
         console.log(d)
@@ -43,6 +56,10 @@ d3.json("http://0.0.0.0:5000/us/map", function(error, us) {
         console.log(i)
       })
       .attr("d", path);
+
+    svg.append("path")
+        .attr("class", "state-borders")
+        .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
 
 });
 
