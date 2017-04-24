@@ -42,6 +42,7 @@ def index():
     button_colors = [color for color in vars.BULMA_COLORS if color != background_color]
     button_color = random.choice(button_colors)
     return render_template('indexmap.html',
+    #  return render_template('index.html',
                            background_color=background_color,
                            button_color=button_color)
 
