@@ -39,7 +39,7 @@ data the request doesn't want
 @app.route('/us/map', methods=['GET'])
 def get_topojson_us_map(): 
     fp = os.path.dirname(os.path.realpath(__file__))
-    topo_map = os.path.join(fp, 'process/misc/us-topojson.json')
+    topo_map = os.path.join(fp, 'process/misc/other_topop.json')
     with open(topo_map, 'r') as data_file:    
         data = json.load(data_file)
 

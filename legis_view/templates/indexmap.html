@@ -36,6 +36,12 @@ d3.json("http://0.0.0.0:5000/us/map", function(error, us) {
     svg.append("path")
       .attr("class", "states")
       .datum(topojson.feature(us, us.objects.state))
+      .on("click", function(d,i){
+        console.log("MUAHAHAHAHAHAHA")
+        console.log(d)
+        console.log(this)
+        console.log(i)
+      })
       .attr("d", path);
 
 });
