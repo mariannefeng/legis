@@ -10,6 +10,8 @@ import collections
 import legis_legwork as leg
 import VARS as vars
 
+DATA_HOSTNAME = 'localhost'
+DATA_PORT = '5000'
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -46,6 +48,11 @@ def index():
                            button_color=button_color)
 
 
+@app.route('/<state>')
+def state_legis_view(state):
+    url = 'http://{0}:{1}/us/{2}/reps'.format(DATA_HOSTNAME, DATA_PORT, state)
+    # state_data = requests.get(url).json() # probably don't need this, all within view. 
+    return app.send_static_file('state_view.html')
 
 @app.route('/thank_you')
 def sources():
