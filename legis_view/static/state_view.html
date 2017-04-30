@@ -22,9 +22,13 @@
 </style>
 <body>
 <div id="state-legislators">
-    <li v-for="leg in legis">
-      {{ leg.text }}
-    </li>
+  <div v-for="leg in legis">
+    <h1>{{ leg.representative }}</h1>
+    <li>{{ leg.state }}</li>
+    <li>{{ leg.position }}</li>
+    <li>{{ leg.office }}</li>
+    <br><br>
+    </div>
 </div>
 </body>
 <script src="https://unpkg.com/vue"></script>
@@ -33,23 +37,29 @@
 var legis_url = 'http://0.0.0.0:5000/us/'+ window.location.pathname.replace('/', '') + '/reps'
 // console.log(legis_url)
 
-var state_view = new Vue({
-  el: '#state-legislators',
-  data: {
-    legis: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
-    ]
-  }
-})
+// var state_view = new Vue({
+//   el: '#state-legislators',
+//   data: {
+//     legis: [
+//       { text: 'Learn JavaScript' },
+//       { text: 'Learn Vue' },
+//       { text: 'Build something awesome' }
+//     ]
+//   }
+// })
 
 var outtie;
-// figure out how to save this to var... pass to the for loop. 
+// figure out how to sav
 fetch(legis_url)
 .then(res => res.json())
 .then((out) => {
   console.log('Checkout this JSON! ', out);
+  var state_view = new Vue({
+  el: '#state-legislators',
+  data: {
+    legis: out
+  }
+})
   outtie = out 
 })
 .catch(err => console.error(err));

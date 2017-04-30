@@ -57,6 +57,7 @@ def get_senate_members():
 def get_house_members():
     return jsonify(leg.HOUSE_PROPUB)
 
+
 @app.route('/us/my_reps', methods=['GET'])
 def get_us_reps_from_address():
     """get a list of United States Representatives and Senators at the federal level.
@@ -73,6 +74,29 @@ def get_us_reps_from_address():
     # app.logger.info('US my reps...\n{}\n\n'.format(resp))
     return jsonify(resp)
 
+
+@app.route('/us/<state>/reps', methods=['GET'])
+def get_reps_from_state(state):
+    response = jsonify([{
+        "state": state,
+        "representative": "rep_1",
+        "position": "senator",
+        "office": "1111 N 1st Dr"
+        },
+        {
+        "state": state, 
+        "representative": "rep_2",
+        "position": "representative",
+        "office": "1112 N 1st Dr"
+        },
+        {
+        "state": state, 
+        "representative": "rep_3",
+        "position": "senator",
+        "office": "1113 N 1st Dr"
+        }])
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/upcoming_house', methods=['GET'])
 def upcoming_house():
@@ -93,6 +117,7 @@ def upcoming_house():
 def upcoming_state_bills():
     # probably call open states here if I had to guess
     return None
+
 
 # state level
 @app.route('/state/<sunlight_id>/common_bill_subject_data')
@@ -132,10 +157,6 @@ def get_state_reps_from_address():
     args = address_parser.parse_args()
     return jsonify(leg.create_state_leg_list(**args))
 
-@app.route('/us/<state>/reps', methods=['GET'])
-def congressional_reps_by_state(): 
-    
-    return None
 
 def main():
     if len(sys.argv) > 1:
