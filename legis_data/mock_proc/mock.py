@@ -104,12 +104,8 @@ def get_reps_from_state(state):
                     "link": "https://www.youtube.com/user/SenatorPattyMurray",
                     "type": "YouTube"
                 }
-            ]},
-        {
-            "representative": "rep_2",
-            "position": "representative",
-            "office": "1112 N 1st Dr"
-        },])
+            ]}
+    ])
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
