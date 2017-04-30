@@ -47,6 +47,72 @@ def get_senate_members():
 def get_house_members():
     return jsonify(leg.HOUSE_PROPUB)
 
+@mock_app.route('/us/<state>/reps', methods=['GET'])
+def get_reps_from_state(state):
+    response = jsonify([{
+        "name": "Bill Nye",
+        "photo": "",
+        "party": "Democrat",
+        "chamber": "Senate",
+        "contact": {
+            "url": "http://www.murray.senate.gov/public/",
+            "address": "154 Russell Senate Office Building Washington, DC 20510",
+            "phone": "(202) 224-2621"
+        },
+        "social": [
+            {
+                "link": "https://plus.google.com/+pattymurray",
+                "type": "GooglePlus"
+            },
+            {
+                "link": "https://twitter.com/pattymurray",
+                "type": "Twitter"
+            },
+            {
+                "link": "https://www.facebook.com/pattymurray",
+                "type": "Facebook"
+            },
+            {
+                "link": "https://www.youtube.com/user/SenatorPattyMurray",
+                "type": "YouTube"
+            }
+        ]},
+        {
+            "name": "John Locke",
+            "photo": "",
+            "party": "Republican",
+            "chamber": "Senate",
+            "contact": {
+                "url": "http://www.murray.senate.gov/public/",
+                "address": "154 Russell Senate Office Building Washington, DC 20510",
+                "phone": "(202) 224-2621"
+            },
+            "social": [
+                {
+                    "link": "https://plus.google.com/+pattymurray",
+                    "type": "GooglePlus"
+                },
+                {
+                    "link": "https://twitter.com/pattymurray",
+                    "type": "Twitter"
+                },
+                {
+                    "link": "https://www.facebook.com/pattymurray",
+                    "type": "Facebook"
+                },
+                {
+                    "link": "https://www.youtube.com/user/SenatorPattyMurray",
+                    "type": "YouTube"
+                }
+            ]},
+        {
+            "representative": "rep_2",
+            "position": "representative",
+            "office": "1112 N 1st Dr"
+        },])
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
 
 @mock_app.route('/us/my_reps', methods=['GET'])
 def get_us_reps_from_address():

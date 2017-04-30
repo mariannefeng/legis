@@ -74,27 +74,80 @@ def get_us_reps_from_address():
     # app.logger.info('US my reps...\n{}\n\n'.format(resp))
     return jsonify(resp)
 
+# basic data for first load on click
+
+# name
+# photo
+# chamber
+# party
+# office
+# phone
+# social
+
 
 @app.route('/us/<state>/reps', methods=['GET'])
 def get_reps_from_state(state):
     response = jsonify([{
-        "state": state,
-        "representative": "rep_1",
-        "position": "senator",
-        "office": "1111 N 1st Dr"
+        "name": "Bill Nye",
+        "photo": "",
+        "party": "Democrat",
+        "chamber": "Senate",
+        "contact": {
+            "url": "http://www.murray.senate.gov/public/",
+            "address": "154 Russell Senate Office Building Washington, DC 20510",
+            "phone": "(202) 224-2621"
         },
+        "social": [
+            {
+                "link": "https://plus.google.com/+pattymurray",
+                "type": "GooglePlus"
+            },
+            {
+                "link": "https://twitter.com/pattymurray",
+                "type": "Twitter"
+            },
+            {
+                "link": "https://www.facebook.com/pattymurray",
+                "type": "Facebook"
+            },
+            {
+                "link": "https://www.youtube.com/user/SenatorPattyMurray",
+                "type": "YouTube"
+            }
+        ]},
         {
-        "state": state, 
-        "representative": "rep_2",
-        "position": "representative",
-        "office": "1112 N 1st Dr"
-        },
+            "name": "John Locke",
+            "photo": "",
+            "party": "Republican",
+            "chamber": "Senate",
+            "contact": {
+                "url": "http://www.murray.senate.gov/public/",
+                "address": "154 Russell Senate Office Building Washington, DC 20510",
+                "phone": "(202) 224-2621"
+            },
+            "social": [
+                {
+                    "link": "https://plus.google.com/+pattymurray",
+                    "type": "GooglePlus"
+                },
+                {
+                    "link": "https://twitter.com/pattymurray",
+                    "type": "Twitter"
+                },
+                {
+                    "link": "https://www.facebook.com/pattymurray",
+                    "type": "Facebook"
+                },
+                {
+                    "link": "https://www.youtube.com/user/SenatorPattyMurray",
+                    "type": "YouTube"
+                }
+            ]},
         {
-        "state": state, 
-        "representative": "rep_3",
-        "position": "senator",
-        "office": "1113 N 1st Dr"
-        }])
+            "representative": "rep_2",
+            "position": "representative",
+            "office": "1112 N 1st Dr"
+        },])
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
