@@ -35,25 +35,12 @@
 <script>
 // the window.location.pathname replace is janky i know. 
 var legis_url = 'http://0.0.0.0:5000/us/'+ window.location.pathname.replace('/', '') + '/reps'
-// console.log(legis_url)
 
-// var state_view = new Vue({
-//   el: '#state-legislators',
-//   data: {
-//     legis: [
-//       { text: 'Learn JavaScript' },
-//       { text: 'Learn Vue' },
-//       { text: 'Build something awesome' }
-//     ]
-//   }
-// })
 
-var outtie;
-// figure out how to sav
 fetch(legis_url)
 .then(res => res.json())
 .then((out) => {
-  console.log('Checkout this JSON! ', out);
+  console.log('State response', out);
   var state_view = new Vue({
   el: '#state-legislators',
   data: {
@@ -64,7 +51,6 @@ fetch(legis_url)
 })
 .catch(err => console.error(err));
 
-console.log("OUTTIEEEE ", outtie)
 
 </script>
 
