@@ -1,0 +1,26 @@
+{
+  "id" : "abf60dac-3f27-3fab-b68f-a136c2d26c0a",
+  "request" : {
+    "url" : "/ca/upcoming_bills",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "ca_bills.json",
+    "headers" : {
+      "Expires" : "Mon, 01 May 2017 00:55:45 GMT",
+      "Date" : "Mon, 01 May 2017 00:55:45 GMT",
+      "Cache-Control" : "private, max-age=0, must-revalidate, no-transform",
+      "ETag" : "\"A0euUYrITkqR_KaKOe_Enk3hXuM/P9OscQfWdEpSYhsiMqYlqBbcTCM\"",
+      "Vary" : [ "Origin", "X-Origin" ],
+      "Content-Type" : "application/json; charset=UTF-8",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-XSS-Protection" : "1; mode=block",
+      "Server" : "GSE",
+      "Access-Control-Allow-Origin": "*",
+      "Alt-Svc" : "quic=\":443\"; ma=2592000; v=\"37,36,35\""
+    }
+  },
+  "uuid" : "abf60dac-3f27-3fab-b68f-a136c2d26c0a"
+}

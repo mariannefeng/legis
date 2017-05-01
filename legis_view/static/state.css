@@ -95,6 +95,34 @@ ul * {
     .cards .card-image img {
       width: 100%; }
 
+.expander {
+  width: 100%;
+  overflow: auto; }
+  .expander .expander-trigger {
+    border-bottom: 1px solid #DDD;
+    color: #477DCA;
+    cursor: pointer;
+    display: block;
+    font-size: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.25em;
+    text-decoration: none;
+    user-select: none;
+    display: block; }
+    .expander .expander-trigger:before {
+      content: "\25BC";
+      margin-right: 0.5em; }
+  .expander .expander-hidden:before {
+    content: "\25BA"; }
+  .expander .expander-hidden + .expander-content {
+    display: none; }
+
+#bill-data {
+  height: 50vh;
+  width: 100vw;
+  max-width: 100%;
+  overflow-y: auto; }
+
 #state-name {
   text-align: center;
   position: absolute;
