@@ -1,0 +1,98 @@
+html * {
+  font-family: "Bitstream Vera Sans Mono", "Consolas", "Courier", monospace; }
+
+ul * {
+  list-style-type: none; }
+
+/* gridddddzzdzdz */
+.custom-grid--halves::after {
+  clear: both;
+  content: "";
+  display: block; }
+
+.custom-grid--halves__a-single-column {
+  width: calc(50% - 30px);
+  float: left;
+  margin-left: 20px; }
+
+.article-layout::after {
+  clear: both;
+  content: "";
+  display: block; }
+
+.article-layout__hero {
+  width: calc(100% - 4rem);
+  float: left;
+  margin-left: 2rem;
+  margin-bottom: 2rem; }
+
+.article-layout__sidebar {
+  width: calc(100% - 4rem);
+  float: left;
+  margin-left: 2rem;
+  margin-bottom: 2rem; }
+  @media (min-width: 768px) {
+    .article-layout__sidebar {
+      width: calc(40% - 2.8rem);
+      float: left;
+      margin-left: 2rem; } }
+
+.article-layout__main {
+  width: calc(100% - 4rem);
+  float: left;
+  margin-left: 2rem; }
+  @media (min-width: 768px) {
+    .article-layout__main {
+      width: calc(60% - 3.2rem);
+      float: left;
+      margin-left: 2rem; } }
+
+/* cards */
+.cardz {
+  background: #e6e6e6; }
+
+.cards {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+  -ms-flex-pack: justify; }
+  .cards .card {
+    -webkit-flex-basis: 20em;
+    -moz-flex-basis: 20em;
+    flex-basis: 20em;
+    -ms-flex-preferred-size: 20em;
+    -webkit-flex-grow: 1;
+    -moz-flex-grow: 1;
+    flex-grow: 1;
+    -ms-flex-positive: 1;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 3em; }
+  .cards .card-header {
+    margin-top: 0; }
+  .cards .card-image {
+    height: 10rem;
+    overflow: hidden; }
+    .cards .card-image img {
+      width: 100%; }
+
+/*# sourceMappingURL=state.css.map */

@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<style>
-
-.states :hover {
-    fill: orange;
-}
-.states {
-    fill: gray;
-}
-
-.state-borders {
-    fill: none;
-    stroke: #fff;
-    stroke-width: 0.5px;
-    stroke-linejoin: round;
-    stroke-linecap: round;
-    pointer-events: none;
-}
-
-
-</style>
+<head>
+	<link rel="stylesheet" href="static/state.css">
+</head>
 <body>
-<div id="state-legislators">
-  <div v-for="leg in legis">
-    <h1>{{ leg.representative }}</h1>
-    <li>{{ leg.state }}</li>
-    <li>{{ leg.position }}</li>
-    <li>{{ leg.office }}</li>
-    <br><br>
-    </div>
+	<script src="https://use.fontawesome.com/46a18a6e30.js"></script>
+	<div id="state-legislators" class="cards">
+		<div v-for="leg in legis" class="card cardz">
+			<h1 class="card-header">{{ leg.name }}</h1>
+			<div class="card-basics">
+				<div class="custom-grid--halves">
+					<div class="custom-grid--halves__a-single-column">
+						<img class="card-image" :src="leg.photo"></img>
+					</div>
+					<div class="custom-grid--halves__a-single-column">
+					<div class="cards">
+						<div class="card">
+						<ul style="list-style: none; padding: 0;">
+							<li>{{ leg.party }}</li>
+							<li>{{ leg.chamber }}</li>
+						</ul>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+<!-- 			<div class="card-copy">
+				<li>{{ leg.party }}</li>
+				<li>{{ leg.chamber }}</li>
+			</div> -->
+			<!-- <div class="card-copy"> -->
+				<!-- <div v-for="soc in leg.social">
+				<a class="icon-link" :href="soc.link" target="_blank">
+				<span class="icon">
+						<i class="fa fa-google-plus-square" v-if="soc.type == 'GooglePlus'"></i>
+						<i class="fa fa-facebook" v-if="soc.type == 'Facebook'"></i>
+						<i class="fa fa-twitter" v-if="soc.type == 'Twitter'"></i>
+						<i class="fa fa-youtube" v-if="soc.type == 'YouTube'"></i>
+					</span>
+				</a>
+			</div> -->
+		</div>
+	</div>
+</div>
 </div>
 </body>
 <script src="https://unpkg.com/vue"></script>
@@ -53,14 +67,14 @@ var outtie;
 fetch(legis_url)
 .then(res => res.json())
 .then((out) => {
-  console.log('Checkout this JSON! ', out);
-  var state_view = new Vue({
-  el: '#state-legislators',
-  data: {
-    legis: out
-  }
-})
-  outtie = out 
+	console.log('Checkout this JSON! ', out);
+	var state_view = new Vue({
+		el: '#state-legislators',
+		data: {
+			legis: out
+		}
+	})
+	outtie = out 
 })
 .catch(err => console.error(err));
 
