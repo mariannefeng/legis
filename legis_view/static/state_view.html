@@ -48,7 +48,7 @@
 <script src="https://unpkg.com/vue"></script>
 <script>
 // the window.location.pathname replace is janky i know. 
-var legis_url = 'http://0.0.0.0:5000/us/'+ window.location.pathname.replace('/', '') + '/reps'
+var legis_url = 'http://0.0.0.0:5000/us/'+ window.location.pathname.replace('/', '').toLowerCase() + '/reps'
 // console.log(legis_url)
 
 // var state_view = new Vue({

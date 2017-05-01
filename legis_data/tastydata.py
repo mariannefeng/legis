@@ -75,17 +75,6 @@ def get_us_reps_from_address():
     # app.logger.info('US my reps...\n{}\n\n'.format(resp))
     return jsonify(resp)
 
-# basic data for first load on click
-
-# name
-# photo
-# chamber
-# party
-# office
-# phone
-# social
-
-
 @app.route('/us/<state>/reps', methods=['GET'])
 def get_reps_from_state(state):
     reps = l.get_reps(state)
