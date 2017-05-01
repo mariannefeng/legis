@@ -1,0 +1,347 @@
+[
+  {
+    "chamber": "United States Senate",
+    "name": "John McCain",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "218 Russell Senate Office Building",
+        "state": "DC",
+        "zip": "20510"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 224-2235"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/M/M000303.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/johnmccain",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/SenJohnMcCain",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/SenatorJohnMcCain",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States Senate",
+    "name": "Jeff Flake",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "413 Russell Senate Office Building",
+        "state": "DC",
+        "zip": "20510"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 224-4521"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/F/F000444.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/senatorjeffflake",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/JeffFlake",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/flakeoffice",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives AZ-09",
+    "name": "Kyrsten Sinema",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1725 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-9888"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/S/S001191.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongresswomanSinema",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepSinema",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/repsinema",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/ksinemaaz",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives AZ-08",
+    "name": "Trent Franks",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2435 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-4576"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/F/F000448.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/TrentFranks",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepTrentFranks",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepTrentFranks",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives AZ-05",
+    "name": "Andy Biggs",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1626 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2635"
+    ],
+    "photo": "https://biggs.house.gov/sites/biggs.house.gov/files/wysiwyg_uploaded/congressman-andy-biggs.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepAndyBiggs",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepAndyBiggsAZ",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCqSq9kWOxk9yNTeILBCVC1w",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives AZ-04",
+    "name": "Paul A. Gosar",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2057 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2315"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/G/G000565.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/repgosar",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/repgosar",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/repgosar",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives AZ-07",
+    "name": "Ruben Gallego",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1218 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-4065"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/G/G000574.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepRubenGallego",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepRubenGallego",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCru0REdL016INldtvq6gaLA",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives AZ-06",
+    "name": "David Schweikert",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2059 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2190"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/S/S001183.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/repdavidschweikert",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepDavid",
+        "type": "Twitter"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives AZ-01",
+    "name": "Tom O'Halleran",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "126 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-3361"
+    ],
+    "photo": "https://ohalleran.house.gov/sites/ohalleran.house.gov/files/styles/medium/public/wysiwyg_uploaded/2016-11-17_FAS_0246_1.jpg?itok=Ro0ep4-x",
+    "social": [
+      {
+        "link": "https://www.facebook.com/repohalleran",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepOHalleran",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/repohalleran",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives AZ-03",
+    "name": "Raul M. Grijalva",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1511 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-2435"
+    ],
+    "photo": "http://grijalva.house.gov//images/user_images/OfficialPortrait.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/Rep.Grijalva",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/repraulgrijalva",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/raulgrijalvaaz07",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives AZ-02",
+    "name": "Martha McSally",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "510 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2542"
+    ],
+    "photo": "https://mcsally.house.gov/sites/mcsally.house.gov/files/styles/congress_image_medium/public/wysiwyg_uploaded/az02_mcsally.jpg?itok=XDK2ccP0",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepMcSally",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepMcSally",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCfHMG2Db0TJ_RatSBHuH8NA",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/McSallyForCongress",
+        "type": "YouTube"
+      }
+    ]
+  }
+]
