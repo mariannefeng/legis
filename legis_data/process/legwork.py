@@ -220,6 +220,7 @@ class USLegislator(Legislator):
                         'election_year': election_year}
 
 
+
 class StateLegislator(Legislator):
     def __init__(self,
                  id=None,
@@ -539,6 +540,7 @@ class UsBill(Bill):
             self.actions = results[0].get('actions')
             self.primary_subject = results[0].get('primary_subject')
             self.cosponsors = results[0].get('cosponsors')
+
 
 
 def get_upcoming_bills(valid_time_frame):
