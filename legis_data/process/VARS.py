@@ -13,15 +13,18 @@ PP_KEY = 'oCmlfzzjf14vd9eOG16H0aLG4wJLkRxn6GX54rRS'
 GOOGLE_GEOCODE_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json'
 GOOGLE_CIVIC_ENDPOINT = 'https://www.googleapis.com/civicinfo/v2/representatives'
 
-OP_LEGISLATORS = 'http://openstates.org/api/v1/legislators/geo/'
-OP_COMMITTEES = 'http://openstates.org/api/v1/committees/{0}'
-OP_BILLS = 'http://openstates.org/api/v1/bills/'
+OP_BASE = 'http://openstates.org/api/v1'
+OP_LEGISLATORS = '{0}/legislators/geo/'.format(OP_BASE)
+OP_COMMITTEES = '{0}/committees/{{0}}'.format(OP_BASE)
+OP_BILLS = '{0}/bills/'.format(OP_BASE)
 
 OPEN_FEC_ENDPOINT = 'https://api.open.fec.gov/v1'
 
-PP_MEMBERS = 'https://api.propublica.org/congress/v1/115/{0}/members.json'
-PP_MEMBER_VOTE = 'https://api.propublica.org/congress/v1/members/{0}/votes.json'
-PP_BILL_DETAIL = 'https://api.propublica.org/congress/v1/115/bills/{0}.json'
+PP_BASE = 'https://api.propublica.org/congress/v1'
+PP_CURRENT_SESSION = '{0}/115'.format(PP_BASE)
+PP_MEMBERS = '{0}/{{0}}/members.json'.format(PP_CURRENT_SESSION)
+PP_MEMBER_VOTE = '{0}/members/{{0}}/votes.json'.format(PP_BASE)
+PP_BILL_DETAIL = '{0}/bills/{{0}}.json'.format(PP_CURRENT_SESSION)
 PP_HEADERS = {'X-API-Key': PP_KEY}
 
 CURRENT_YEAR = datetime.datetime.now().year

@@ -99,9 +99,10 @@ def upcoming_house():
 
 
 @app.route('/<state>/upcoming_bills', methods=['GET'])
-def upcoming_state_bills():
-    # probably call open states here if I had to guess
-    return None
+def upcoming_state_bills(state):
+    response = jsonify(leg.get_bills_by_state(state, 50))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 # state level

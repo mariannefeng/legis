@@ -5,6 +5,7 @@ legis_view/.sass-cache/
 *.pdf
 *.sqlite
 .ipynb_checkpoints/
+*.ipynb
 __pycache__/
 .DS_Store
 clouds/*

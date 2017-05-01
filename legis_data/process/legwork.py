@@ -472,7 +472,7 @@ class Bill:
                  id=None,
                  title=None,
                  actions=None,
-                 primary_subject=None,
+                 subjects=None,
                  cosponsors=None,
                  additional_files=None):
         if not sponsor:
@@ -481,13 +481,14 @@ class Bill:
             actions = []
         if not additional_files:
             additional_files = []
+        if not cosponsors:
+            self.cosponsors = []
         self.type = bill_type
         self.sponsor = sponsor
         self.id = id
         self.title = title
         self.actions = actions
-        self.primary_subject = primary_subject
-        self.cosponsors = cosponsors
+        self.subjects = subjects
         self.additional_files = additional_files
 
     __metaclass__ = abc.ABCMeta
@@ -505,11 +506,11 @@ class UsBill(Bill):
                  id=None,
                  title=None,
                  actions=None,
-                 primary_subject=None,
+                 subjects=None,
                  cosponsors=None,
                  floor_text=None,
                  additional_files=None):
-        super().__init__(bill_type, sponsor, id, title, actions, primary_subject, cosponsors, additional_files)
+        super().__init__(bill_type, sponsor, id, title, actions, subjects, cosponsors, additional_files)
         # not sure that this is applicable to all bills so putting it here.
         self.floor_text = floor_text
 
@@ -538,9 +539,75 @@ class UsBill(Bill):
             self.sponsor['sponsor_name'] = results[0].get('sponsor')
             self.sponsor['sponsor_uri'] = results[0].get('sponsor_uri')
             self.actions = results[0].get('actions')
-            self.primary_subject = results[0].get('primary_subject')
+            self.subjects = [results[0].get('primary_subject')]
             self.cosponsors = results[0].get('cosponsors')
 
+
+
+class StateBill(Bill):
+    def __init__(self,
+             bill_type,
+             state,
+             sponsor=None,
+             id=None,
+             title=None,
+             actions=None,
+             subjects=None,
+             cosponsors=None,
+             additional_files=None):
+    
+        super().__init__(bill_type, sponsor, id, title, actions, subjects, 
+                         cosponsors, additional_files)
+        self.state = state
+        self.subjects = []
+        self.session = None
+        self.chamber = None
+        self.open_states_id = None
+        self.update_time = None
+        self.bill_url = None
+        self.action_dates = None
+
+    def populate_from_sources(self, sources: dict):
+        self.populate_from_broad_search(sources)
+        self._populate_nitty_gritty()    
+        
+    def populate_from_broad_search(self, net):
+        self.id = net['bill_id']
+        self.chamber = net['chamber']
+        self.open_states_id = net['id']
+        self.session = net['session']
+        self.subjects = net['subjects']
+        self.title = net['title']
+        self.update_time = net['updated_at']
+    
+    def _populate_nitty_gritty(self):
+        fields = "fields=sources,sponsors,scraped_subjects,action_dates"
+        bill_detail = requests.get('{0}{1}/{2}'.format(vars.OP_BILLS, self.open_states_id, fields)).json()
+        if bill_detail.get('sources'):
+            self.bill_url = bill_detail['sources'][0].get('url')
+        sponsors = bill_detail['sponsors']
+        for sponsor in sponsors:
+            if sponsor.get('type') == 'primary':
+                self.sponsor = sponsor
+            else:
+                self.cosponsors.append(sponsor)
+        self.subjects += bill_detail.get('scraped_subjects', [])
+        self.action_dates = bill_detail.get('action_dates')
+        
+        
+
+def get_bills_by_state(state: str, int_to_show: int):
+    payload = {'state': state, 'search_window': 'session'}
+    result = requests.get(vars.OP_BILLS, params=payload).json()
+    latest = result[:int_to_show]
+    billz = []
+    for a_bill in latest:
+        bill = StateBill(a_bill['type'][0], state)
+        # populating everything takes forever...i thiink it should be a little expansion option maybe 
+        # for a bill that you could care about. 
+        bill.populate_from_broad_search(a_bill)
+        billz.append(bill.__dict__)
+    return billz
 
 
 def get_upcoming_bills(valid_time_frame):
@@ -560,10 +627,6 @@ def get_upcoming_bills(valid_time_frame):
                 this_week.append(bill.__dict__)
     return this_week
 
-
-def get_state_bills():
-
-    return None
 
 def nltk_process(word_list, filter_initial_letter):
     tokens = nltk.word_tokenize(' '.join(word_list))
