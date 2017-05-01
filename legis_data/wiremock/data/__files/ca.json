@@ -1,0 +1,1754 @@
+[
+  {
+    "chamber": "United States Senate",
+    "name": "Dianne Feinstein",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "331 Hart Senate Office Building",
+        "state": "DC",
+        "zip": "20510"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 224-3841"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/F/F000062.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/SenatorFeinstein",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/SenFeinstein",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/SenatorFeinstein",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States Senate",
+    "name": "Kamala D. Harris",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "112 Hart Senate Office Building",
+        "state": "DC",
+        "zip": "20510"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 224-3553"
+    ],
+    "photo": "https://www.harris.senate.gov/sites/default/files/harris1.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/KamalaHarris",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/KamalaHarris",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UC0XBsJpPhOLg0k4x9ZwrWzw",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-02",
+    "name": "Jared Huffman",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1406 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-5161"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/H/H001068.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepHuffman",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepHuffman",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepHuffman",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-01",
+    "name": "Doug LaMalfa",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "322 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-3076"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/L/L000578.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepLaMalfa",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepLaMalfa",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCc1gyEAHbdQcWAUdHIxiQMw",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepLaMalfa",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-04",
+    "name": "Tom McClintock",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2312 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2511"
+    ],
+    "photo": "http://mcclintock.house.gov/sites/mcclintock.house.gov/files/wysiwyg_uploaded/McCPhoto.JPG",
+    "social": [
+      {
+        "link": "https://www.facebook.com/81125319109",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepMcClintock",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/McClintockCA04",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-03",
+    "name": "John Garamendi",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2438 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-1880"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/G/G000559.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/repgaramendi",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepGaramendi",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/garamendiCA10",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-06",
+    "name": "Doris O. Matsui",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2311 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-7163"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/M/M001163.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/doris.matsui",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/dorismatsui",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCsdnavaoSwz0Rpe8r7-wDpg",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepDorisMatsui",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-05",
+    "name": "Mike Thompson",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "231 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-3311"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/T/T000460.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepMikeThompson",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepThompson",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/CongressmanMThompson",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-08",
+    "name": "Paul Cook",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1222 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-5861"
+    ],
+    "photo": "http://cook.house.gov/sites/cook.house.gov/files/wysiwyg_uploaded/Paul-Cook.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepPaulCook",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepPaulCook",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCpF9e1kTbGR6shfoNuWN2Mw",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepPaulCook",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-07",
+    "name": "Ami Bera",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1431 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-5716"
+    ],
+    "photo": "https://bera.house.gov/sites/bera.house.gov/files/wysiwyg_uploaded/CAB_Portrait.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepAmiBera",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepBera",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/BeraForCongress",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/repamibera",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-09",
+    "name": "Jerry McNerney",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2265 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-1947"
+    ],
+    "photo": "http://mcnerney.house.gov/sites/mcnerney.house.gov/files/styles/congress_image_medium/public/wysiwyg_uploaded/McNerney%20Official%20Photo.jpg?itok=Wpa_51-y",
+    "social": [
+      {
+        "link": "https://www.facebook.com/jerrymcnerney",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepMcNerney",
+        "type": "Twitter"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-11",
+    "name": "Mark DeSaulnier",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "115 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-2095"
+    ],
+    "photo": "https://desaulnier.house.gov/sites/desaulnier.house.gov/files/styles/medium/public/wysiwyg_uploaded/MD%20Portrait.jpg?itok=S_BVifi6",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepMarkDeSaulnier",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepDeSaulnier",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCWMjA9uDEA7KGZmjctobg5w",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-10",
+    "name": "Jeff Denham",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1730 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-4540"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/D/D000612.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepJeffDenham",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepJeffDenham",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/repjeffdenham",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-13",
+    "name": "Barbara Lee",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2267 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-2661"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/L/L000551.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepBarbaraLee",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/repbarbaralee",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepLee",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-12",
+    "name": "Nancy Pelosi",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "233 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-4965"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/P/P000197.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/NancyPelosi",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/NancyPelosi",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://plus.google.com/+NancyPelosi",
+        "type": "GooglePlus"
+      },
+      {
+        "link": "https://www.youtube.com/user/nancypelosi",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-15",
+    "name": "Eric Swalwell",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "129 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-5065"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/S/S001193.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongressmanEricSwalwell",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepSwalwell",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/ericswalwell",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-14",
+    "name": "Jackie Speier",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2465 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-3531"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/S/S001175.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/JackieSpeier",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepSpeier",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCevmyTb0HSO8irVaR2gYyoA",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-17",
+    "name": "Ro Khanna",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "513 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-2631"
+    ],
+    "photo": "https://khanna.house.gov/sites/khanna.house.gov/files/styles/congress_image_thumbnail/public/featured_image/RepRoKhanna_CA17_hires.jpg?itok=Rb-0G6Ky",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepRoKhanna",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepRoKhanna",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCjH5AfDCWWzOe0XyXYZwIRA",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-16",
+    "name": "Jim Costa",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2081 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-3341"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/C/C001059.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepJimCosta",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/repjimcosta",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepJimCostaCA20",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-19",
+    "name": "Zoe Lofgren",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1401 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-3072"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/L/L000397.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/zoelofgren",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepZoeLofgren",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepZoeLofgren",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-18",
+    "name": "Anna G. Eshoo",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "241 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-8104"
+    ],
+    "photo": "http://eshoo.house.gov/wp-content/uploads/2014/07/Congresswoman_Anna_Eshoo-199x300.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepAnnaEshoo",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepAnnaEshoo",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepAnnaEshoo",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-22",
+    "name": "Devin Nunes",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1013 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2523"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/N/N000181.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/376470350795",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/Rep_DevinNunes",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/DevinNunes",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepDevinNunes",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-21",
+    "name": "David G. Valadao",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1728 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-4695"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/V/V000129.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongressmanDavidValadao",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepDavidValadao",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/TeamValadao",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/congressmanvaladao",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-24",
+    "name": "Salud O. Carbajal",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "212 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-3601"
+    ],
+    "photo": "https://carbajal.house.gov/sites/carbajal.house.gov/themes/fortyeight_carbajal/logo.png",
+    "social": [
+      {
+        "link": "https://www.facebook.com/repsaludcarbajal",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepCarbajal",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/repcarbajal",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCeM5J0hmK8UZ2YmEXoPwT5w",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-23",
+    "name": "Kevin McCarthy",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2421 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2915"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/M/M001165.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongressmanKevinMcCarthy",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/GOPWhip",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/kevinomccarthy",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepKevinMcCarthy",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-26",
+    "name": "Julia Brownley",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1019 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-5811"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/B/B001285.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepJuliaBrownley",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/JuliaBrownley26",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepJuliaBrownley",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-25",
+    "name": "Stephen Knight",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1023 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-1956"
+    ],
+    "photo": "http://knight.house.gov/images/face-banner.png",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepresentativeSteveKnight",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/SteveKnight25",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCNfnbtkP6hGUq1TLFQ3fD5Q",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-28",
+    "name": "Adam B. Schiff",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2372 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-4176"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/S/S001150.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepAdamSchiff",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepAdamSchiff",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCxbGmJ-0p7hWRwD3MIs2Xtw",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/AdamSchiff",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-27",
+    "name": "Judy Chu",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2423 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-5464"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/C/C001080.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepJudyChu",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepJudyChu",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepJudyChu",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-20",
+    "name": "Jimmy Panetta",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "228 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-2861"
+    ],
+    "photo": "https://panetta.house.gov/sites/panetta.house.gov/files/wysiwyg_uploaded/Congressman%20Jimmy%20Panetta%20%28CA-20%29%20Headshot.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepJimmyPanetta",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepJimmyPanetta",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCmw-aERG51C96edMDPN7fXQ",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://plus.google.com/112549052197129729834",
+        "type": "GooglePlus"
+      },
+      {
+        "link": "https://www.youtube.com/user/UC9zCFM1whT52R4CeHhcUr5g",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-51",
+    "name": "Juan Vargas",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1605 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-8045"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/V/V000130.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepJuanVargas",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepJuanVargas",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepJuanVargas",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-50",
+    "name": "Duncan Hunter",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2429 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-5672"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/H/H001048.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/DuncanHunter",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/Rep_Hunter",
+        "type": "Twitter"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-53",
+    "name": "Susan A. Davis",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1214 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-2040"
+    ],
+    "photo": "http://susandavis.house.gov/sites/susandavis.house.gov/files/styles/congress_image_medium/public/Official%20Photo.jpg?itok=yZbP0S6W",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepSusanDavis",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepSusanDavis",
+        "type": "Twitter"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-52",
+    "name": "Scott H. Peters",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1122 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-0508"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/P/P000608.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongressmanScottPeters",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepScottPeters",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://plus.google.com/118289012365276609988",
+        "type": "GooglePlus"
+      },
+      {
+        "link": "https://www.youtube.com/user/repscottpeters",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-29",
+    "name": "Tony Cardenas",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1510 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-6131"
+    ],
+    "photo": "http://cardenas.house.gov/sites/cardenas.house.gov/files/headshot%20-%20small.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/repcardenas",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepCardenas",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UC9KlOJZ1DOJdifZzxo7Vqcg",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/repcardenas",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-33",
+    "name": "Ted Lieu",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "236 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-3976"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/L/L000582.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepTedLieu",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepTedLieu",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UC9qcJxTqfDNBnVul1IojlFg",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-32",
+    "name": "Grace F. Napolitano",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1610 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-5256"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/N/N000179.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepGraceNapolitano",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/gracenapolitano",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepGraceNapolitano",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-35",
+    "name": "Norma J. Torres",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1713 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-6161"
+    ],
+    "photo": "https://torres.house.gov/sites/torres.house.gov/files/styles/congress_image_thumbnail/public/Official%20Photo.jpg?itok=Jv6Esx0s",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepNormaTorres",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/NormaJTorres",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCvWY4qKP6--o3pIJY7hhKDg",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-34",
+    "name": "Vacant",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1226 Longworth HOB",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": null,
+    "phone": [
+      "(202) 225-6235"
+    ],
+    "photo": null,
+    "social": []
+  },
+  {
+    "chamber": "United States House of Representatives CA-37",
+    "name": "Karen Bass",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2241 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-7084"
+    ],
+    "photo": "http://bass.house.gov/sites/karenbass.house.gov/files/styles/section_front_boilerplate/public/Official%20Photo%202012_0.jpg?itok=7gx9doai",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepKarenBass",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepKarenBass",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepKarenBass",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-36",
+    "name": "Raul Ruiz",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1319 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-5330"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/R/R000599.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongressmanRaulRuizMD",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/CongressmanRuiz",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepRaulRuiz",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-39",
+    "name": "Edward R. Royce",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2310 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-4111"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/R/R000487.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/EdRoyce",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepEdRoyce",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCpRfavhDPYMA4YyO7ZT1F2A",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepEdRoyce",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-38",
+    "name": "Linda T. Sanchez",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2329 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-6676"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/S/S001156.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongresswomanLindaSanchez",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/replindasanchez",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/LindaTSanchez",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-31",
+    "name": "Pete Aguilar",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1223 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-3201"
+    ],
+    "photo": "https://aguilar.house.gov/sites/aguilar.house.gov/files/styles/congress_image_medium/public/wysiwyg_uploaded/Headshot_0.jpg?itok=LSt7qkOV",
+    "social": [
+      {
+        "link": "https://www.facebook.com/reppeteaguilar",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepPeteAguilar",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCxwbFLOlKDsXrwizV5jah7g",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCIXCmfuRWrbgdTw257_lxJQ",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-30",
+    "name": "Brad Sherman",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2181 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-5911"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/S/S000344.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/63158229861",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/BradSherman",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/shermanca27",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-44",
+    "name": "Nanette Diaz Barragan",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1320 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-8220"
+    ],
+    "photo": "https://barragan.house.gov/sites/barragan.house.gov/files/styles/medium/public/wysiwyg_uploaded/rep-barragan.JPG?itok=YJ7pJivD",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongresswomanBarragan",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepBarragan",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCFPW7wS_0XU0aGJTI6FhBlw",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-43",
+    "name": "Maxine Waters",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2221 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-2201"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/W/W000187.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/MaxineWaters",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/MaxineWaters",
+        "type": "Twitter"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-46",
+    "name": "J. Luis Correa",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1039 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-2965"
+    ],
+    "photo": null,
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepLouCorrea",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepLouCorrea",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCIKJJp4QJIDjnjodc23qKkw",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-45",
+    "name": "Mimi Walters",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "215 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-5611"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/W/W000820.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepMimiWalters",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepMimiWalters",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCyFubcwlZVLVLg-T-2PuooQ",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-48",
+    "name": "Dana Rohrabacher",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2300 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2415"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/R/R000409.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/danarohrabacher",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/DanaRohrabacher",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://plus.google.com/107199266645321436121",
+        "type": "GooglePlus"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-47",
+    "name": "Alan S. Lowenthal",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "125 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-7924"
+    ],
+    "photo": "http://lowenthal.house.gov/UploadedPhotos/MediumResolution/1fcadddb-5064-497d-8e25-67a72ed3e6a2.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepLowenthal",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepLowenthal",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepLowenthal",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-49",
+    "name": "Darrell E. Issa",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2269 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-3906"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/I/I000056.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/darrellissa",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/darrellissa",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCgHOAIck5L7gHsm1MwhfhUw",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/repdarrellissa",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-40",
+    "name": "Lucille Roybal-Allard",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2083 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-1766"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/R/R000486.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepRoybalAllard",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepRoybalAllard",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepRoybalAllard",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-42",
+    "name": "Ken Calvert",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2205 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-1986"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/C/C000059.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepKenCalvert",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/KenCalvert",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepKenCalvert",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives CA-41",
+    "name": "Mark Takano",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1507 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-2305"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/T/T000472.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepMarkTakano",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepMarkTakano",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/marktakano41",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepMarkTakano",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://plus.google.com/+RepMarkTakano",
+        "type": "GooglePlus"
+      }
+    ]
+  }
+]

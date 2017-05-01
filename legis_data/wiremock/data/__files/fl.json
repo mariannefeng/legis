@@ -1,0 +1,949 @@
+[
+  {
+    "chamber": "United States Senate",
+    "name": "Bill Nelson",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "716 Hart Senate Office Building",
+        "state": "DC",
+        "zip": "20510"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 224-5274"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/N/N000032.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/billnelson",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/SenBillNelson",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/SenBillNelson",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States Senate",
+    "name": "Marco Rubio",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "284 Russell Senate Office Building",
+        "state": "DC",
+        "zip": "20510"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 224-3041"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/R/R000595.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/SenatorMarcoRubio",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/marcorubio",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/MarcoRubio",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/SenatorMarcoRubio",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-02",
+    "name": "Neal P. Dunn",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "423 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-5235"
+    ],
+    "photo": "https://dunn.house.gov/sites/dunn.house.gov/themes/fortyeight_dunn/logo.png",
+    "social": [
+      {
+        "link": "https://www.facebook.com/DrNealDunnFL2",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/DrNealDunnFL2",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCRTGfrYP-RuDzJ2KGok7TRA",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCoaKqWMtWcyNqx6wLQsn73g",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-01",
+    "name": "Matt Gaetz",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "507 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-4136"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/G/G000578.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongressmanMattGaetz",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/Rep_Matt_Gaetz",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UClqXcJew_A3s8qiX-T4a9CA",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/matthewgaetz",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-04",
+    "name": "John H. Rutherford",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "230 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2501"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/R/R000609.jpg",
+    "social": [
+      {
+        "link": "https://twitter.com/JRutherfordFL",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.facebook.com/RepRutherfordFL",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/Reprutherfordfl",
+        "type": "Twitter"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-03",
+    "name": "Ted S. Yoho",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "511 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-5744"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/Y/Y000065.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongressmanTedYoho",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepTedYoho",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCxYOoJN6KHivxHBpL9KpjOg",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepTedYoho",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-06",
+    "name": "Ron DeSantis",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1524 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2706"
+    ],
+    "photo": "http://desantis.house.gov/index.cfm?a=Files.Serve&File_id=C49C1822-3CA7-4F22-A88E-E42D0AA49CF2",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepDeSantis",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepDeSantis",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCm8TSZDyDUkiYu-dgd0R0Yg",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepRonDeSantis",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-05",
+    "name": "Al Lawson Jr.",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1337 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-0123"
+    ],
+    "photo": null,
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepAlLawsonJr",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepAlLawsonJr",
+        "type": "Twitter"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-08",
+    "name": "Bill Posey",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2150 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-3671"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/P/P000599.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/bill.posey15",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/CongBillPosey",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/CongressmanPosey",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-07",
+    "name": "Stephanie N. Murphy",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1237 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-4035"
+    ],
+    "photo": null,
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepStephMurphy",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepStephMurphy",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCj9-Bc0hPcylKBNbPo0GZkw",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCmd4mo5owVTGetYcPmkcI1g",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-09",
+    "name": "Darren Soto",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1429 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-9889"
+    ],
+    "photo": "https://soto.house.gov/sites/soto.house.gov/themes/fortyeight_soto/logo.png",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongressmanDarrenSoto",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/repdarrensoto",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCMPJK6_8Qou5dZnmNPhk2gg",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/repdarrensoto",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-20",
+    "name": "Alcee L. Hastings",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2353 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-1313"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/H/H000324.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/95696782238",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/alcee4congress",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://twitter.com/RepHastingsFL",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepAlceeHastings",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-11",
+    "name": "Daniel Webster",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1210 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-1002"
+    ],
+    "photo": null,
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepWebster",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepWebster",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCvaY5rdb6FMvR-SaG-Pge5w",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-10",
+    "name": "Val Butler Demings",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "238 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-2176"
+    ],
+    "photo": null,
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepresentativeValDemings",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepValDemings",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCkcshqwFNJG6XeduOforhig",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-13",
+    "name": "Charlie Crist",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "427 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-5961"
+    ],
+    "photo": "http://crist.house.gov/images/crist-head.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepCharlieCrist",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepCharlieCrist",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCVwY7cujoNveYpbB6vC9aKg",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-12",
+    "name": "Gus M. Bilirakis",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2112 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-5755"
+    ],
+    "photo": "http://bilirakis.house.gov/sites/bilirakis.house.gov/files/documents/official-photo.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/GusBilirakis",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/repgusbilirakis",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepGusBilirakis",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-15",
+    "name": "Dennis A. Ross",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "436 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-1252"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/R/R000593.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/dennis.ross.376",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepDennisRoss",
+        "type": "Twitter"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-14",
+    "name": "Kathy Castor",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2052 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-3376"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/C/C001066.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/USRepKathyCastor",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/KathyCastorFL",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepKathyCastor",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://twitter.com/USRepKCastor",
+        "type": "Twitter"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-17",
+    "name": "Thomas J. Rooney",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2160 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-5792"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/R/R000583.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/reptomrooney",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/TomRooney",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCHuDkMfCK3kmCpso7LyI3zA",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/CongressmanRooney",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-16",
+    "name": "Vern Buchanan",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2104 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-5015"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/B/B001260.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongressmanBuchanan",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/vernbuchanan",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/vernbuchanan",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-19",
+    "name": "Francis Rooney",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "120 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2536"
+    ],
+    "photo": "http://francisrooney.house.gov/UploadedPhotos/MediumResolution/56b1df89-009f-4a02-82f7-ff5887d3937b.png",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepRooney",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepRooney",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UC5dLBbrW1JwIGs9h248lk6g",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-18",
+    "name": "Brian J. Mast",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2182 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-3026"
+    ],
+    "photo": null,
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepBrianMast",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepBrianMast",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCFHmV3VcjZxOEFeTitzUszQ",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/repbrianmast",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-22",
+    "name": "Theodore E. Deutch",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2447 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-3001"
+    ],
+    "photo": "http://teddeutch.house.gov/UploadedFiles/ted_deutch_officialsmall.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/CongressmanTedDeutch",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepTedDeutch",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/congressmanteddeutch",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-21",
+    "name": "Lois Frankel",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1037 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-9890"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/F/F000462.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepLoisFrankel",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepLoisFrankel",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepLoisFrankel",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-24",
+    "name": "Frederica S. Wilson",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2445 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-4506"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/W/W000808.jpg",
+    "social": [
+      {
+        "link": "https://plus.google.com/111065390253004259315",
+        "type": "GooglePlus"
+      },
+      {
+        "link": "https://www.facebook.com/RepWilson",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepWilson",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/repfredericawilson",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-23",
+    "name": "Debbie Wasserman Schultz",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1114 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Democratic",
+    "phone": [
+      "(202) 225-7931"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/W/W000797.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepDWS",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepDWStweets",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/RepWassermanSchultz",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-26",
+    "name": "Carlos Curbelo",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "1404 Longworth House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-2778"
+    ],
+    "photo": "https://curbelo.house.gov/images/img-avatar.png",
+    "social": [
+      {
+        "link": "https://www.facebook.com/RepCurbelo",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RepCurbelo",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/UC6SRoWRNiv5U4a7ovRICwaw",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/CurbeloTV",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-25",
+    "name": "Mario Diaz-Balart",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "440 Cannon House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-4211"
+    ],
+    "photo": "http://bioguide.congress.gov/bioguide/photo/D/D000600.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/mdiazbalart",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/MarioDB",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/MarioDiazBalart",
+        "type": "YouTube"
+      }
+    ]
+  },
+  {
+    "chamber": "United States House of Representatives FL-27",
+    "name": "Ileana Ros-Lehtinen",
+    "office": [
+      {
+        "city": "Washington",
+        "line1": "2206 Rayburn House Office Building",
+        "state": "DC",
+        "zip": "20515"
+      }
+    ],
+    "party": "Republican",
+    "phone": [
+      "(202) 225-3931"
+    ],
+    "photo": "http://ros-lehtinen.house.gov/sites/ros-lehtinen.house.gov/files/275-320img.jpg",
+    "social": [
+      {
+        "link": "https://www.facebook.com/iroslehtinen",
+        "type": "Facebook"
+      },
+      {
+        "link": "https://twitter.com/RosLehtinen",
+        "type": "Twitter"
+      },
+      {
+        "link": "https://www.youtube.com/user/IleanaRosLehtinen",
+        "type": "YouTube"
+      },
+      {
+        "link": "https://www.youtube.com/user/UCpZmXSI2kvICWL2cLdT-oEg",
+        "type": "YouTube"
+      }
+    ]
+  }
+]

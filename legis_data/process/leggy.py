@@ -22,13 +22,14 @@ class BasicCongressional:
         self.phone = l.get('phones')
         self.photo = l.get('photoUrl')
 
-        for social in l.get('channels'):
-            rep_social = {}
-            type = social['type']
-            social_endpoint = vars.SOCIAL_ENDPOINTS[type] + social['id']
-            rep_social['link'] = social_endpoint
-            rep_social['type'] = type
-            self.social.append(rep_social)
+        if l.get('channels'):
+            for social in l.get('channels'):
+                rep_social = {}
+                type = social['type']
+                social_endpoint = vars.SOCIAL_ENDPOINTS[type] + social['id']
+                rep_social['link'] = social_endpoint
+                rep_social['type'] = type
+                self.social.append(rep_social)
 
         return self
 
