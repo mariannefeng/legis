@@ -16,13 +16,13 @@ class BasicCongressional:
         self.social = []
 
     def load_data(self, l):
-        self.name = l['name']
-        self.office = l['address']
-        self.party = l['party']
-        self.phone = l['phones']
-        self.photo = l['photoUrl']
+        self.name = l.get('name')
+        self.office = l.get('address')
+        self.party = l.get('party')
+        self.phone = l.get('phones')
+        self.photo = l.get('photoUrl')
 
-        for social in l['channels']:
+        for social in l.get('channels'):
             rep_social = {}
             type = social['type']
             social_endpoint = vars.SOCIAL_ENDPOINTS[type] + social['id']
@@ -35,7 +35,7 @@ class BasicCongressional:
 
 # retrieve reps - involves initiating some BasicCongressional's
 def get_reps(state):
-    ocd_id='ocd-division%2Fcountry%3Aus%2Fstate:' + state.lower()
+    ocd_id = 'ocd-division%2Fcountry%3Aus%2Fstate:' + state.lower()
     civic_payload = {'recursive': True,
                      'key': vars.GOOGLE_CIVIC_KEY,
                      'levels': 'country'}
