@@ -4,34 +4,46 @@
 
 .states :hover {
     fill: orange;
+    cursor: pointer; 
 }
 .states {
     fill: gray;
-}
-
-.state-borders {
-    fill: none;
     stroke: #fff;
-    stroke-width: 0.5px;
+    stroke-width: 0.2px;
     stroke-linejoin: round;
     stroke-linecap: round;
-    pointer-events: none;
 }
 
+#beautiful-map {
+    margin:2%;
+    padding:20px;
+}
 
 </style>
+<head>
+    <title>click on your home</title>
+</head>
 <body>
-<svg width="960" height="600"></svg>
+    <div id="beautiful-map"></div>
+</body>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
 <script>
 
+d3.select(window)
+        .on("resize", sizeChange);
 
-var projection = d3.geoAlbersUsa();
+var projection = d3.geoAlbersUsa()
+    .scale(1100);
+
 var path = d3.geoPath()
     .projection(projection);
 
-var svg = d3.select("svg");
+
+var svg = d3.select("#beautiful-map")
+    .append("svg")
+    .style("width", "100%");
 
 d3.json("http://0.0.0.0:5000/us/map", function(error, us) {
     if (error) throw error;
@@ -49,11 +61,17 @@ d3.json("http://0.0.0.0:5000/us/map", function(error, us) {
       })
       .attr("d", path);
 
-    svg.append("path")
-        .attr("class", "state-borders")
-        .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
+    sizeChange();
 
 });
+
+function sizeChange() {
+    console.log('size change');
+
+    d3.select("g").attr("transform", "scale(" + $("#beautiful-map").width()/900 + ")");
+    $("svg").height($("#beautiful-map").width()*0.618);
+}
+
 
 
 </script>
