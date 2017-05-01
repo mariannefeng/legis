@@ -4,20 +4,19 @@
 import requests
 import legis_data.process.VARS as vars
 
+
 class BasicCongressional:
-    def __init__(self,
-                 name=None,
-                 chamber=None,
-                 office=None,
-                 party=None,
-                 phone=None,
-                 photo=None,
-                 social=None):
+    def __init__(self, chamber=None):
+        self.name = None
+        self.chamber = chamber
+        self.office = None
+        self.party = None
+        self.phone = None
+        self.photo = None
         self.social = []
 
-    def load_data(self, l, chamber):
+    def load_data(self, l):
         self.name = l['name']
-        self.chamber = chamber
         self.office = l['address']
         self.party = l['party']
         self.phone = l['phones']
@@ -27,11 +26,9 @@ class BasicCongressional:
             rep_social = {}
             type = social['type']
             social_endpoint = vars.SOCIAL_ENDPOINTS[type] + social['id']
-            status = check_url(social_endpoint)
-            if status and status < 400:
-                rep_social['link'] = social_endpoint
-                rep_social['type'] = type
-                self.social.append(rep_social)
+            rep_social['link'] = social_endpoint
+            rep_social['type'] = type
+            self.social.append(rep_social)
 
         return self
 
@@ -47,8 +44,8 @@ def get_reps(state):
     reps = []
     for office in google_result['offices']:
         for index in office['officialIndices']:
-            rep = BasicCongressional()
-            rep.load_data(google_result['officials'][index], office['name'])
+            rep = BasicCongressional(office['name'])
+            rep.load_data(google_result['officials'][index])
             reps.append(rep.__dict__)
     return reps
 
