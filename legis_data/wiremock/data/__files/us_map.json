@@ -14,8 +14,8 @@
         ],
         "id": "56",
         "properties": {
-          "STUSPS10": "WY",
-          "NAME10": "Wyoming"
+          "ABBREV": "WY",
+          "FULL": "Wyoming"
         }
       }, {
         "type": "Polygon",
@@ -24,8 +24,8 @@
         ],
         "id": "42",
         "properties": {
-          "STUSPS10": "PA",
-          "NAME10": "Pennsylvania"
+          "ABBREV": "PA",
+          "FULL": "Pennsylvania"
         }
       }, {
         "type": "Polygon",
@@ -34,8 +34,8 @@
         ],
         "id": "39",
         "properties": {
-          "STUSPS10": "OH",
-          "NAME10": "Ohio"
+          "ABBREV": "OH",
+          "FULL": "Ohio"
         }
       }, {
         "type": "Polygon",
@@ -44,8 +44,8 @@
         ],
         "id": "35",
         "properties": {
-          "STUSPS10": "NM",
-          "NAME10": "New Mexico"
+          "ABBREV": "NM",
+          "FULL": "New Mexico"
         }
       }, {
         "type": "Polygon",
@@ -54,8 +54,8 @@
         ],
         "id": "24",
         "properties": {
-          "STUSPS10": "MD",
-          "NAME10": "Maryland"
+          "ABBREV": "MD",
+          "FULL": "Maryland"
         }
       }, {
         "type": "MultiPolygon",
@@ -69,8 +69,8 @@
         ],
         "id": "44",
         "properties": {
-          "STUSPS10": "RI",
-          "NAME10": "Rhode Island"
+          "ABBREV": "RI",
+          "FULL": "Rhode Island"
         }
       }, {
         "type": "Polygon",
@@ -79,8 +79,8 @@
         ],
         "id": "41",
         "properties": {
-          "STUSPS10": "OR",
-          "NAME10": "Oregon"
+          "ABBREV": "OR",
+          "FULL": "Oregon"
         }
       }, {
         "type": "MultiPolygon",
@@ -97,8 +97,8 @@
         ],
         "id": "72",
         "properties": {
-          "STUSPS10": "PR",
-          "NAME10": "Puerto Rico"
+          "ABBREV": "PR",
+          "FULL": "Puerto Rico"
         }
       }, {
         "type": "Polygon",
@@ -107,8 +107,8 @@
         ],
         "id": "55",
         "properties": {
-          "STUSPS10": "WI",
-          "NAME10": "Wisconsin"
+          "ABBREV": "WI",
+          "FULL": "Wisconsin"
         }
       }, {
         "type": "Polygon",
@@ -117,8 +117,8 @@
         ],
         "id": "38",
         "properties": {
-          "STUSPS10": "ND",
-          "NAME10": "North Dakota"
+          "ABBREV": "ND",
+          "FULL": "North Dakota"
         }
       }, {
         "type": "Polygon",
@@ -127,8 +127,8 @@
         ],
         "id": "32",
         "properties": {
-          "STUSPS10": "NV",
-          "NAME10": "Nevada"
+          "ABBREV": "NV",
+          "FULL": "Nevada"
         }
       }, {
         "type": "Polygon",
@@ -137,8 +137,8 @@
         ],
         "id": "13",
         "properties": {
-          "STUSPS10": "GA",
-          "NAME10": "Georgia"
+          "ABBREV": "GA",
+          "FULL": "Georgia"
         }
       }, {
         "type": "MultiPolygon",
@@ -149,8 +149,8 @@
         ],
         "id": "36",
         "properties": {
-          "STUSPS10": "NY",
-          "NAME10": "New York"
+          "ABBREV": "NY",
+          "FULL": "New York"
         }
       }, {
         "type": "Polygon",
@@ -159,8 +159,8 @@
         ],
         "id": "05",
         "properties": {
-          "STUSPS10": "AR",
-          "NAME10": "Arkansas"
+          "ABBREV": "AR",
+          "FULL": "Arkansas"
         }
       }, {
         "type": "Polygon",
@@ -169,8 +169,8 @@
         ],
         "id": "20",
         "properties": {
-          "STUSPS10": "KS",
-          "NAME10": "Kansas"
+          "ABBREV": "KS",
+          "FULL": "Kansas"
         }
       }, {
         "type": "Polygon",
@@ -179,8 +179,8 @@
         ],
         "id": "31",
         "properties": {
-          "STUSPS10": "NE",
-          "NAME10": "Nebraska"
+          "ABBREV": "NE",
+          "FULL": "Nebraska"
         }
       }, {
         "type": "Polygon",
@@ -189,8 +189,8 @@
         ],
         "id": "49",
         "properties": {
-          "STUSPS10": "UT",
-          "NAME10": "Utah"
+          "ABBREV": "UT",
+          "FULL": "Utah"
         }
       }, {
         "type": "MultiPolygon",
@@ -348,8 +348,8 @@
         ],
         "id": "02",
         "properties": {
-          "STUSPS10": "AK",
-          "NAME10": "Alaska"
+          "ABBREV": "AK",
+          "FULL": "Alaska"
         }
       }, {
         "type": "Polygon",
@@ -358,8 +358,8 @@
         ],
         "id": "28",
         "properties": {
-          "STUSPS10": "MS",
-          "NAME10": "Mississippi"
+          "ABBREV": "MS",
+          "FULL": "Mississippi"
         }
       }, {
         "type": "Polygon",
@@ -368,8 +368,8 @@
         ],
         "id": "40",
         "properties": {
-          "STUSPS10": "OK",
-          "NAME10": "Oklahoma"
+          "ABBREV": "OK",
+          "FULL": "Oklahoma"
         }
       }, {
         "type": "Polygon",
@@ -378,8 +378,8 @@
         ],
         "id": "54",
         "properties": {
-          "STUSPS10": "WV",
-          "NAME10": "West Virginia"
+          "ABBREV": "WV",
+          "FULL": "West Virginia"
         }
       }, {
         "type": "Polygon",
@@ -388,8 +388,8 @@
         ],
         "id": "26",
         "properties": {
-          "STUSPS10": "MI",
-          "NAME10": "Michigan"
+          "ABBREV": "MI",
+          "FULL": "Michigan"
         }
       }, {
         "type": "Polygon",
@@ -398,8 +398,8 @@
         ],
         "id": "08",
         "properties": {
-          "STUSPS10": "CO",
-          "NAME10": "Colorado"
+          "ABBREV": "CO",
+          "FULL": "Colorado"
         }
       }, {
         "type": "Polygon",
@@ -408,8 +408,8 @@
         ],
         "id": "34",
         "properties": {
-          "STUSPS10": "NJ",
-          "NAME10": "New Jersey"
+          "ABBREV": "NJ",
+          "FULL": "New Jersey"
         }
       }, {
         "type": "Polygon",
@@ -418,8 +418,8 @@
         ],
         "id": "10",
         "properties": {
-          "STUSPS10": "DE",
-          "NAME10": "Delaware"
+          "ABBREV": "DE",
+          "FULL": "Delaware"
         }
       }, {
         "type": "Polygon",
@@ -428,8 +428,8 @@
         ],
         "id": "30",
         "properties": {
-          "STUSPS10": "MT",
-          "NAME10": "Montana"
+          "ABBREV": "MT",
+          "FULL": "Montana"
         }
       }, {
         "type": "Polygon",
@@ -438,8 +438,8 @@
         ],
         "id": "53",
         "properties": {
-          "STUSPS10": "WA",
-          "NAME10": "Washington"
+          "ABBREV": "WA",
+          "FULL": "Washington"
         }
       }, {
         "type": "Polygon",
@@ -448,8 +448,8 @@
         ],
         "id": "09",
         "properties": {
-          "STUSPS10": "CT",
-          "NAME10": "Connecticut"
+          "ABBREV": "CT",
+          "FULL": "Connecticut"
         }
       }, {
         "type": "MultiPolygon",
@@ -478,8 +478,8 @@
         ],
         "id": "06",
         "properties": {
-          "STUSPS10": "CA",
-          "NAME10": "California"
+          "ABBREV": "CA",
+          "FULL": "California"
         }
       }, {
         "type": "MultiPolygon",
@@ -493,8 +493,8 @@
         ],
         "id": "21",
         "properties": {
-          "STUSPS10": "KY",
-          "NAME10": "Kentucky"
+          "ABBREV": "KY",
+          "FULL": "Kentucky"
         }
       }, {
         "type": "Polygon",
@@ -503,8 +503,8 @@
         ],
         "id": "25",
         "properties": {
-          "STUSPS10": "MA",
-          "NAME10": "Massachusetts"
+          "ABBREV": "MA",
+          "FULL": "Massachusetts"
         }
       }, {
         "type": "MultiPolygon",
@@ -518,8 +518,8 @@
         ],
         "id": "12",
         "properties": {
-          "STUSPS10": "FL",
-          "NAME10": "Florida"
+          "ABBREV": "FL",
+          "FULL": "Florida"
         }
       }, {
         "type": "Polygon",
@@ -528,8 +528,8 @@
         ],
         "id": "16",
         "properties": {
-          "STUSPS10": "ID",
-          "NAME10": "Idaho"
+          "ABBREV": "ID",
+          "FULL": "Idaho"
         }
       }, {
         "type": "Polygon",
@@ -538,8 +538,8 @@
         ],
         "id": "29",
         "properties": {
-          "STUSPS10": "MO",
-          "NAME10": "Missouri"
+          "ABBREV": "MO",
+          "FULL": "Missouri"
         }
       }, {
         "type": "MultiPolygon",
@@ -595,8 +595,8 @@
         ],
         "id": "15",
         "properties": {
-          "STUSPS10": "HI",
-          "NAME10": "Hawaii"
+          "ABBREV": "HI",
+          "FULL": "Hawaii"
         }
       }, {
         "type": "Polygon",
@@ -605,8 +605,8 @@
         ],
         "id": "01",
         "properties": {
-          "STUSPS10": "AL",
-          "NAME10": "Alabama"
+          "ABBREV": "AL",
+          "FULL": "Alabama"
         }
       }, {
         "type": "Polygon",
@@ -615,8 +615,8 @@
         ],
         "id": "45",
         "properties": {
-          "STUSPS10": "SC",
-          "NAME10": "South Carolina"
+          "ABBREV": "SC",
+          "FULL": "South Carolina"
         }
       }, {
         "type": "Polygon",
@@ -625,8 +625,8 @@
         ],
         "id": "33",
         "properties": {
-          "STUSPS10": "NH",
-          "NAME10": "New Hampshire"
+          "ABBREV": "NH",
+          "FULL": "New Hampshire"
         }
       }, {
         "type": "Polygon",
@@ -635,8 +635,8 @@
         ],
         "id": "46",
         "properties": {
-          "STUSPS10": "SD",
-          "NAME10": "South Dakota"
+          "ABBREV": "SD",
+          "FULL": "South Dakota"
         }
       }, {
         "type": "Polygon",
@@ -645,8 +645,8 @@
         ],
         "id": "17",
         "properties": {
-          "STUSPS10": "IL",
-          "NAME10": "Illinois"
+          "ABBREV": "IL",
+          "FULL": "Illinois"
         }
       }, {
         "type": "Polygon",
@@ -655,8 +655,8 @@
         ],
         "id": "47",
         "properties": {
-          "STUSPS10": "TN",
-          "NAME10": "Tennessee"
+          "ABBREV": "TN",
+          "FULL": "Tennessee"
         }
       }, {
         "type": "Polygon",
@@ -665,8 +665,8 @@
         ],
         "id": "18",
         "properties": {
-          "STUSPS10": "IN",
-          "NAME10": "Indiana"
+          "ABBREV": "IN",
+          "FULL": "Indiana"
         }
       }, {
         "type": "Polygon",
@@ -675,8 +675,8 @@
         ],
         "id": "19",
         "properties": {
-          "STUSPS10": "IA",
-          "NAME10": "Iowa"
+          "ABBREV": "IA",
+          "FULL": "Iowa"
         }
       }, {
         "type": "Polygon",
@@ -685,8 +685,8 @@
         ],
         "id": "04",
         "properties": {
-          "STUSPS10": "AZ",
-          "NAME10": "Arizona"
+          "ABBREV": "AZ",
+          "FULL": "Arizona"
         }
       }, {
         "type": "Polygon",
@@ -695,8 +695,8 @@
         ],
         "id": "27",
         "properties": {
-          "STUSPS10": "MN",
-          "NAME10": "Minnesota"
+          "ABBREV": "MN",
+          "FULL": "Minnesota"
         }
       }, {
         "type": "Polygon",
@@ -705,8 +705,8 @@
         ],
         "id": "22",
         "properties": {
-          "STUSPS10": "LA",
-          "NAME10": "Louisiana"
+          "ABBREV": "LA",
+          "FULL": "Louisiana"
         }
       }, {
         "type": "Polygon",
@@ -715,8 +715,8 @@
         ],
         "id": "11",
         "properties": {
-          "STUSPS10": "DC",
-          "NAME10": "District of Columbia"
+          "ABBREV": "DC",
+          "FULL": "District of Columbia"
         }
       }, {
         "type": "Polygon",
@@ -725,8 +725,8 @@
         ],
         "id": "51",
         "properties": {
-          "STUSPS10": "VA",
-          "NAME10": "Virginia"
+          "ABBREV": "VA",
+          "FULL": "Virginia"
         }
       }, {
         "type": "Polygon",
@@ -735,8 +735,8 @@
         ],
         "id": "48",
         "properties": {
-          "STUSPS10": "TX",
-          "NAME10": "Texas"
+          "ABBREV": "TX",
+          "FULL": "Texas"
         }
       }, {
         "type": "Polygon",
@@ -745,8 +745,8 @@
         ],
         "id": "50",
         "properties": {
-          "STUSPS10": "VT",
-          "NAME10": "Vermont"
+          "ABBREV": "VT",
+          "FULL": "Vermont"
         }
       }, {
         "type": "Polygon",
@@ -755,8 +755,8 @@
         ],
         "id": "23",
         "properties": {
-          "STUSPS10": "ME",
-          "NAME10": "Maine"
+          "ABBREV": "ME",
+          "FULL": "Maine"
         }
       }, {
         "type": "Polygon",
@@ -765,8 +765,8 @@
         ],
         "id": "37",
         "properties": {
-          "STUSPS10": "NC",
-          "NAME10": "North Carolina"
+          "ABBREV": "NC",
+          "FULL": "North Carolina"
         }
       }]
     }

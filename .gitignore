@@ -1,4 +1,4 @@
-legis_view/.sass-cache/
+.sass-cache/
 .idea/
 *.iml
 *.png
@@ -13,4 +13,5 @@ build/
 *.egg-info/
 dist/
 venv/lib/
+**/*.map
 node_modules/

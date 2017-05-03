@@ -11,8 +11,7 @@
 }
 
 #beautiful-map {
-    margin:2%;
-    padding:20px;
+    margin-top: 30px;
 }
 
 div.tooltip {
@@ -91,10 +90,6 @@ var svg = d3.select("#beautiful-map")
     .append("svg")
     .style("width", "100%");
 
-var div = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
-
 d3.json("http://0.0.0.0:5000/us/map", function(error, us) {
     if (error) throw error;
     svg.append("g")
@@ -103,14 +98,14 @@ d3.json("http://0.0.0.0:5000/us/map", function(error, us) {
       .data(topojson.feature(us, us.objects.states).features)
         .enter().append("path")
       .on("click", function(d,i){
-        window.location = "http://0.0.0.0:5001/" + d.properties.STUSPS10;
+        window.location = "http://0.0.0.0:5001/" + d.properties.ABBREV;
       })
     .on("mouseover", function(d) {
         d3.select(this)
             .style("fill", randomColor)
             .style("cursor", "pointer");
 
-        $("#state-name").html(d.properties.STUSPS10);
+        $("#state-name").html(d.properties.ABBREV + "," + d.properties.FULL);
 
     })
     .on("mouseout", function(d) {
@@ -127,8 +122,8 @@ d3.json("http://0.0.0.0:5000/us/map", function(error, us) {
 function sizeChange() {
     console.log('size change');
 
-    d3.select("g").attr("transform", "scale(" + $("#beautiful-map").width()/900 + ")");
-    $("svg").height($("#beautiful-map").width()*0.618);
+    d3.select("g").attr("transform", "scale(" + $("#beautiful-map").width()/1000 + ")");
+    $("svg").height($("#beautiful-map").width() * 0.618);
 }
 
 

@@ -1,6 +1,8 @@
 #!/bin/sh
 
 # run in mock mode with ./start.sh --mock
+# will also do sass stuff
+
 
 ### YA GOTTA HAVE PYTHON 3 INSTALLED ###
 export FLASK_DEBUG=1
@@ -17,6 +19,7 @@ cleanup()
 }
 trap cleanup EXIT
 
+sass --watch legis_view/sass:legis_view/static &
 python3 --version
 
 if [ $# -eq 0 ]; then
@@ -38,4 +41,5 @@ fi
 
 # start view
 python3 legis_view/legis.py &
+
 wait
