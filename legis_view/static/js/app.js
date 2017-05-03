@@ -1,11 +1,14 @@
-var internal_api = 'http://0.0.0.0:5000'
-var state = window.location.pathname.replace('/', '').toLowerCase()
-var legis_url =  internal_api + '/us/'+ state + '/reps'
+var internal_api = 'http://0.0.0.0:5000';
+var state = window.location.pathname.replace('/', '').toLowerCase();
+var legis_url =  internal_api + '/us/'+ state + '/reps';
 
+
+//get legislators for X state
 fetch(legis_url)
     .then(res => res.json())
-.then((out) => {
+    .then((out) => {
     console.log('Checkout this JSON! ', out);
+
 var state_view = new Vue({
     el: '#state-legislators',
     data: {
@@ -16,10 +19,13 @@ var state_view = new Vue({
 .catch(err => console.error(err));
 
 
+
+//get upcoming bills for X state
 fetch(internal_api + '/' + state + '/upcoming_bills')
     .then(res => res.json())
 .then((out) => {
     console.log("upcoming bills json", out);
+
 var bills_state = new Vue({
     el: '#bill-data',
     data: {
@@ -29,6 +35,8 @@ var bills_state = new Vue({
 })
 .catch(err => console.error(err));
 
+
+// expander
 $(document).ready(function() {
     $('.expander-trigger').click(function(){
         $(this).toggleClass("expander-hidden");
