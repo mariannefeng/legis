@@ -5,9 +5,14 @@ $fg-column: 60px;             // Column Width
 $fg-gutter: 25px;             // Gutter Width
 $fg-max-columns: 12;          // Total Columns For Main Container
 
+$card-left-space: 5px;
+$democrat: #4790b9;
+$republican: #B94757;
+
+@include font-face("Helvetica-Light", "Helvetica-Light.tff", $file-formats: tff);
 
 html * {
-	font-family: "Bitstream Vera Sans Mono", "Consolas", "Courier", monospace;
+	font-family: "Helvetica-Light";
 }
 
 ul * {
@@ -17,9 +22,7 @@ ul * {
 /* gridddddzzdzdz */
 
 // thirds
-$custom-grid--halves: (
-	columns: 2,
-	);
+$custom-grid--halves: ( columns: 2 );
 
 .custom-grid--halves {
 	@include grid-container;
@@ -28,6 +31,7 @@ $custom-grid--halves: (
 
 .custom-grid--halves__a-single-column {
 	@include grid-column(1, $custom-grid--halves);
+	margin-left: 0px;
 }
 
 // fucking with other grids 
@@ -74,30 +78,43 @@ $article-layout-grid--tablet-up: (
 .cardz {
 	// @include border-top-radius(20px);
 	// @include border-bottom-radius(20px);
-	background: tint(black, 90%);
+	@include border-bottom-radius(2px);
+	@include border-top-radius(2px);
+	@include border-left-radius(2px);
+	@include border-right-radius(2px);
+	@include border-style(solid solid solid solid);
+	@include border-width(3px 3px 3px 3px);
+	
+	.party-color {
+		height: 10px;
+		@include border-style(null null solid null);
+		@include border-width(1px 1px 1px 1px);
+	}
 }
 
 .cards {
 	@include display(flex);
 	@include flex-wrap(wrap);
 	@include justify-content(space-between);
-
 	.card {
 		@include flex-basis(20em);
 		@include flex-grow(1);
-		@include margin(null 1rem 1rem null);
-		@include padding(null null 3em null)
+		@include margin(0.5rem 0.5rem 0.5rem 0.5rem);
+		//@include padding(0.8em 1em 1em 1em);
 	}
 	.card-header {
-		@include margin(0 null null null);
+		@include margin(0 0 0 $card-left-space);
 	}
 	.card-basics {
 	}
 	.card-image {
-		height: 10rem;
+		@include margin(0 0 0 $card-left-space);
 		overflow: hidden;
 		img {
-			width: 100%;
+			//overflow: hidden;
+			height: 12rem;
+			width: 8rem;
+			//width: 100%;
 		}
 	}
 }
@@ -165,3 +182,6 @@ $article-layout-grid--tablet-up: (
 	margin: auto;
 	font-size: 50px;
 }
+
+.democrat { background-color: $democrat; }
+.republican { background-color: $republican; }

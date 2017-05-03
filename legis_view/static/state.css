@@ -1,5 +1,9 @@
+@font-face {
+  font-family: "Helvetica-Light";
+  font-style: normal;
+  font-weight: normal; }
 html * {
-  font-family: "Bitstream Vera Sans Mono", "Consolas", "Courier", monospace; }
+  font-family: "Helvetica-Light"; }
 
 ul * {
   list-style-type: none; }
@@ -13,7 +17,8 @@ ul * {
 .custom-grid--halves__a-single-column {
   width: calc(50% - 30px);
   float: left;
-  margin-left: 20px; }
+  margin-left: 20px;
+  margin-left: 0px; }
 
 .article-layout::after {
   clear: both;
@@ -49,7 +54,20 @@ ul * {
 
 /* cards */
 .cardz {
-  background: #e6e6e6; }
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  border-style: solid;
+  border-width: 3px; }
+  .cardz .party-color {
+    height: 10px;
+    border-bottom-style: solid;
+    border-width: 1px; }
 
 .cards {
   display: -webkit-box;
@@ -84,16 +102,15 @@ ul * {
     -moz-flex-grow: 1;
     flex-grow: 1;
     -ms-flex-positive: 1;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-    padding-bottom: 3em; }
+    margin: 0.5rem; }
   .cards .card-header {
-    margin-top: 0; }
+    margin: 0 0 0 5px; }
   .cards .card-image {
-    height: 10rem;
+    margin: 0 0 0 5px;
     overflow: hidden; }
     .cards .card-image img {
-      width: 100%; }
+      height: 12rem;
+      width: 8rem; }
 
 .expander {
   width: 100%;
@@ -131,5 +148,11 @@ ul * {
   width: 500px;
   margin: auto;
   font-size: 50px; }
+
+.democrat {
+  background-color: #4790b9; }
+
+.republican {
+  background-color: #B94757; }
 
 /*# sourceMappingURL=state.css.map */

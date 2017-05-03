@@ -46,3 +46,6 @@ WHAT_WERE_DOING_MD = 'static/md/what_happen.md'
 THANK_YOU_MD = 'static/md/thank_you.md'
 
 MAX_BILLS_LENGTH = 7
+DEMOCRAT='democrat'
+REPUBLICAN='republican'
+INDEPENDENT='independent'

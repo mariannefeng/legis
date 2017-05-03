@@ -78,7 +78,6 @@ def get_us_reps_from_address():
 @app.route('/us/<state>/reps', methods=['GET'])
 def get_reps_from_state(state):
     reps = l.get_reps(state)
-    print(reps)
     response = jsonify(reps)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response

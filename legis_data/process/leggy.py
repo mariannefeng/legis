@@ -18,7 +18,7 @@ class BasicCongressional:
     def load_data(self, l):
         self.name = l.get('name')
         self.office = l.get('address')
-        self.party = l.get('party')
+        self.party = standardize_parties(l.get('party'))
         self.phone = l.get('phones')
         self.photo = l.get('photoUrl')
 
@@ -60,4 +60,14 @@ def check_url(url):
     except:
         print("failed to connect")
     return status_code
+
+
+# add more checks as necessary
+def standardize_parties(party):
+    if party:
+        if party.lower() == 'democratic':
+            return vars.DEMOCRAT
+        if party.lower() == 'republican':
+            return vars.REPUBLICAN
+
 
