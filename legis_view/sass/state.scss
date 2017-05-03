@@ -110,11 +110,11 @@ $article-layout-grid--tablet-up: (
 	.card-image {
 		@include margin(0 0 0 $card-left-space);
 		overflow: hidden;
+		height: 12rem;
+		width: 8rem;
 		img {
 			//overflow: hidden;
-			height: 12rem;
-			width: 8rem;
-			//width: 100%;
+			width: 90%;
 		}
 	}
 }

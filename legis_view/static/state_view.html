@@ -6,96 +6,56 @@
 <body>
 	<script src="https://use.fontawesome.com/46a18a6e30.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<div class="expander">
-  <a href="javascript:void(0)" class="expander-trigger expander-hidden">Latest Bill Data</a>
-  <div class="expander-content billscroll" id="bill-data">
-   <div v-for="bill in bills">
-    <p>{{ bill.title }}</p>
+    <div class="expander">
+      <a href="javascript:void(0)" class="expander-trigger expander-hidden">Latest Bill Data</a>
+      <div class="expander-content billscroll" id="bill-data">
+       <div v-for="bill in bills">
+        <p>{{ bill.title }}</p>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
 
-	<div id="state-legislators" class="cards">
-		<div v-for="leg in legis" class="card cardz">
-            <div v-bind:class="leg.party" class="party-color"></div>
-			<h1 class="card-header">{{ leg.name }}</h1>
-			<div class="card-basics">
-				<div class="custom-grid--halves">
-					<div class="custom-grid--halves__a-single-column">
-						<img class="card-image" :src="leg.photo"></img>
-					</div>
-					<div class="custom-grid--halves__a-single-column">
-						<div class="cards">
-							<div class="card">
-								<ul style="list-style: none; padding: 0;">
-									<li>{{ leg.chamber }}</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-<!-- 			<div class="card-copy">
-				<li>{{ leg.party }}</li>
-				<li>{{ leg.chamber }}</li>
-			</div> -->
-			<!-- <div class="card-copy"> -->
-				<!-- <div v-for="soc in leg.social">
-				<a class="icon-link" :href="soc.link" target="_blank">
-				<span class="icon">
-						<i class="fa fa-google-plus-square" v-if="soc.type == 'GooglePlus'"></i>
-						<i class="fa fa-facebook" v-if="soc.type == 'Facebook'"></i>
-						<i class="fa fa-twitter" v-if="soc.type == 'Twitter'"></i>
-						<i class="fa fa-youtube" v-if="soc.type == 'YouTube'"></i>
-					</span>
-				</a>
-			</div> -->
-		</div>
-	</div>
-</div>
-</div>
+    <div id="state-legislators" class="cards">
+            <div v-for="leg in legis" class="card cardz">
+                <div v-bind:class="leg.party" class="party-color"></div>
+                <h1 class="card-header">{{ leg.name }}</h1>
+                <div class="card-basics">
+                    <div class="custom-grid--halves">
+                        <div class="custom-grid--halves__a-single-column">
+                            <img class="card-image" :src="leg.photo"></img>
+                        </div>
+                        <div class="custom-grid--halves__a-single-column">
+                            <div class="cards">
+                                <div class="card">
+                                    <ul style="list-style: none; padding: 0;">
+                                        <li>{{ leg.chamber }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    <!-- 			<div class="card-copy">
+                    <li>{{ leg.party }}</li>
+                    <li>{{ leg.chamber }}</li>
+                </div> -->
+                <!-- <div class="card-copy"> -->
+                    <!-- <div v-for="soc in leg.social">
+                    <a class="icon-link" :href="soc.link" target="_blank">
+                    <span class="icon">
+                            <i class="fa fa-google-plus-square" v-if="soc.type == 'GooglePlus'"></i>
+                            <i class="fa fa-facebook" v-if="soc.type == 'Facebook'"></i>
+                            <i class="fa fa-twitter" v-if="soc.type == 'Twitter'"></i>
+                            <i class="fa fa-youtube" v-if="soc.type == 'YouTube'"></i>
+                        </span>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="static/js/app.js"></script>
 </body>
-<script src="https://unpkg.com/vue"></script>
-<script>
-var internal_api = 'http://0.0.0.0:5000'
-var state = window.location.pathname.replace('/', '').toLowerCase()
-var legis_url =  internal_api + '/us/'+ state + '/reps'
-// console.log(legis_url)
-
-fetch(legis_url)
-.then(res => res.json())
-.then((out) => {
-	console.log('Checkout this JSON! ', out);
-	var state_view = new Vue({
-		el: '#state-legislators',
-		data: {
-			legis: out
-		}
-	});
-})
-.catch(err => console.error(err));
-
-
-fetch(internal_api + '/' + state + '/upcoming_bills')
-.then(res => res.json())
-.then((out) => {
-	console.log("upcoming bills json", out);
-	var bills_state = new Vue({
-		el: '#bill-data',
-		data: {
-			bills: out
-		}
-	});
-})
-.catch(err => console.error(err));
-
-$(document).ready(function() {
-  $('.expander-trigger').click(function(){
-    $(this).toggleClass("expander-hidden");
-  });
-});
-
-
-</script>
 
